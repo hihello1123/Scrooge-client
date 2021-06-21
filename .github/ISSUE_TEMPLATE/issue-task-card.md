@@ -3,7 +3,7 @@ name: Issue Task Card
 about: Issue Task Card
 title: "[Client] 이슈카드 제목"
 labels: Client
-assignees: solheee, hihello1123
+assignees: hihello1123, solheee
 
 ---
 

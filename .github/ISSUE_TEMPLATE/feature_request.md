@@ -1,20 +1,22 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
+name: Dev-Log
+about: Dev-Log
+title: "[Dev-Log] 제목"
 labels: ''
-assignees: ''
+assignees: solheee, hihello1123
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### **오늘은 어떻게 프로젝트에 기여했나요?**
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+- 
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+### **오늘의 프로젝트에서 힘든 점은 무엇인가요?**
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+- 항목별로 적어주세요.
+
+`// 코드를 첨부해도 좋습니다.`
+
+### **내일은 프로젝트에 기여하기 위해 무엇을 해야 하나요?**
+
+- [ ]  Todo 형식으로 기록해주세요.
