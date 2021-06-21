@@ -3,7 +3,7 @@ name: Dev-Log
 about: Dev-Log
 title: "[Dev-Log] 제목"
 labels: ''
-assignees: solheee, hihello1123
+assignees: hihello1123, solheee
 
 ---
 
