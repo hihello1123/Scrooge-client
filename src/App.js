@@ -1,15 +1,21 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { hello } from './actions';
 require('dotenv').config();
 
 function App() {
-  const [hi, setHi] = useState('');
+  const state = useSelector((state) => state.hello);
+  const { loading, data, err } = state;
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + '/').then((res) => {
-      setHi(res.data);
-    });
+    dispatch(hello());
   }, []);
-  return <div className="App">{hi}</div>;
+  if (err) return <div>{err}</div>;
+  return (
+    <div className="App">{loading ? <div>{data}</div> : <div>머냐!</div>}</div>
+  );
 }
 
 export default App;
