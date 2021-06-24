@@ -5,9 +5,11 @@ require('dotenv').config();
 function App() {
   const [hi, setHi] = useState('');
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + '/').then((res) => {
-      setHi(res.data);
-    });
+    axios
+      .get('http://ec2-15-164-213-161.ap-northeast-2.compute.amazonaws.com/')
+      .then((res) => {
+        setHi(res.data);
+      });
   }, []);
   return <div className="App">{hi}</div>;
 }
