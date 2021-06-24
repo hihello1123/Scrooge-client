@@ -25,6 +25,14 @@ function Signup() {
     console.log(userInfo);
   }
 
+  function inputPhoto(e) {
+    let file = e.target.files[0];
+    setUserInfo({
+      ...userInfo,
+      photo: file,
+    });
+  }
+
   let emailChecker = async (e) => {
     e.preventDefault();
 
@@ -35,7 +43,7 @@ function Signup() {
 
     await axios
       .post(
-        `${process.env.REACT_APP_API_URL}` + '/checkemail',
+        'https://api.scrooge.today/checkemail',
         { email: userInfo.email },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -47,28 +55,25 @@ function Signup() {
         setLegal(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
 
-  const incodingFile = (e) => {
-    e.preventDefault();
-    // let reader = new FileReader();
-    let file = e.target.files[0];
-    setUserInfo({
-      ...userInfo,
-      itemphoto: file,
-    });
-    // if (file) {
-    //   reader.readAsDataURL(file);
-    //   reader.onload = (e) => {
-    //     setInputs({
-    //       ...inputs,
-    //       itemphoto: e.target.result,
-    //     });
-    //   };
-    // }
-  };
+  // const incodingFile = (e) => {
+  //   e.preventDefault();
+  //   let reader = new FileReader();
+  //   let file = e.target.files[0];
+  //   if (file) {
+  //     reader.readAsDataURL(file); // <-인코딩
+  //     reader.onload = (e) => {
+  //       setUserInfo({
+  //         ...userInfo,
+  //         photo: e.target.result,
+  //       });
+  //     };
+  //   }
+  // };
+  //incodingFile 추후에 리덕스로 변경 예정
 
   let signupRequestHandler = async (e) => {
     if (!userInfo.nickname || !userInfo.password || !userInfo.email) {
@@ -91,10 +96,11 @@ function Signup() {
     fd.append('nickname', userInfo.nickname);
     fd.append('password', userInfo.password);
     fd.append('photo', userInfo.photo);
+
     console.log(fd);
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
+      .post('https://api.scrooge.today/signup', fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       })
@@ -117,7 +123,7 @@ function Signup() {
                 name="photo"
                 type="file"
                 accept="image/jpg, image/png, image/jpeg, image/gif"
-                onChange={incodingFile}
+                onChange={inputPhoto}
                 className="photo"
                 required
               ></input>
