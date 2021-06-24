@@ -1,3 +1,5 @@
+@import './pages/signup.scss';
+
 $red-color: red;
 $cobalt-blue: #385ad2;
 $black-color: #152253;
@@ -8,20 +10,4 @@ $white-color: #f1f5ff;
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.signup {
-  border-top: 40vh;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-left: auto;
-  width: 40vw;
-  height: 100vh;
-  background-color: blanchedalmond;
-}
-
-.inputZone {
-  margin-top: auto;
-  margin-bottom: auto;
 }

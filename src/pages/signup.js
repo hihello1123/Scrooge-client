@@ -123,7 +123,7 @@ function Signup() {
                 type="password"
                 onChange={inputHandler}
                 className="password"
-                requir
+                required
               ></input>
             </div>
             <div>
