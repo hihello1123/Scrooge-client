@@ -51,14 +51,26 @@ function Signup() {
       });
   };
 
-  let signupRequestHandler = async (e) => {
-    const fd = new FormData();
-    fd.append('email', userInfo.email);
-    fd.append('nickname', userInfo.nickname);
-    fd.append('password', userInfo.password);
-    fd.append('photo', userInfo.photo);
-    console.log(fd);
+  const incodingFile = (e) => {
+    e.preventDefault();
+    // let reader = new FileReader();
+    let file = e.target.files[0];
+    setUserInfo({
+      ...userInfo,
+      itemphoto: file,
+    });
+    // if (file) {
+    //   reader.readAsDataURL(file);
+    //   reader.onload = (e) => {
+    //     setInputs({
+    //       ...inputs,
+    //       itemphoto: e.target.result,
+    //     });
+    //   };
+    // }
+  };
 
+  let signupRequestHandler = async (e) => {
     if (!userInfo.nickname || !userInfo.password || !userInfo.email) {
       if (!userInfo.email) {
         alert('처음부터 시도해주세요');
@@ -73,6 +85,13 @@ function Signup() {
     } else if (userInfo.password !== userInfo.passwordCheck) {
       alert('비밀번호를 확인해주세요');
     }
+
+    const fd = new FormData();
+    fd.append('email', userInfo.email);
+    fd.append('nickname', userInfo.nickname);
+    fd.append('password', userInfo.password);
+    fd.append('photo', userInfo.photo);
+    console.log(fd);
 
     axios
       .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
@@ -97,7 +116,8 @@ function Signup() {
               <input
                 name="photo"
                 type="file"
-                onChange={inputHandler}
+                accept="image/jpg, image/png, image/jpeg, image/gif"
+                onChange={incodingFile}
                 className="photo"
                 required
               ></input>
