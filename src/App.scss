@@ -1,4 +1,6 @@
 @import './pages/signup.scss';
+@import './components/Logo.scss';
+@import './variable.scss';
 
 $red-color: red;
 $cobalt-blue: #385ad2;
@@ -10,4 +12,8 @@ $white-color: #f1f5ff;
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+body {
+  background-color: $white-color;
+  margin: 0;
 }

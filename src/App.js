@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hello } from './actions';
 import Signup from './pages/signup';
+import Logo from './components/Logo';
 
 function App() {
   const [isLogin, setLogin] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   if (err) return <div>에러야</div>;
   return (
     <div className="app">
+      <Logo />
       {isLogin ? (
         <Signup />
       ) : (
