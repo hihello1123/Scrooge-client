@@ -1,7 +1,7 @@
 import { HELLO_LOADING, HELLO_SUCCESS, HELLO_EROOR } from '../actions/index';
 import initialStats from './initialStats';
 
-const hello = (state = initialStats, action) => {
+const helloReducer = (state = initialStats, action) => {
   switch (action.type) {
     case HELLO_LOADING:
       return {
@@ -29,4 +29,4 @@ const hello = (state = initialStats, action) => {
   }
 };
 
-export default hello;
+export default helloReducer;
