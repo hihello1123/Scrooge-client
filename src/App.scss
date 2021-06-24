@@ -1,11 +1,7 @@
 @import './pages/signup.scss';
 @import './components/Logo.scss';
 @import './variable.scss';
-
-$red-color: red;
-$cobalt-blue: #385ad2;
-$black-color: #152253;
-$white-color: #f1f5ff;
+@import './_mixin.scss';
 
 .app {
   background-color: $white-color;
@@ -13,7 +9,29 @@ $white-color: #f1f5ff;
   flex-direction: column;
   height: 100vh;
 }
+
 body {
   background-color: $white-color;
   margin: 0;
+  padding: 50px;
+}
+
+@include mobile {
+  body {
+    background-color: $white-color;
+    margin: 0;
+    padding: 50px;
+  }
+}
+
+@include tablet {
+  body {
+    background-color: $blue-color;
+  }
+}
+
+@include desktop {
+  body {
+    background-color: $black-color;
+  }
 }

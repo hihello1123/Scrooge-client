@@ -1,2 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Poiret+One&display=swap');
+
+// base color
 $white-color: #f1f5ff;
 $black-color: #152253;
+$blue-color: #385ad2;
+
+// font
+$noto-font: 'Noto Sans KR', sans-serif;
+$noto-font: 'Poiret One', sans-serif;
+
+$font-default: 1rem;
+$font-medium: 1.121rem;
+$font-large: 1.5rem;
+$font-X-large: 4rem;
+
+// Breakpoints
+$breakpoint-mobile: 414px;
+$breakpoint-tablet: 700px;
+$breakpoint-desktop: 1200px;

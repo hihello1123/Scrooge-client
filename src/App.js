@@ -17,11 +17,11 @@ function App() {
   if (err) return <div>에러야</div>;
   return (
     <div className="app">
-      <Logo />
+      <Logo className="logo" />
       {isLogin ? (
         <Signup />
       ) : (
-        <div className="App">
+        <div>
           <button onClick={helloHandle}>회원가입</button>
           <div>{loading ? <div>로딩중이야</div> : <div>{data}</div>}</div>
         </div>

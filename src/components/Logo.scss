@@ -1,6 +1,10 @@
 @import '../variable.scss';
+
 .logo {
+  display: inline;
   position: relative;
+  width: 191px;
+  height: 62px;
   cursor: pointer;
 }
 

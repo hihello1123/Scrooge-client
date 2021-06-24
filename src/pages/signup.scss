@@ -1,9 +1,11 @@
 .signup {
+  position: fixed;
+  top: 0px;
+  right: 0px;
   border-top: 40vh;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: auto;
   width: 40vw;
   height: 100vh;
   background-color: blanchedalmond;
