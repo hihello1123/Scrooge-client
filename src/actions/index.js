@@ -10,7 +10,7 @@ export const hello = () => async (dispatch) => {
   axios
     .get(process.env.REACT_APP_API_URL + '/')
     .then((res) => {
-      dispatch({ type: HELLO_SUCCESS, data: res });
+      dispatch({ type: HELLO_SUCCESS, data: res.data });
     })
     .catch((err) => {
       dispatch({ type: HELLO_EROOR, err });
