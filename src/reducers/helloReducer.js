@@ -1,4 +1,4 @@
-import { HELLO_LOADING, HELLO_SUCCESS, HELLO_EROOR } from '../actions/index';
+import { HELLO_LOADING, HELLO_SUCCESS, HELLO_ERROR } from '../actions/index';
 import initialStats from './initialStats';
 
 const helloReducer = (state = initialStats, action) => {
@@ -17,7 +17,7 @@ const helloReducer = (state = initialStats, action) => {
         data: action.data,
         err: null,
       };
-    case HELLO_EROOR:
+    case HELLO_ERROR:
       return {
         ...state,
         loading: false,

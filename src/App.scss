@@ -1,5 +1,6 @@
-$red-color: red;
-
-div {
-  color: $red-color;
+@import './components/Logo.scss';
+@import './variable.scss';
+body {
+  background-color: $white-color;
+  margin: 0;
 }
