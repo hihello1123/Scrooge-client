@@ -1,0 +1,31 @@
+@import '../variable.scss';
+
+.nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 50px 0 50px 50px;
+  width: 360px;
+  height: 100vh;
+  background-color: $white-color;
+  &_container {
+    height: 100%;
+    border-right: 1px solid $gray-color;
+  }
+}
+
+ul {
+  padding: 0;
+  color: $gray-color;
+  li {
+    list-style: none;
+    &.focused {
+      color: $blue-color;
+    }
+  }
+}
+
+.nav_icon {
+  width: 25px;
+  height: 25px;
+}
