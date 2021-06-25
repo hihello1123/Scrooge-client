@@ -1,6 +1,12 @@
 const initialStats = {
-  loading: false,
-  data: null,
-  err: null,
+  hello: {
+    loading: false,
+    data: null,
+    err: null,
+  },
+  emailExists: {
+    emailSignupMod: false,
+    emailExistsErr: false,
+  },
 };
 export default initialStats;
