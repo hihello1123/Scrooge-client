@@ -45,23 +45,6 @@ function Signup() {
       return;
     }
 
-    // await axios
-    //   .post(
-    //     `${process.env.REACT_APP_API_URL}` + '/checkemail',
-    //     { email: userInfo.email },
-    //     {
-    //       headers: { 'Content-Type': 'application/json' },
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data.message);
-    //     setLegal(true);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
     dispatch(checkEmailExists(userInfo.email));
   };
 

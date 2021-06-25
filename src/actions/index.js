@@ -18,6 +18,23 @@ export const hello = () => (dispatch) => {
     });
 };
 
+// # islogin
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
+
+export const userLogin = (accessToken) => {
+  return {
+    type: USER_LOGIN,
+    accessToken,
+  };
+};
+
+export const userLogOut = () => {
+  return {
+    type: USER_LOGOUT,
+  };
+};
+
 // # AUTH
 // 이메일 확인
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';

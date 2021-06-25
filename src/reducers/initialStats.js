@@ -8,5 +8,9 @@ const initialStats = {
     emailSignupMod: false,
     emailExistsErr: false,
   },
+  userLoggedIn: {
+    isLoggedIn: false,
+    accessToken: null,
+  },
 };
 export default initialStats;

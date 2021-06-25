@@ -1,0 +1,53 @@
+@import './Signup.scss';
+@import './Logo.scss';
+@import './Nav.scss';
+@import './variable.scss';
+@import './_mixin.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $white-color;
+  margin: 0;
+  padding: 50px;
+  font-family: $noto-font;
+}
+
+.app {
+  background-color: $white-color;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+@include mobile {
+  body {
+    background-color: $white-color;
+    margin: 0;
+    padding: 50px;
+  }
+}
+
+@include tablet {
+  body {
+    background-color: $blue-color;
+  }
+}
+
+@include desktop {
+  body {
+    background-color: $black-color;
+  }
+}
+
+// .center {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   &_desktop {
+//     margin-left: 310px;
+//     padding-left: 50px;
+//   }
+// }
