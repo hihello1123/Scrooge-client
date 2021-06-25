@@ -5,7 +5,7 @@ export const HELLO_SUCCESS = 'HELLO_SUCCESS';
 export const HELLO_ERROR = 'HELLO_ERROR';
 
 // # HELLO
-export const hello = () => async (dispatch) => {
+export const hello = () => (dispatch) => {
   dispatch({ type: HELLO_LOADING });
 
   axios
@@ -23,7 +23,7 @@ export const hello = () => async (dispatch) => {
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';
 export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 
-export const checkEmailExists = (email) => async (dispatch) => {
+export const checkEmailExists = (email) => (dispatch) => {
   axios
     .post(
       process.env.REACT_APP_API_URL + '/checkemail',

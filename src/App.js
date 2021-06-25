@@ -4,8 +4,10 @@ import { hello } from './actions';
 import Signup from './pages/Signup';
 import Logo from './components/Logo';
 import axios from 'axios';
+import Router from './components/Router';
 
 function App() {
+  const [isLogin, setLogin] = useState(false);
   const state = useSelector((state) => state.helloReducer);
   const { loading, data, err } = state;
   const dispatch = useDispatch();
