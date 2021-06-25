@@ -36,12 +36,8 @@ function Logo() {
   }, []);
 
   return (
-    <div>
-      <img
-        className="logo"
-        src={process.env.PUBLIC_URL + '/logo.png'}
-        alt="스크루지"
-      />
+    <div className="logo">
+      <img src={process.env.PUBLIC_URL + '/logo.png'} alt="스크루지" />
       <div className="eye">
         <div className="eye-left" ref={eyeLeft}>
           <img

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkEmailExists } from '../actions';
 import axios from 'axios';
 
 function Signup() {
-  const [isLegal, setLegal] = useState(false);
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -10,6 +11,9 @@ function Signup() {
     username: '',
     photo: '',
   });
+  const emailExistsReducer = useSelector((state) => state.emailExistsReducer);
+  const { emailSignupMod, emailExistsErr } = emailExistsReducer.emailExists;
+  const dispatch = useDispatch();
 
   //함수 부분
   function clicked(e) {
@@ -41,22 +45,24 @@ function Signup() {
       return;
     }
 
-    await axios
-      .post(
-        'https://api.scrooge.today/checkemail',
-        { email: userInfo.email },
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        setLegal(true);
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      });
+    // await axios
+    //   .post(
+    //     `${process.env.REACT_APP_API_URL}` + '/checkemail',
+    //     { email: userInfo.email },
+    //     {
+    //       headers: { 'Content-Type': 'application/json' },
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data.message);
+    //     setLegal(true);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    dispatch(checkEmailExists(userInfo.email));
   };
 
   // const incodingFile = (e) => {
@@ -112,7 +118,7 @@ function Signup() {
   //리턴 부분
   return (
     <div className="signup">
-      {isLegal ? (
+      {emailSignupMod ? (
         <div className="inputZone">
           <form>
             <div>

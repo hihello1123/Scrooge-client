@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hello } from './actions';
 import Signup from './pages/Signup';
@@ -6,7 +6,6 @@ import Logo from './components/Logo';
 import axios from 'axios';
 
 function App() {
-  const [isLogin, setLogin] = useState(false);
   const state = useSelector((state) => state.helloReducer);
   const { loading, data, err } = state;
   const dispatch = useDispatch();
@@ -60,7 +59,7 @@ function App() {
 
   return (
     <div className="app">
-      <Logo />
+      <Logo className="logo" />
       {isLogin ? (
         <Signup />
       ) : (

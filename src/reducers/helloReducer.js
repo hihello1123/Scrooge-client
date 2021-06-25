@@ -6,23 +6,29 @@ const helloReducer = (state = initialStats, action) => {
     case HELLO_LOADING:
       return {
         ...state,
-        loading: true,
-        data: null,
-        err: null,
+        hello: {
+          loading: true,
+          data: null,
+          err: null,
+        },
       };
     case HELLO_SUCCESS:
       return {
         ...state,
-        loading: false,
-        data: action.data,
-        err: null,
+        hello: {
+          loading: false,
+          data: action.data,
+          err: null,
+        },
       };
     case HELLO_ERROR:
       return {
         ...state,
-        loading: false,
-        data: null,
-        err: action.err,
+        hello: {
+          loading: false,
+          data: null,
+          err: action.err,
+        },
       };
     default:
       return state;
