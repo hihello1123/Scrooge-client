@@ -7,7 +7,7 @@ function Signup() {
     email: '',
     password: '',
     passwordCheck: '',
-    nickname: '',
+    username: '',
     photo: '',
   });
 
@@ -76,11 +76,11 @@ function Signup() {
   //incodingFile 추후에 리덕스로 변경 예정
 
   let signupRequestHandler = async (e) => {
-    if (!userInfo.nickname || !userInfo.password || !userInfo.email) {
+    if (!userInfo.username || !userInfo.password || !userInfo.email) {
       if (!userInfo.email) {
         alert('처음부터 시도해주세요');
       }
-      if (!userInfo.nickname) {
+      if (!userInfo.username) {
         alert('닉네임을 입력해주세요');
       }
       if (!userInfo.password) {
@@ -93,7 +93,7 @@ function Signup() {
 
     const fd = new FormData();
     fd.append('email', userInfo.email);
-    fd.append('nickname', userInfo.nickname);
+    fd.append('username', userInfo.username);
     fd.append('password', userInfo.password);
     fd.append('photo', userInfo.photo);
 
@@ -129,14 +129,14 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label className="nickname" htmlFor="nickname">
+              <label className="username" htmlFor="username">
                 닉네임
               </label>
               <input
-                name="nickname"
-                type="nickname"
+                name="username"
+                type="username"
                 onChange={inputHandler}
-                className="nickname"
+                className="username"
                 required
               ></input>
             </div>
