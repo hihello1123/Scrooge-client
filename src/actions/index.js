@@ -22,7 +22,18 @@ export const hello = () => (dispatch) => {
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
-export const islogin = () => {};
+export const userLogin = (accessToken) => {
+  return {
+    type: USER_LOGIN,
+    accessToken,
+  };
+};
+
+export const userLogOut = () => {
+  return {
+    type: USER_LOGOUT,
+  };
+};
 
 // # AUTH
 // 이메일 확인

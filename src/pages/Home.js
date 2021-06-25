@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Home() {
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
   return (
-    <div className="center_desktop">
-      <Link to="/signup">회원가입</Link>
-    </div>
+    <>
+      {isLoggedIn ? (
+        <></>
+      ) : (
+        <div>
+          <Link to="/signup">회원가입</Link>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -1,13 +1,15 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Nav from './Nav';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 
 function ScoorgeRoute() {
-  // TODO: isLogin state
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
   return (
     <Router>
-      <Nav />
+      {isLoggedIn && <Nav />}
       <Switch>
         {true ? (
           <>
