@@ -9,8 +9,18 @@ const initialStats = {
     emailExistsErr: false,
   },
   userLoggedIn: {
-    isLoggedIn: false,
+    isLoggedIn: true,
     accessToken: null,
+  },
+  userInfo: {
+    userName: null,
+    userEmail: null,
+    userPhoto: null,
+    userLevel: null,
+    userexp: null,
+  },
+  userSet: {
+    darkmode: false,
   },
 };
 export default initialStats;

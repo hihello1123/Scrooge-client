@@ -1,4 +1,5 @@
-@import './variable.scss';
+@import 'variable';
+@import 'mixin';
 
 .logo {
   display: inline-block;
@@ -39,4 +40,8 @@
     border-radius: 50%;
     background-color: $black-color;
   }
+}
+
+@include mobile {
+  //TODO: 모바일 크기 일 때 커서 트래킹 지우고 작은 사이즈 로고로 바꾸기
 }
