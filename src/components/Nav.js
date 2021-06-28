@@ -47,22 +47,22 @@ function App() {
           <UserProfile />
           <ul className="nav_container_ul">
             <li className="focused">
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>

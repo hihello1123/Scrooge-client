@@ -1,0 +1,26 @@
+@import 'variable';
+@import 'mixin';
+
+.daily_form {
+  input {
+    font-size: $font-default;
+  }
+  .category {
+    cursor: pointer;
+    &:focus {
+      outline: 1px solid #000;
+    }
+  }
+}
+.date_picker {
+  width: 197px;
+  height: 51px;
+  padding: 14px 55px;
+  font-size: $font-default;
+  color: $blue-color;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+}

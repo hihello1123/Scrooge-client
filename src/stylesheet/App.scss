@@ -4,6 +4,7 @@
 @import 'variable';
 @import 'UserProfile';
 @import 'mixin';
+@import 'Dailyform';
 
 * {
   box-sizing: border-box;
@@ -40,6 +41,18 @@ button {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input {
+  background-color: #fff;
+  padding: 15px 17px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  color: $black-color;
+  &::placeholder {
+    color: $blue-color;
+  }
 }
 
 @include mobile {

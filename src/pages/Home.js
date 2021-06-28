@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Login from '../components/Login';
+import { useSelector, useDispatch } from 'react-redux';
+import Daily from './Daily';
 
 function Home() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -9,7 +9,9 @@ function Home() {
   return (
     <>
       {isLoggedIn ? (
-        <></>
+        <>
+          <Daily />
+        </>
       ) : (
         <div>
           <Login />
