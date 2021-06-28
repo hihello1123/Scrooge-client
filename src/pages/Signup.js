@@ -8,11 +8,11 @@ function Signup() {
     email: '',
     password: '',
     passwordCheck: '',
-    nickname: '',
+    username: '',
     photo: '',
   });
   const emailExistsReducer = useSelector((state) => state.emailExistsReducer);
-  const { emailSignupMod, emailExistsErr } = emailExistsReducer.emailExists;
+  const { emailSignupMod } = emailExistsReducer.emailExists;
   const dispatch = useDispatch();
 
   //함수 부분
@@ -29,6 +29,14 @@ function Signup() {
     console.log(userInfo);
   }
 
+  function inputPhoto(e) {
+    let file = e.target.files[0];
+    setUserInfo({
+      ...userInfo,
+      photo: file,
+    });
+  }
+
   let emailChecker = async (e) => {
     e.preventDefault();
 
@@ -40,19 +48,28 @@ function Signup() {
     dispatch(checkEmailExists(userInfo.email));
   };
 
-  let signupRequestHandler = async (e) => {
-    const fd = new FormData();
-    fd.append('email', userInfo.email);
-    fd.append('nickname', userInfo.nickname);
-    fd.append('password', userInfo.password);
-    fd.append('photo', userInfo.photo);
-    console.log(fd);
+  // const incodingFile = (e) => {
+  //   e.preventDefault();
+  // let reader = new FileReader();
+  // let file = e.target.files[0];
+  //   if (file) {
+  //     reader.readAsDataURL(file); // <-인코딩
+  //     reader.onload = (e) => {
+  //       setUserInfo({
+  //         ...userInfo,
+  //         photo: e.target.result,
+  //       });
+  //     };
+  //   }
+  // };
+  //incodingFile 추후에 리덕스로 변경 예정
 
-    if (!userInfo.nickname || !userInfo.password || !userInfo.email) {
+  let signupRequestHandler = async (e) => {
+    if (!userInfo.username || !userInfo.password || !userInfo.email) {
       if (!userInfo.email) {
         alert('처음부터 시도해주세요');
       }
-      if (!userInfo.nickname) {
+      if (!userInfo.username) {
         alert('닉네임을 입력해주세요');
       }
       if (!userInfo.password) {
@@ -63,8 +80,16 @@ function Signup() {
       alert('비밀번호를 확인해주세요');
     }
 
+    const fd = new FormData();
+    fd.append('email', userInfo.email);
+    fd.append('username', userInfo.username);
+    fd.append('password', userInfo.password);
+    fd.append('photo', userInfo.photo);
+
+    console.log(fd);
+
     axios
-      .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
+      .post('https://api.scrooge.today/signup', fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       })
@@ -86,20 +111,21 @@ function Signup() {
               <input
                 name="photo"
                 type="file"
-                onChange={inputHandler}
+                accept="image/jpg, image/png, image/jpeg, image/gif"
+                onChange={inputPhoto}
                 className="photo"
                 required
               ></input>
             </div>
             <div>
-              <label className="nickname" htmlFor="nickname">
+              <label className="username" htmlFor="username">
                 닉네임
               </label>
               <input
-                name="nickname"
-                type="nickname"
+                name="username"
+                type="username"
                 onChange={inputHandler}
-                className="nickname"
+                className="username"
                 required
               ></input>
             </div>

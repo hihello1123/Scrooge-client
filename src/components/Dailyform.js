@@ -22,26 +22,26 @@ function Dailyform() {
           <ul className="category_menu">
             {/*// TODO: 받아온 카테고리 맵~~ */}
             <li className="category_item">
-              <button>1</button>
+              <button type="button">1</button>
             </li>
             <li className="category_item">
-              <button>2</button>
+              <button type="button">2</button>
             </li>
             <li className="category_item">
-              <button>3</button>
+              <button type="button">3</button>
             </li>
           </ul>
         </div>
         <div className="money">
           <input name="money" type="text" />
           <label htmlFor="money">￦{/* <CashIcon /> */}</label>
-          <button className="money_btn" onClick={moneyBtnHandler}>
+          <button type="button" className="money_btn" onClick={moneyBtnHandler}>
             +10,000
           </button>
-          <button className="money_btn" onClick={moneyBtnHandler}>
+          <button type="button" className="money_btn" onClick={moneyBtnHandler}>
             +1,000
           </button>
-          <button className="money_btn" onClick={moneyBtnHandler}>
+          <button type="button" className="money_btn" onClick={moneyBtnHandler}>
             +100
           </button>
         </div>

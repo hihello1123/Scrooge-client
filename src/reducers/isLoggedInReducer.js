@@ -1,7 +1,7 @@
 import { USER_LOGIN, USER_LOGOUT } from '../actions/index';
 import initialStats from './initialStats';
 
-const emailExistsReducer = (state = initialStats, action) => {
+const isLoggedInReducer = (state = initialStats, action) => {
   switch (action.type) {
     case USER_LOGIN:
       return {
@@ -24,4 +24,4 @@ const emailExistsReducer = (state = initialStats, action) => {
   }
 };
 
-export default emailExistsReducer;
+export default isLoggedInReducer;

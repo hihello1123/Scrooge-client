@@ -3,15 +3,17 @@ import { useSelector } from 'react-redux';
 import Nav from './Nav';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
+import Daily from '../pages/Daily';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
+
   return (
     <Router>
       {isLoggedIn && <Nav />}
       <Switch>
-        {true ? (
+        {!accessToken ? (
           <>
             <Route exact path="/">
               <Home />
@@ -22,7 +24,10 @@ function ScoorgeRoute() {
             {/* // TODO: 일별, 월별, 년별, 설정, 예산관리 */}
           </>
         ) : (
-          <>{/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}</>
+          <>
+            <Daily />
+            {/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}
+          </>
         )}
       </Switch>
     </Router>
