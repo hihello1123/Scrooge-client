@@ -55,7 +55,7 @@ function App() {
               <LogoutIcon className="nav_icon" />
               로그아웃
             </button>
-            <button calssName="nav_footer_btn">
+            <button className="nav_footer_btn">
               <CogIcon className="nav_icon_cog" />
             </button>
           </footer>

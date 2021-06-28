@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Logo from '../components/Logo';
+import { userLogin } from '../actions';
 
 function Home() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -38,7 +39,7 @@ function Home() {
       )
       .then((res) => {
         console.log(res);
-        // dispatch(userLogin(res.data.accessToken));
+        dispatch(userLogin(res.data.data.accessToken));
       })
       .catch((err) => {
         console.log(err.response);
