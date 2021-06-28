@@ -9,8 +9,9 @@ $light-gray-color: #d5e0f1;
 
 // font
 $noto-font: 'Noto Sans KR', sans-serif;
-$noto-font: 'Poiret One', sans-serif;
+$poiret-font: 'Poiret One', sans-serif;
 
+$font-small: 0.875rem;
 $font-default: 1rem;
 $font-medium: 1.121rem;
 $font-large: 1.5rem;
@@ -20,4 +21,4 @@ $font-X-large: 4rem;
 // TODO: px조종 필요
 $breakpoint-mobile: 414px;
 $breakpoint-tablet: 700px;
-$breakpoint-desktop: 1200px;
+$breakpoint-desktop: 1400px;

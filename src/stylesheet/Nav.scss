@@ -1,31 +1,197 @@
-@import './variable.scss';
+@import 'variable';
+@import 'mixin';
 
 .nav {
+  position: relative;
   position: fixed;
   top: 0px;
   left: 0px;
-  padding: 50px 0 50px 50px;
-  width: 360px;
   height: 100vh;
   background-color: $white-color;
   &_container {
     height: 100%;
     border-right: 1px solid $gray-color;
+
+    &_ul {
+      margin-left: 20px;
+      padding: 0;
+      color: $gray-color;
+
+      li {
+        a {
+          display: flex;
+          align-items: center;
+          &:hover {
+            color: $blue-color;
+          }
+        }
+        list-style: none;
+        &.focused {
+          color: $blue-color;
+        }
+        &:not(:last-child) {
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+
+  &_icon {
+    margin-right: 9px;
+    &_cog {
+      color: $gray-color;
+      transition: transform 2s;
+      &:hover {
+        color: $blue-color;
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &_footer {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    bottom: 50px;
+    left: 50px;
+
+    &_btn {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      color: $gray-color;
+      &:hover {
+        color: $blue-color;
+      }
+    }
+  }
+}
+.nav_toggle {
+  &_btn {
+    width: 30px;
+    height: 30px;
+    color: $blue-color;
+  }
+  &_btn.X_btn {
+    position: absolute;
   }
 }
 
-ul {
-  padding: 0;
-  color: $gray-color;
-  li {
-    list-style: none;
-    &.focused {
-      color: $blue-color;
+@include mobile {
+  .nav {
+    width: 375px;
+    padding: 30px 0 30px 30px;
+    left: -410px;
+    transition: 0.2s ease-in-out;
+
+    &_container {
+      &_ul {
+        li {
+          font-size: $font-medium;
+        }
+      }
+    }
+
+    &_icon {
+      width: 20px;
+      height: 20px;
+
+      &_cog {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    &_footer {
+      padding-right: 77px;
+      &_btn {
+        font-size: $font-medium;
+      }
+    }
+  }
+  .nav_toggle {
+    &_btn.X_btn {
+      top: 24px;
+      right: 24px;
     }
   }
 }
 
-.nav_icon {
-  width: 25px;
-  height: 25px;
+@include tablet {
+  .nav {
+    width: 410px;
+    padding: 50px 0 50px 50px;
+    left: -410px;
+    transition: 0.2s ease-in-out;
+
+    &_container {
+      &_ul {
+        li {
+          // TODO: 이게 맞나???
+          font-size: 20px;
+        }
+      }
+    }
+
+    &_icon {
+      width: 24px;
+      height: 24px;
+
+      &_cog {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &_footer {
+      padding-right: 96px;
+      &_btn {
+        font-size: 20px;
+      }
+    }
+  }
+  .nav_toggle {
+    &_btn.X_btn {
+      top: 36px;
+      right: 36px;
+    }
+  }
+}
+
+@include desktop {
+  .nav {
+    width: 410px;
+    padding: 50px 0 50px 50px;
+
+    &_container {
+      &_ul {
+        li {
+          font-size: $font-large;
+        }
+      }
+    }
+
+    &_icon {
+      width: 24px;
+      height: 24px;
+
+      &_cog {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &_footer {
+      padding-right: 100px;
+      &_btn {
+        font-size: $font-large;
+      }
+    }
+  }
+  .nav_toggle {
+    &_btn.X_btn {
+      display: none;
+    }
+  }
 }
