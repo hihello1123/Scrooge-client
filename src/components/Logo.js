@@ -36,27 +36,32 @@ function Logo() {
   }, []);
 
   return (
-    <div className="logo">
-      <img src={process.env.PUBLIC_URL + '/logo.png'} alt="스크루지" />
-      <div className="eye">
-        <div className="eye-left" ref={eyeLeft}>
-          <img
-            className="eye"
-            src={process.env.PUBLIC_URL + '/eye.png'}
-            alt="커서 이펙트1"
-          />
-          <div className="pupil" ref={pupilLeft}></div>
-        </div>
-        <div className="eye-right" ref={eyeRight}>
-          <img
-            className="eye"
-            src={process.env.PUBLIC_URL + '/eye.png'}
-            alt="커서 이펙트2"
-          />
-          <div className="pupil" ref={pupilRight}></div>
+    <>
+      <div className="logo">
+        <img src={process.env.PUBLIC_URL + '/logo.png'} alt="스크루지" />
+        <div className="eye">
+          <div className="eye-left" ref={eyeLeft}>
+            <img
+              className="eye"
+              src={process.env.PUBLIC_URL + '/eye.png'}
+              alt="커서 이펙트1"
+            />
+            <div className="pupil" ref={pupilLeft}></div>
+          </div>
+          <div className="eye-right" ref={eyeRight}>
+            <img
+              className="eye"
+              src={process.env.PUBLIC_URL + '/eye.png'}
+              alt="커서 이펙트2"
+            />
+            <div className="pupil" ref={pupilRight}></div>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="logo-small">
+        <img src={process.env.PUBLIC_URL + './logoXS.png'} />
+      </div>
+    </>
   );
 }
 
