@@ -30,15 +30,15 @@ function App() {
 
   const nav = useRef();
   const navOpenHandler = () => {
-    nav.current.style.left = '0px';
+    nav.current.classList.add('show');
   };
   const navCloseHandler = () => {
-    nav.current.style.left = '-410px';
+    nav.current.classList.remove('show');
   };
 
   return (
     <>
-      <div className="nav" ref={nav}>
+      <nav className="nav" ref={nav}>
         <div className="nav_container">
           <Logo />
           <button className="nav_toggle_btn X_btn" onClick={navCloseHandler}>
@@ -77,7 +77,7 @@ function App() {
             </button>
           </footer>
         </div>
-      </div>
+      </nav>
       <button className="nav_toggle" onClick={navOpenHandler}>
         <MenuIcon className="nav_toggle_btn" />
       </button>
