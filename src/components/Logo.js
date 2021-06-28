@@ -35,8 +35,8 @@ function Logo() {
 
   useEffect(() => {
     window.addEventListener('mousemove', eyeEventHandler);
-    return window.removeEventListener('mousemove', eyeEventHandler);
-  }, []);
+    return () => window.removeEventListener('mousemove', eyeEventHandler);
+  }, [eyeEventHandler]);
 
   return (
     <>
@@ -62,7 +62,10 @@ function Logo() {
         </div>
       </div>
       <div className="logo-small">
-        <img src={process.env.PUBLIC_URL + './logoXS.png'} />
+        <img
+          src={process.env.PUBLIC_URL + './logoXS.png'}
+          alt="스크루지 모바일"
+        />
       </div>
     </>
   );

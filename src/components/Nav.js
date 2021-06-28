@@ -30,22 +30,22 @@ function App() {
           <UserProfile />
           <ul className="nav_container_ul">
             <li className="focused">
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/">
                 <DocumentTextIcon className="nav_icon " />일 별 차트
               </Link>
             </li>
@@ -55,7 +55,7 @@ function App() {
               <LogoutIcon className="nav_icon" />
               로그아웃
             </button>
-            <button calssName="nav_footer_btn">
+            <button className="nav_footer_btn">
               <CogIcon className="nav_icon_cog" />
             </button>
           </footer>
