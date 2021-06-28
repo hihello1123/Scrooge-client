@@ -29,10 +29,13 @@ function Logo() {
     };
   };
 
+  const eyeEventHandler = (e) => {
+    eye()(e.pageX, e.pageY);
+  };
+
   useEffect(() => {
-    window.addEventListener('mousemove', (e) => {
-      eye()(e.pageX, e.pageY);
-    });
+    window.addEventListener('mousemove', eyeEventHandler);
+    return window.removeEventListener('mousemove', eyeEventHandler);
   }, []);
 
   return (
