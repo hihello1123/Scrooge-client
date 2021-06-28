@@ -25,10 +25,10 @@ function Daily() {
   }, []);
   return (
     <>
-      <div className="top">
-        <div className="top small">MonthlyBudget is : {}</div>
-        <div className="top small"></div>
-        <div className="top small"></div>
+      <div className="daily_Top">
+        <div className="daily_Top_Small">MonthlyBudget is : {}</div>
+        <div className="daily_Top_Small"></div>
+        <div className="daily_Top_Small"></div>
       </div>
       <div>bottom</div>
     </>
