@@ -57,7 +57,7 @@ function Home() {
         <></>
       ) : (
         <div>
-          <Logo className="logo" />
+          {/* <Logo className="logo" /> */}
           <form>
             <div>
               <label className="email" htmlFor="email">
