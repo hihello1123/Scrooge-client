@@ -35,7 +35,7 @@ function Logo() {
 
   useEffect(() => {
     window.addEventListener('mousemove', eyeEventHandler);
-    return window.removeEventListener('mousemove', eyeEventHandler);
+    return;
   }, []);
 
   return (

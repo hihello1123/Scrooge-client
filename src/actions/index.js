@@ -18,7 +18,7 @@ export const hello = () => (dispatch) => {
     });
 };
 
-// # islogin
+// # USERLOGIN
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
@@ -56,4 +56,23 @@ export const checkEmailExists = (email) => (dispatch) => {
     .catch(() => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
     });
+};
+
+// #USERINFO
+export const GET_USERINFO = 'GET_USERINFO';
+export const DELETE_USERINFO = 'DELETE_USERINFO';
+
+export const writeUserInfo = (userInfo) => (dispatch) => {
+  dispatch({ type: GET_USERINFO, userInfo });
+};
+export const deleteUserInfo = () => (dispatch) => {
+  dispatch({ type: DELETE_USERINFO });
+};
+
+// #DAILY
+export const GET_DAILY = 'GET_DAILY';
+
+export const getDaily = (daily) => (dispatch) => {
+  console.log(daily);
+  dispatch({ type: GET_DAILY, daily });
 };

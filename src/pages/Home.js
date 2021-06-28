@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import Logo from '../components/Logo';
 import { userLogin } from '../actions';
 
 function Home() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
-  const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
+  const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -38,11 +37,10 @@ function Home() {
         }
       )
       .then((res) => {
-        console.log(res);
         dispatch(userLogin(res.data.data.accessToken));
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
       });
   };
 
@@ -57,7 +55,6 @@ function Home() {
         <></>
       ) : (
         <div>
-          {/* <Logo className="logo" /> */}
           <form>
             <div>
               <label className="email" htmlFor="email">

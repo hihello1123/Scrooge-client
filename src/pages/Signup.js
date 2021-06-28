@@ -12,7 +12,7 @@ function Signup() {
     photo: '',
   });
   const emailExistsReducer = useSelector((state) => state.emailExistsReducer);
-  const { emailSignupMod, emailExistsErr } = emailExistsReducer.emailExists;
+  const { emailSignupMod } = emailExistsReducer.emailExists;
   const dispatch = useDispatch();
 
   //함수 부분
@@ -50,8 +50,8 @@ function Signup() {
 
   // const incodingFile = (e) => {
   //   e.preventDefault();
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
+  // let reader = new FileReader();
+  // let file = e.target.files[0];
   //   if (file) {
   //     reader.readAsDataURL(file); // <-인코딩
   //     reader.onload = (e) => {

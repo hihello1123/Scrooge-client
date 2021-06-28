@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import {
@@ -9,8 +10,24 @@ import {
 } from '@heroicons/react/outline';
 import { CogIcon } from '@heroicons/react/solid';
 import UserProfile from './UserProfile';
+import axios from 'axios';
+import { writeUserInfo } from '../actions';
 
 function App() {
+  const dispatch = useDispatch();
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
+  useEffect(() => {
+    axios
+      .get('https://api.scrooge.today/initialize', {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      })
+      .then((res) => {
+        dispatch(writeUserInfo(res.data.data.userInfo));
+      });
+  }, []);
+
   const nav = useRef();
   const navOpenHandler = () => {
     nav.current.style.left = '0px';

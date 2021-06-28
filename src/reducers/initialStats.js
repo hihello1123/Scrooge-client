@@ -22,5 +22,13 @@ const initialStats = {
   userSet: {
     darkmode: false,
   },
+  daily: {
+    top: {
+      monthlyBudget: null,
+      monthlyUsed: null,
+      exmonothlyUsed: null,
+    },
+    bottom: null,
+  },
 };
 export default initialStats;
