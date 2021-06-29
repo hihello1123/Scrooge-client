@@ -14,7 +14,7 @@ function ScoorgeRoute() {
     <Router>
       {isLoggedIn && <Nav />}
       <Switch>
-        {true ? (
+        {!accessToken ? (
           //accessToken으로 변경하기
           <>
             <Route exact path="/">

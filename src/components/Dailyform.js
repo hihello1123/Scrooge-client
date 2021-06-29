@@ -4,14 +4,16 @@ import { ko } from 'date-fns/esm/locale';
 import { useSelector } from 'react-redux';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css'; 
+import axios from 'axios';
 
 function Dailyform() {
-  //   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
-  //   const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
+    const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+    const { accessToken } = isLoggedInReducer.userLoggedIn;
 
   const categoryMenu = useRef();
   const categoryBtn = useRef();
+  const moneyInput = useRef();
 
   const dailyReducer = useSelector((state) => state.dailyReducer);
   const {categoryList} = dailyReducer.daily;
@@ -20,17 +22,19 @@ function Dailyform() {
     categoryMenu.current.classList.toggle('show')
   }
   
-  const categoryDropdownBlurHandler = (e) => {
-    categoryMenu.current.classList.remove('show')
-  }
-  
   const categoryMenuHandler = (e) => {
     categoryBtn.current.children[0].textContent = e.target.textContent
+    categoryMenu.current.classList.remove('show')
   }
 
   const moneyBtnHandler = (e) => {
-    let money = e.target.parentNode.children[0].value || '0';
-    money = Number(money);
+    console.log('천원 추가');
+    let money;
+    if(!moneyInput.current.value) {
+      moneyInput.current.value = '0';
+    }
+    money = Number(moneyInput.current.value);
+
     switch (e.target.textContent) {
       case '+10,000':
         money += 10000;
@@ -45,37 +49,53 @@ function Dailyform() {
         console.log('백원 추가');
         break;
     }
-    e.target.parentNode.children[0].value = money;
+    console.log(moneyInput.current.value)
+    moneyInput.current.value = money;
   };
   const [date, setDate] = useState(new Date()); // 날짜 선택
+
+  const dailySubmitHandler = (e) => {
+    e.preventDefault()
+    axios.post(`${process.env.REACT_APP_API_URL}/createspendmoney`, {
+      cost: 10000,
+      memo: '',
+      categoryname: '지정되지 않은 카테고리',
+      date
+    } ,{
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    }).then((res)=> {
+      console.log(res)
+    })
+  }
 
   return (
     <>
       <form className="daily_form">
         <div className="category_dropdown">
-          <button type="button" className="category_toggle_btn" onClick={categoryDropdownHandler} onBlur={categoryDropdownBlurHandler} ref={categoryBtn}>
+          <button type="button" className="category_toggle_btn" onClick={categoryDropdownHandler} ref={categoryBtn}>
             <p>카테고리</p>
           <ChevronDownIcon className="category_toggle_btn_icon" />
           </button>
           <ul className="category_menu" onClick={categoryMenuHandler} ref={categoryMenu}>
             {categoryList ? (<>
             </>) : (<>
-            <li className="category_item">
+            <li>
               카테고리 없음
             </li>
-            <li className="category_item">
+            <li>
               2
             </li>
-            <li className="category_item">
+            <li>
               3
             </li>
             </>)}
           </ul>
         </div>
         <div className="money">
-          <input className="money" name="money" type="text" />
-          <label htmlFor="money">￦</label>
-          <div>
+          <input className="money_input" name="money" type="text" ref={moneyInput} />
+          <label className="money_label" htmlFor="money">￦</label>
+          <div className="money_btn_group">
             <button type="button" className="money_btn" onClick={moneyBtnHandler}>
               +10,000
             </button>
@@ -96,6 +116,7 @@ function Dailyform() {
           dateFormat="yyyy-MM-dd"
         />
       </form>
+      <button className="daily_form_submit" onClick={dailySubmitHandler}>솔희야 참아</button>
     </>
   );
 }
