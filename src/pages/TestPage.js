@@ -7,7 +7,7 @@ function Testing() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   axios
-    .get(`${process.env.REACT_APP_API_URL}` + '/daypage', {
+    .get(`${process.env.REACT_APP_API_URL}/daypage`, {
       headers: { authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
@@ -20,7 +20,7 @@ function Testing() {
       console.log(err.response);
     });
   axios
-    .get(`${process.env.REACT_APP_API_URL}` + '/budget', {
+    .get(`${process.env.REACT_APP_API_URL}/budget`, {
       headers: { authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
@@ -33,7 +33,7 @@ function Testing() {
       console.log(err.response);
     });
   axios
-    .get(`${process.env.REACT_APP_API_URL}` + '/initialize', {
+    .get(`${process.env.REACT_APP_API_URL}/initialize`, {
       headers: { authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
@@ -45,7 +45,7 @@ function Testing() {
       console.log('initialize error is');
       console.log(err.response);
     });
-  return (<></>)
+  return <></>;
 }
 
 export default Testing;

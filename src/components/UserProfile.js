@@ -7,7 +7,7 @@ function UserProfile() {
   return (
     <div className="user_profile">
       <div className="user_profile_photo">
-        <img src={userPhoto}></img>
+        <img src={userPhoto} alt=""></img>
       </div>
       <div className="user_profile_info">
         <span className="user_profile_info_name">{userName}</span>

@@ -3,17 +3,16 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDaily } from '../actions';
 import Dailyform from '../components/Dailyform';
+import Topper from '../components/Topper';
 
 function Daily() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
-  const dailyReducer = useSelector((state) => state.dailyReducer);
-  const { top, bottom } = dailyReducer.daily;
 
   useEffect(() => {
     axios
-      .get('https://api.scrooge.today/daypage', {
+      .get(`${process.env.REACT_APP_API_URL}/daypage`, {
         headers: {
           authorization: `bearer ${accessToken}`,
         },
@@ -30,13 +29,7 @@ function Daily() {
 
   return (
     <div className="daily">
-      <div className="top">
-        <div className="top small">
-          MonthlyBudget is : {console.log(dailyReducer)}
-        </div>
-        <div className="top small">MonthlyUsed is : {}</div>
-        <div className="top small">ExMonthlyUsed is : {}</div>
-      </div>
+      <Topper />
       <div>
         <div className="daily_form">
           <Dailyform />

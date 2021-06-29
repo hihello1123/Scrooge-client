@@ -5,6 +5,7 @@
 @import 'UserProfile';
 @import 'mixin';
 @import 'Dailyform';
+@import 'Topper';
 
 * {
   box-sizing: border-box;
@@ -69,7 +70,10 @@ input {
 
 @include desktop {
   body {
-    padding: 50px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 460px;
   }
 }
 

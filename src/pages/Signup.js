@@ -71,7 +71,7 @@ function Signup() {
     fd.append('photo', userInfo.photo);
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
+      .post(`${process.env.REACT_APP_API_URL}/signup`, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       })
