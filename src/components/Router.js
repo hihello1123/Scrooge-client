@@ -22,7 +22,7 @@ function ScoorgeRoute() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            {/* // TODO: 일별, 월별, 년별, 설정, 예산관리 */}
+            {/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}
           </>
         ) : (
           <>
@@ -32,7 +32,7 @@ function ScoorgeRoute() {
             <Route exact path="/daily">
               <Daily />
             </Route>
-            {/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}
+            {/* // TODO: 일별, 월별, 년별, 설정, 예산관리 */}
           </>
         )}
       </Switch>

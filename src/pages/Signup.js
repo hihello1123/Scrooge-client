@@ -48,22 +48,6 @@ function Signup() {
     dispatch(checkEmailExists(userInfo.email));
   };
 
-  // const incodingFile = (e) => {
-  //   e.preventDefault();
-  // let reader = new FileReader();
-  // let file = e.target.files[0];
-  //   if (file) {
-  //     reader.readAsDataURL(file); // <-인코딩
-  //     reader.onload = (e) => {
-  //       setUserInfo({
-  //         ...userInfo,
-  //         photo: e.target.result,
-  //       });
-  //     };
-  //   }
-  // };
-  //incodingFile 추후에 리덕스로 변경 예정
-
   let signupRequestHandler = async (e) => {
     if (!userInfo.username || !userInfo.password || !userInfo.email) {
       if (!userInfo.email) {
@@ -85,8 +69,6 @@ function Signup() {
     fd.append('username', userInfo.username);
     fd.append('password', userInfo.password);
     fd.append('photo', userInfo.photo);
-
-    console.log(fd);
 
     axios
       .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
