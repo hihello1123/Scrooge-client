@@ -11,14 +11,34 @@ function Dailyform() {
   //   const { isLoggedIn, accessToken } = isLoggedInReducer.userLoggedIn;
 
   const moneyBtnHandler = (e) => {
-    console.log(e.target);
+    let money = e.target.parentNode.children[0].value || '0';
+    money = Number(money);
+
+    console.log(typeof money);
+    switch (e.target.textContent) {
+      case '+10,000':
+        money += 10000;
+        console.log('만원 추가');
+        break;
+      case '+1,000':
+        money += 1000;
+        console.log('천원 추가');
+        break;
+      case '+100':
+        money += 100;
+        console.log('백원 추가');
+        break;
+    }
+    e.target.parentNode.children[0].value = money;
   };
   const [date, setDate] = useState(new Date()); // 날짜 선택
   return (
     <>
       <form className="daily_form">
         <div className="category_dropdown">
-          <button className="category_toggle_btn">카테고리</button>
+          <button type="button" className="category_toggle_btn">
+            카테고리
+          </button>
           <ul className="category_menu">
             {/*// TODO: 받아온 카테고리 맵~~ */}
             <li className="category_item">
