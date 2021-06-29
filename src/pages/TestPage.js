@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 function Testing() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
-
   axios
     .get(`${process.env.REACT_APP_API_URL}` + '/daypage', {
       headers: { authorization: `bearer ${accessToken}` },
@@ -33,34 +32,6 @@ function Testing() {
       console.log('budget error is');
       console.log(err.response);
     });
-  /*
-  axios
-    .get(`${process.env.REACT_APP_API_URL}` + '/getmonthlydata', {
-      headers: { authorization: `bearer ${accessToken}` },
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log('getmonthlydata is');
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log('getmonthlydata error is');
-      console.log(err.response);
-    });
-  axios
-    .get(`${process.env.REACT_APP_API_URL}` + '/getyearlydata', {
-      headers: { authorization: `bearer ${accessToken}` },
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log('getyearlydata is');
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log('getyearlydata error is');
-      console.log(err.response);
-    });
-    */
   axios
     .get(`${process.env.REACT_APP_API_URL}` + '/initialize', {
       headers: { authorization: `bearer ${accessToken}` },
@@ -74,7 +45,7 @@ function Testing() {
       console.log('initialize error is');
       console.log(err.response);
     });
-  return <></>;
+  return (<></>)
 }
 
 export default Testing;

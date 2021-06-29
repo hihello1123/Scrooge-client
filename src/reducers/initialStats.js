@@ -12,15 +12,18 @@ const initialStats = {
     isLoggedIn: false,
     accessToken: null,
   },
+  userSignIn: {
+    signInErr: null,
+  },
   userInfo: {
     userName: null,
     userEmail: null,
     userPhoto: null,
     userLevel: null,
-    userexp: null,
+    userEXP: null,
   },
   userSet: {
-    darkmode: false,
+    darkMode: false,
   },
   daypage: {
     top: {
@@ -29,7 +32,12 @@ const initialStats = {
       exmonthlyUsed: null,
     },
     bottom: null,
-    categorylist: null,
+    categoryList: null,
   },
+  budget: {
+    budgetGraph: null,
+    categories: null,
+    userGraph: null,
+  }
 };
 export default initialStats;

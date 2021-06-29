@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT } from '../actions/index';
+import { USER_LOGIN, USER_LOGOUT } from '../actions';
 import initialStats from './initialStats';
 
 const isLoggedInReducer = (state = initialStats, action) => {

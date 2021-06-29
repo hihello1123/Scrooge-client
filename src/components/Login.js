@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { userLogin } from '../actions';
+import { userSignInRequest } from '../actions';
 
 function Login() {
-  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
-  const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
+  const userSigninReducer = useSelector((state) => state.userSigninReducer);
+  const { signInErr } = userSigninReducer.userSignIn;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -15,38 +14,22 @@ function Login() {
   const loginHandler = async (e) => {
     if (!loginInfo.email || !loginInfo.password) {
       if (!loginInfo.email) {
+        //TODO: UX
         alert('이메일을 입력해주세요');
       }
       if (!loginInfo.password) {
+        //TODO: UX
         alert('비밀번호를 입력해주세요');
       }
       return;
     }
-
     e.preventDefault();
 
-    console.log(loginInfo);
-    await axios
-      .post(
-        `${process.env.REACT_APP_API_URL}` + '/login',
-        { email: loginInfo.email, password: loginInfo.password },
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        dispatch(userLogin(res.data.data.accessToken));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    dispatch(userSignInRequest(loginInfo));
   };
 
   function inputHandler(e) {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
-    console.log(loginInfo);
   }
   return (
     <div>

@@ -11,7 +11,7 @@ const userInfoReducer = (state = initialStats, action) => {
           userEmail: action.userInfo.email,
           userPhoto: action.userInfo.photo,
           userLevel: action.userInfo.level,
-          userexp: action.userInfo.experience,
+          userEXP: action.userInfo.experience,
         },
       };
     case DELETE_USERINFO:
@@ -22,7 +22,7 @@ const userInfoReducer = (state = initialStats, action) => {
           userEmail: null,
           userPhoto: null,
           userLevel: null,
-          userexp: null,
+          userEXP: null,
         },
       };
     default:

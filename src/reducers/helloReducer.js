@@ -1,4 +1,4 @@
-import { HELLO_LOADING, HELLO_SUCCESS, HELLO_ERROR } from '../actions/index';
+import { HELLO_LOADING, HELLO_SUCCESS, HELLO_ERROR } from '../actions';
 import initialStats from './initialStats';
 
 const helloReducer = (state = initialStats, action) => {

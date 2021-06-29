@@ -57,6 +57,26 @@ export const checkEmailExists = (email) => (dispatch) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
     });
 };
+// 로그인
+export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
+
+export const userSignInRequest = (loginInfo) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}` + '/login',
+      { email: loginInfo.email, password: loginInfo.password },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      dispatch(userLogin(res.data.data.accessToken));
+    })
+    .catch((err) => {
+      dispatch({ type: USER_SIGNIN_ERROR, err });
+    });
+};
 
 // #USERINFO
 export const GET_USERINFO = 'GET_USERINFO';

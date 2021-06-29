@@ -13,7 +13,7 @@ import UserProfile from './UserProfile';
 import axios from 'axios';
 import { writeUserInfo } from '../actions';
 
-function App() {
+function Nav() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
@@ -53,6 +53,7 @@ function App() {
             <li className="focused">
               <Link to="/">
                 <DocumentTextIcon className="nav_icon " />
+                지출 리스트
               </Link>
             </li>
             <li>
@@ -90,4 +91,4 @@ function App() {
   );
 }
 
-export default App;
+export default Nav;

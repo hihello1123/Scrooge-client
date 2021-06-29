@@ -1,4 +1,4 @@
-import { EMAIL_SIGNUP_SUCCESS, EMAIL_SIGNUP_ERROR } from '../actions/index';
+import { EMAIL_SIGNUP_SUCCESS, EMAIL_SIGNUP_ERROR } from '../actions';
 import initialStats from './initialStats';
 
 const emailExistsReducer = (state = initialStats, action) => {
