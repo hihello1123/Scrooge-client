@@ -89,12 +89,15 @@ function Signup() {
     console.log(fd);
 
     axios
-      .post('https://api.scrooge.today/signup', fd, {
+      .post(`${process.env.REACT_APP_API_URL}` + '/signup', fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       })
       .then((res) => {
         console.log(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
   };
 

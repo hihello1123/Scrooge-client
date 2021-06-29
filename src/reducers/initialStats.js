@@ -26,9 +26,10 @@ const initialStats = {
     top: {
       monthlyBudget: null,
       monthlyUsed: null,
-      exmonothlyUsed: null,
+      exmonthlyUsed: null,
     },
     bottom: null,
+    categorylist: null,
   },
 };
 export default initialStats;

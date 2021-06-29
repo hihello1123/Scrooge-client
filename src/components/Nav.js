@@ -19,12 +19,16 @@ function App() {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   useEffect(() => {
     axios
-      .get('https://api.scrooge.today/initialize', {
+      .get(`${process.env.REACT_APP_API_URL}` + '/initialize', {
         headers: { authorization: `bearer ${accessToken}` },
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res.data);
         dispatch(writeUserInfo(res.data.data.userInfo));
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
   }, []);
 
@@ -47,8 +51,9 @@ function App() {
           <UserProfile />
           <ul className="nav_container_ul">
             <li className="focused">
-              <Link to="/">
-                <DocumentTextIcon className="nav_icon " />일 별 차트
+              <Link to="/test">
+                <DocumentTextIcon className="nav_icon " />
+                테스트
               </Link>
             </li>
             <li>
