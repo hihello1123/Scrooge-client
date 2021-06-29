@@ -28,7 +28,7 @@ function Login() {
     console.log(loginInfo);
     await axios
       .post(
-        'https://api.scrooge.today/login',
+        `${process.env.REACT_APP_API_URL}` + '/login',
         { email: loginInfo.email, password: loginInfo.password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -36,10 +36,11 @@ function Login() {
         }
       )
       .then((res) => {
+        console.log(res);
         dispatch(userLogin(res.data.data.accessToken));
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 

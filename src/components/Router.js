@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 import Daily from '../pages/Daily';
+import Testing from '../pages/TestPage';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -25,7 +26,12 @@ function ScoorgeRoute() {
           </>
         ) : (
           <>
-            <Daily />
+            <Route exact path="/test">
+              <Testing />
+            </Route>
+            <Route exact path="/daily">
+              <Daily />
+            </Route>
             {/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}
           </>
         )}
