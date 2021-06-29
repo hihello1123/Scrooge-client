@@ -11,7 +11,7 @@ function Home() {
     <>
       {isLoggedIn ? (
         <>
-          <Daily />
+    <Daily />
         </>
       ) : (
         <div>

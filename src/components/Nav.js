@@ -51,7 +51,7 @@ function Nav() {
           <UserProfile />
           <ul className="nav_container_ul">
             <li className="focused">
-              <Link to="/">
+              <Link to="/daily">
                 <DocumentTextIcon className="nav_icon " />
                 지출 리스트
               </Link>

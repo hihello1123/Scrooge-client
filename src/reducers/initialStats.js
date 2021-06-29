@@ -25,7 +25,7 @@ const initialStats = {
   userSet: {
     darkMode: false,
   },
-  daypage: {
+  daily: {
     top: {
       monthlyBudget: null,
       monthlyUsed: null,
@@ -38,6 +38,12 @@ const initialStats = {
     budgetGraph: null,
     categories: null,
     userGraph: null,
-  }
+  },
+  // 년도별 데이터: {
+  //   차트data: [
+  //     [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
+  //     [new Date(2021, 8, 12), 100000],
+  //   ]
+  // }
 };
 export default initialStats;

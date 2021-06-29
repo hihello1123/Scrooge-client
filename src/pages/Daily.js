@@ -13,7 +13,7 @@ function Daily() {
 
   useEffect(() => {
     axios
-      .get('https://api.scrooge.today/daypage', {
+      .get(process.env.REACT_APP_API_URL + '/daypage', {
         headers: {
           authorization: `bearer ${accessToken}`,
         },
@@ -32,7 +32,7 @@ function Daily() {
     <div className="daily">
       <div className="top">
         <div className="top small">
-          MonthlyBudget is : {console.log(dailyReducer)}
+          MonthlyBudget is : {console.log( top, bottom )}
         </div>
         <div className="top small">MonthlyUsed is : {}</div>
         <div className="top small">ExMonthlyUsed is : {}</div>
