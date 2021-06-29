@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { /* useSelector,*/ useDispatch } from 'react-redux';
 import { userSignInRequest } from '../actions';
 
 function Login() {
-  const userSigninReducer = useSelector((state) => state.userSigninReducer);
-  const { signInErr } = userSigninReducer.userSignIn;
+  // const userSigninReducer = useSelector((state) => state.userSigninReducer);
+  // const { signInErr } = userSigninReducer.userSignIn;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',

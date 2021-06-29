@@ -29,7 +29,7 @@ const initialStats = {
     top: {
       monthlyBudget: null,
       monthlyUsed: null,
-      exmonthlyUsed: null,
+      exMonthlyUsed: 0,
     },
     bottom: null,
     categoryList: null,

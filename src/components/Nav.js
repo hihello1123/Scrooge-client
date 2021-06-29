@@ -19,7 +19,7 @@ function Nav() {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}` + '/initialize', {
+      .get(`${process.env.REACT_APP_API_URL}/initialize`, {
         headers: { authorization: `bearer ${accessToken}` },
         withCredentials: true,
       })

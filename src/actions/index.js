@@ -9,7 +9,7 @@ export const hello = () => (dispatch) => {
   dispatch({ type: HELLO_LOADING });
 
   axios
-    .get(process.env.REACT_APP_API_URL + '/')
+    .get(`${process.env.REACT_APP_API_URL}/`)
     .then((res) => {
       dispatch({ type: HELLO_SUCCESS, data: res.data });
     })
@@ -43,7 +43,7 @@ export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 export const checkEmailExists = (email) => (dispatch) => {
   axios
     .post(
-      process.env.REACT_APP_API_URL + '/checkemail',
+      `${process.env.REACT_APP_API_URL}/checkemail`,
       { email },
       {
         headers: { 'Content-Type': 'application/json' },
@@ -63,7 +63,7 @@ export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
 export const userSignInRequest = (loginInfo) => (dispatch) => {
   axios
     .post(
-      `${process.env.REACT_APP_API_URL}` + '/login',
+      `${process.env.REACT_APP_API_URL}/login`,
       { email: loginInfo.email, password: loginInfo.password },
       {
         headers: { 'Content-Type': 'application/json' },
@@ -93,6 +93,5 @@ export const deleteUserInfo = () => (dispatch) => {
 export const GET_DAILY = 'GET_DAILY';
 
 export const getDaily = (daily) => (dispatch) => {
-  console.log(daily);
   dispatch({ type: GET_DAILY, daily });
 };
