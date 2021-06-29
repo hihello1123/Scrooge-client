@@ -22,7 +22,7 @@ const initialStats = {
   userSet: {
     darkmode: false,
   },
-  daily: {
+  daypage: {
     top: {
       monthlyBudget: null,
       monthlyUsed: null,
