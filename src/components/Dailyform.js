@@ -73,8 +73,8 @@ function Dailyform() {
           </ul>
         </div>
         <div className="money">
-          <input name="money" type="text" />
-          <label htmlFor="money">￦{/* <CashIcon /> */}</label>
+          <input className="money" name="money" type="text" />
+          <label htmlFor="money">￦</label>
           <div>
             <button type="button" className="money_btn" onClick={moneyBtnHandler}>
               +10,000
