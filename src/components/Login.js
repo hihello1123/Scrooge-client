@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSignInRequest } from '../actions';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-function Login() {
+function Login({ modalSet }) {
   const userSignInReducer = useSelector((state) => state.userSignInReducer);
-  const { signInErr } = userSignInReducer.userSignIn;
+  // const { signInErr } = userSignInReducer.userSignIn;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -35,10 +35,11 @@ function Login() {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
   return (
-    <div className="modal_1">
+    <div className="signin_modal">
+      <div onClick={modalSet}>닫기</div>
       <img src={process.env.PUBLIC_URL + '/logoXS.png'} alt="스크루지" />
-      <form className="modal_2">
-        <label className="modal_email" htmlFor="email">
+      <form className="signin_modal_form">
+        <label className="signin_modal_email" htmlFor="email">
           이메일
         </label>
         <input
@@ -48,7 +49,7 @@ function Login() {
           className="email"
           required
         ></input>
-        <label className="modal_password" htmlFor="password">
+        <label className="signin_modal_password" htmlFor="password">
           비밀번호
         </label>
         <input
@@ -58,8 +59,13 @@ function Login() {
           className="password"
           required
         ></input>
+        <button className="signin_submit submit" onClick={loginHandler}>
+          로그인
+        </button>
       </form>
-      <button onClick={loginHandler}>로그인</button>
+      <div>
+        아이디가 없으신가요? <Link to="/signup">회원가입</Link>하러가기
+      </div>
     </div>
   );
 }

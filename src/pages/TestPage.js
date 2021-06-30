@@ -103,7 +103,7 @@ function Testing() {
     });
 */
   return (
-    <>
+    <div className="container">
       <Chart
         width={1000}
         height={350}
@@ -130,7 +130,7 @@ function Testing() {
         }}
         rootProps={{ 'data-testid': '1' }}
       />
-    </>
+    </div>
   );
 }
 

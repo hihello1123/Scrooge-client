@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Logo from './Logo';
 import {
   DocumentTextIcon,
@@ -15,6 +15,7 @@ import { writeUserInfo, userLogOut } from '../actions';
 
 function Nav() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   useEffect(() => {
@@ -41,7 +42,7 @@ function Nav() {
   };
 
   const signOutHandler = () => {
-    dispatch(userLogOut(accessToken));
+    dispatch(userLogOut(accessToken, history));
   };
 
   return (

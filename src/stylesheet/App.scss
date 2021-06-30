@@ -7,7 +7,7 @@
 @import 'UserProfile';
 @import 'Dailyform';
 @import 'Topper';
-
+@import 'Login';
 * {
   box-sizing: border-box;
   margin: 0px;
@@ -39,6 +39,13 @@ button {
   border-radius: 0;
   outline: none;
   cursor: pointer;
+}
+
+.submit {
+  height: 50px;
+  color: $white-color;
+  border-radius: 13px;
+  background-color: $blue-color;
 }
 
 a {
@@ -77,27 +84,6 @@ label {
   font-size: $font-default;
 }
 
-@include mobile {
-  body {
-    padding: 24px;
-  }
-}
-
-@include tablet {
-  body {
-    padding: 36px;
-  }
-}
-
-@include desktop {
-  body {
-    padding-top: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-left: 460px;
-  }
-}
-
 progress {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -121,46 +107,23 @@ progress::-moz-progress-bar {
   border-radius: 8px;
 }
 
-// .modal {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 400px;
-//   height: 400px;
+@include mobile {
+  body {
+    padding: 24px;
+  }
+}
 
-//   background: $gray-color;
-//   backdrop-filter: blur(20px);
-//   /* Note: backdrop-filter has minimal browser support */
+@include tablet {
+  body {
+    padding: 36px;
+  }
+}
 
-//   border-radius: 27px;
-
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-
-//   &_1 {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
-
-//   &_2 {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
-
-//   &_email {
-//     width: 200px;
-//     text-align: left;
-//   }
-
-//   &_password {
-//     width: 200px;
-//     text-align: left;
-//   }
-// }
+@include desktop {
+  body {
+    padding: 50px;
+  }
+  .container {
+    padding-left: 410px;
+  }
+}

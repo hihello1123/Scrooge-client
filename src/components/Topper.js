@@ -13,12 +13,12 @@ function Topper() {
           <div className="top_inner_title">이번달 총 예산</div>
           <div className="top_cost">
             <span className="top_inner_cost_1">
-              {top.monthlyBudget - top.monthlyUsed
+              {top.monthlyBudget
                 ? (top.monthlyBudget - top.monthlyUsed).toLocaleString('ko-KR')
                 : 0}
             </span>
             <span className="top_Won">
-              /{' '}
+              /
               {top.monthlyBudget
                 ? top.monthlyBudget.toLocaleString('ko-KR')
                 : 0}
