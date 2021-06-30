@@ -10,22 +10,22 @@ function Daily() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/daypage`, {
-        headers: {
-          authorization: `bearer ${accessToken}`,
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res);
-        dispatch(getDaily(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/daypage`, {
+  //       headers: {
+  //         authorization: `bearer ${accessToken}`,
+  //       },
+  //       withCredentials: true,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //       dispatch(getDaily(res.data.data));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response);
+  //     });
+  // }, []);
 
   return (
     <div className="daily">

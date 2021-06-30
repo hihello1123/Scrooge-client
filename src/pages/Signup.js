@@ -63,6 +63,7 @@ function Signup() {
     } else if (userInfo.password !== userInfo.passwordCheck) {
       alert('비밀번호를 확인해주세요');
     }
+    e.preventDefault();
 
     const fd = new FormData();
     fd.append('email', userInfo.email);

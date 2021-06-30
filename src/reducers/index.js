@@ -4,7 +4,7 @@ import emailExistsReducer from './emailExistsReducer';
 import isLoggedInReducer from './isLoggedInReducer';
 import userInfoReducer from './userInfoReducer';
 import dailyReducer from './dailyReducer';
-import userSigninReducer from './userSigninReducer';
+import userSignInReducer from './userSignInReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   isLoggedInReducer,
   userInfoReducer,
   dailyReducer,
-  userSigninReducer,
+  userSignInReducer,
 });
 
 export default rootReducer;

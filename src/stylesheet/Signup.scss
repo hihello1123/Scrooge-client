@@ -5,7 +5,6 @@
   border-top: 40vh;
   display: flex;
   flex-direction: column;
-  text-align: center;
   width: 40vw;
   height: 100vh;
   background-color: blanchedalmond;
@@ -14,4 +13,48 @@
 .inputZone {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+
+  background: $gray-color;
+  backdrop-filter: blur(20px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 27px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &_1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_email {
+    width: 200px;
+    text-align: left;
+  }
+
+  &_password {
+    width: 200px;
+    text-align: left;
+  }
 }
