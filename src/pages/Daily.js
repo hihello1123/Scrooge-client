@@ -28,7 +28,7 @@ function Daily() {
   }, [accessToken, dispatch]);
 
   return (
-    <div className="daily">
+    <div className="daily container">
       <Topper />
       <div>
         <div className="daily_form">

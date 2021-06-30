@@ -130,7 +130,10 @@ function Signup() {
               className="passwordCheck signup_input"
               required
             />
-            <button className="signup_submit" onClick={signupRequestHandler}>
+            <button
+              className="signup_submit submit"
+              onClick={signupRequestHandler}
+            >
               회원가입
             </button>
           </form>
@@ -204,7 +207,7 @@ function Signup() {
                 onChange={inputHandler}
                 required
               />
-              <button className="signup_submit" onClick={emailChecker}>
+              <button className="signup_submit submit" onClick={emailChecker}>
                 회원가입
               </button>
             </form>

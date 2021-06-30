@@ -30,7 +30,7 @@ export const userLogin = (accessToken) => {
 };
 
 // 로그아웃
-export const userLogOut = (accessToken) => (dispatch) => {
+export const userLogOut = (accessToken, history) => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/signout`, {
       headers: {
@@ -41,6 +41,7 @@ export const userLogOut = (accessToken) => (dispatch) => {
     })
     .then(() => {
       dispatch({ type: USER_LOGOUT });
+      history.push({ pathname: '/' });
     });
 };
 

@@ -80,13 +80,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  .signup_submit {
+  .signup_submit.submit {
     margin-top: 12px;
     width: 100%;
-    height: 50px;
-    color: $white-color;
-    border-radius: 13px;
-    background-color: $blue-color;
   }
 }
 .signup_input {
