@@ -11,7 +11,7 @@ import {
 import { CogIcon } from '@heroicons/react/solid';
 import UserProfile from './UserProfile';
 import axios from 'axios';
-import { writeUserInfo } from '../actions';
+import { writeUserInfo, userLogOut } from '../actions';
 
 function Nav() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function Nav() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [accessToken, dispatch]);
 
   const nav = useRef();
   const navOpenHandler = () => {
@@ -40,12 +40,16 @@ function Nav() {
     nav.current.classList.remove('show');
   };
 
+  const signOutHandler = () => {
+    dispatch(userLogOut(accessToken));
+  };
+
   return (
     <>
       <nav className="nav" ref={nav}>
         <div className="nav_container">
           <Logo />
-          <button className="nav_toggle_btn X_btn" onClick={navCloseHandler}>
+          <button className="nav_toggle_X_btn" onClick={navCloseHandler}>
             <XIcon />
           </button>
           <UserProfile />
@@ -74,7 +78,7 @@ function Nav() {
             </li>
           </ul>
           <footer className="nav_footer">
-            <button className="nav_footer_btn">
+            <button className="nav_footer_btn" onClick={signOutHandler}>
               <LogoutIcon className="nav_icon" />
               로그아웃
             </button>

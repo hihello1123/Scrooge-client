@@ -25,7 +25,7 @@ function Daily() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [accessToken, dispatch]);
 
   return (
     <div className="daily">

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import Chart from "react-google-charts";
+import Chart from 'react-google-charts';
 
 //daypage,budget,initialize,getmonthlydata,getyearlydata
 function Testing() {
@@ -46,29 +46,36 @@ function Testing() {
       console.log('initialize error is');
       console.log(err.response);
     });
-  return (<>
-    <Chart
-      width={1000}
-      height={350}
-      chartType="Calendar"
-      loader={<div>Loading Chart</div>}
-      data={[
-        [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
-        [new Date(2021, 8, 12), 100000],
-      ]}
-      options={{
-        title: '달성 스크루지 데이',
-        calendar: {
-          cellColor: {
-            stroke: '#76a7fa',
-            strokeOpacity: 0.5,
-            strokeWidth: 1,
-          }
-        }
-      }}
-      rootProps={{ 'data-testid': '1' }}
-    />
-  </>)
+  return (
+    <>
+      <Chart
+        width={1000}
+        height={350}
+        chartType="Calendar"
+        loader={<div>Loading Chart</div>}
+        data={[
+          [
+            { type: 'date', id: 'Date' },
+            { type: 'number', id: 'Won/Loss' },
+          ],
+          [new Date(2021, 6, 10), 5],
+          [new Date(2021, 6, 13), 0],
+          [new Date(2021, 7, 13), 0],
+        ]}
+        options={{
+          title: '달성 스크루지 데이',
+          calendar: {
+            cellColor: {
+              stroke: '#76a7fa',
+              strokeOpacity: 0.5,
+              strokeWidth: 1,
+            },
+          },
+        }}
+        rootProps={{ 'data-testid': '1' }}
+      />
+    </>
+  );
 }
 
 export default Testing;

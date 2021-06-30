@@ -18,7 +18,7 @@ export const hello = () => (dispatch) => {
     });
 };
 
-// # USERLOGIN
+// # 로그인 상태
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
@@ -29,10 +29,19 @@ export const userLogin = (accessToken) => {
   };
 };
 
-export const userLogOut = () => {
-  return {
-    type: USER_LOGOUT,
-  };
+// 로그아웃
+export const userLogOut = (accessToken) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/signout`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then(() => {
+      dispatch({ type: USER_LOGOUT });
+    });
 };
 
 // # AUTH
@@ -78,6 +87,11 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     });
 };
 
+// 홈으로 이동
+export const goToHome = (history) => (dispatch) => {
+  history.push('/');
+};
+
 // #USERINFO
 export const GET_USERINFO = 'GET_USERINFO';
 export const DELETE_USERINFO = 'DELETE_USERINFO';
@@ -95,3 +109,5 @@ export const GET_DAILY = 'GET_DAILY';
 export const getDaily = (daily) => (dispatch) => {
   dispatch({ type: GET_DAILY, daily });
 };
+
+// 이니셜라이즈
