@@ -66,6 +66,17 @@ li {
   list-style: none;
 }
 
+.hr {
+  width: 100%;
+  height: 1px;
+  background-color: $gray-color;
+}
+
+label {
+  color: $black-color;
+  font-size: $font-default;
+}
+
 @include mobile {
   body {
     padding: 24px;
@@ -108,4 +119,48 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
   background-color: $white-color;
   border-radius: 8px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+
+  background: $gray-color;
+  backdrop-filter: blur(20px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 27px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &_1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_email {
+    width: 200px;
+    text-align: left;
+  }
+
+  &_password {
+    width: 200px;
+    text-align: left;
+  }
 }

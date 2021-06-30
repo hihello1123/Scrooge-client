@@ -114,7 +114,9 @@ function Testing() {
             { type: 'date', id: 'Date' },
             { type: 'number', id: 'Won/Loss' },
           ],
-          [new Date(2021, 8, 12), 100000],
+          [new Date(2021, 6, 10), 5],
+          [new Date(2021, 6, 13), 0],
+          [new Date(2021, 7, 13), 0],
         ]}
         options={{
           title: '달성 스크루지 데이',

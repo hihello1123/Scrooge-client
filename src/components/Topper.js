@@ -37,6 +37,7 @@ function Topper() {
           <span className="top_Won"> ￦</span>
         </div>
       </div>
+      <div className="top hr"></div>
     </div>
   );
 }
