@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export const HELLO_LOADING = 'HELLO_LOADING';
 export const HELLO_SUCCESS = 'HELLO_SUCCESS';
@@ -106,8 +107,22 @@ export const deleteUserInfo = () => (dispatch) => {
 // #DAILY
 export const GET_DAILY = 'GET_DAILY';
 
-export const getDaily = (daily) => (dispatch) => {
-  dispatch({ type: GET_DAILY, daily });
+export const getDaily = (accessToken) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/daypage`, {
+      headers: {
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.data.data);
+      let daily = res.data.data;
+      dispatch({ type: GET_DAILY, daily });
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
 };
 
 // 이니셜라이즈

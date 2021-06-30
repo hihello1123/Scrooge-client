@@ -27,9 +27,9 @@ const initialStats = {
   },
   daily: {
     top: {
-      monthlyBudget: 500000,
-      monthlyUsed: 210000,
-      exMonthlyUsed: 100000,
+      monthlyBudget: null,
+      monthlyUsed: null,
+      exMonthlyUsed: null,
     },
     bottom: null,
     categoryList: null,
