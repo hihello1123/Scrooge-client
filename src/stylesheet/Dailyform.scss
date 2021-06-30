@@ -1,8 +1,5 @@
-@import 'variable';
-@import 'mixin';
-
-
 .daily_form {
+  position: relative;
   display: flex;
   width: 100%;
   .category_dropdown {
@@ -45,15 +42,15 @@
       cursor: pointer;
       li {
         display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 50px;
-    }
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+      }
     }
     .category_menu.show {
-    height: auto;
-    box-shadow: 0 3px 5px 0 rgba(63, 65, 80, 0.1);
+      height: auto;
+      box-shadow: 0 3px 5px 0 rgba(63, 65, 80, 0.1);
     }
   }
   .money {
@@ -77,6 +74,8 @@
       position: absolute;
       top: 13px;
       right: 15px;
+    }
+    &_btn {
     }
   }
   .memo {
@@ -102,8 +101,19 @@
 }
 
 .daily_form_submit {
+  position: absolute;
+  top: 60px;
+  right: 0px;
   display: inline-block;
-  margin-top: 50px;
-  width: 500px;
-  height: 40px;
+  width: 197px;
+  height: 34px;
+  color: $white-color;
+  font-size: $font-default;
+  background: linear-gradient(
+      84.73deg,
+      rgba(53, 85, 198, 0.44) 1.92%,
+      rgba(99, 227, 255, 0.44) 100.48%
+    ),
+    #385ad2;
+  border-radius: 13px;
 }

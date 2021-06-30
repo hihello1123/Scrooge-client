@@ -1,9 +1,10 @@
+@import 'variable';
+@import 'mixin';
+
 @import 'Signup';
 @import 'Logo';
 @import 'Nav';
-@import 'variable';
 @import 'UserProfile';
-@import 'mixin';
 @import 'Dailyform';
 @import 'Topper';
 
@@ -63,6 +64,17 @@ ul {
 
 li {
   list-style: none;
+}
+
+.hr {
+  width: 100%;
+  height: 1px;
+  background-color: $gray-color;
+}
+
+label {
+  color: $gray-color;
+  font-size: $font-default;
 }
 
 @include mobile {
