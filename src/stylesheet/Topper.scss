@@ -40,20 +40,20 @@
         #40ccf0;
     }
   }
-}
 
-.top_cost {
-  width: auto;
-  height: auto;
-  margin-left: 29px;
-  margin-top: 23px;
+  &_cost {
+    width: auto;
+    height: auto;
+    padding-left: 29px;
+  }
 }
-
 .top_inner_title {
   width: auto;
   height: auto;
-  margin-left: 29px;
-  margin-top: 23px;
+  padding-top: 29px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-bottom: 20px;
 
   font-family: Noto Sans;
   font-style: normal;
@@ -226,10 +226,10 @@
   }
 
   .top_inner_cost {
-    //   width: 246px;
-    //   height: 75px;
-    //   margin-left: 26px;
-    //   margin-top: 30px;
+    width: 246px;
+    height: 75px;
+    margin-left: 26px;
+    margin-top: 30px;
 
     font-family: Poiret One;
     font-style: normal;
