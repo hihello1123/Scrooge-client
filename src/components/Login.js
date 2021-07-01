@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 function Login({ modalSet }) {
   const userSignInReducer = useSelector((state) => state.userSignInReducer);
-  // const { signInErr } = userSignInReducer.userSignIn;
+  const { signInErr } = userSignInReducer.userSignIn;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -28,7 +28,6 @@ function Login({ modalSet }) {
     e.preventDefault();
 
     await dispatch(userSignInRequest(loginInfo));
-    await history.push({ pathname: '/daily' });
   };
 
   function inputHandler(e) {
@@ -71,3 +70,5 @@ function Login({ modalSet }) {
 }
 
 export default Login;
+
+//TODO: signInErr로 에러메시지 표시

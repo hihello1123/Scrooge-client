@@ -19,7 +19,7 @@ function Nav() {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
 
   useEffect(() => {
-    dispatch(getUserInfo(accessToken));
+    dispatch(getUserInfo(accessToken, history));
   }, [accessToken, dispatch]);
 
   const nav = useRef();

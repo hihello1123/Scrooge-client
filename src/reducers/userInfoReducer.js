@@ -19,11 +19,15 @@ const userInfoReducer = (state = initialStats, action) => {
         ...state,
         userInfo: {
           loading: false,
-          userName: action.userInfo.username,
-          userEmail: action.userInfo.email,
-          userPhoto: action.userInfo.photo,
-          userLevel: action.userInfo.level,
-          userEXP: action.userInfo.experience,
+          userName: action.data.userInfo.username,
+          userEmail: action.data.userInfo.email,
+          userPhoto: action.data.userInfo.photo,
+          userLevel: action.data.userInfo.level,
+          userEXP: action.data.userInfo.experience,
+        },
+        userset: {
+          darkMode: action.data.userset.darkmode,
+          redirect: '/daily',
         },
       };
     case DELETE_USERINFO:
@@ -36,6 +40,10 @@ const userInfoReducer = (state = initialStats, action) => {
           userPhoto: null,
           userLevel: null,
           userEXP: null,
+        },
+        userset: {
+          darkMode: false,
+          redirect: '/daily',
         },
       };
     default:

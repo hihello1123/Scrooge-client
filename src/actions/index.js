@@ -106,7 +106,7 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
 
 // # 겟
 // 홈으로 이동
-export const goToHome = (history) => (dispatch) => {
+export const goToHome = (history) => () => {
   history.push('/');
 };
 
@@ -115,7 +115,7 @@ export const GET_USERINFO = 'GET_USERINFO';
 export const GET_USERINFO_SUCCESS = 'GET_USERINFO_SUCCESS';
 export const DELETE_USERINFO = 'DELETE_USERINFO';
 
-export const getUserInfo = (accessToken) => (dispatch) => {
+export const getUserInfo = (accessToken, history) => (dispatch) => {
   dispatch({ type: GET_USERINFO });
   axios
     .get(`${process.env.REACT_APP_API_URL}/initialize`, {
@@ -123,15 +123,22 @@ export const getUserInfo = (accessToken) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      dispatch(writeUserInfo(res.data.data.userInfo));
+      console.log(res.data);
+      dispatch(writeUserInfo(res.data.data));
+      return res;
+    })
+    .then((res) => {
+      console.log(res.data);
+      const redirect = res.data.data.userset.redirect;
+      history.push(redirect); // '/daily'
     })
     .catch((err) => {
       console.log(err.response);
     });
 };
-
-export const writeUserInfo = (userInfo) => (dispatch) => {
-  dispatch({ type: GET_USERINFO_SUCCESS, userInfo });
+// 유저정보 저장
+export const writeUserInfo = (data) => (dispatch) => {
+  dispatch({ type: GET_USERINFO_SUCCESS, data });
 };
 
 // 탈퇴 =========================

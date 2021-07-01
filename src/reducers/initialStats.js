@@ -25,6 +25,7 @@ const initialStats = {
   },
   userSet: {
     darkMode: false,
+    redirect: '/daily',
   },
   daily: {
     top: {
