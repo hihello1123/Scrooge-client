@@ -1,4 +1,8 @@
-import { GET_USERINFO, DELETE_USERINFO } from '../actions';
+import {
+  GET_USERINFO,
+  GET_USERINFO_SUCCESS,
+  DELETE_USERINFO,
+} from '../actions';
 import initialStats from './initialStats';
 
 const userInfoReducer = (state = initialStats, action) => {
@@ -7,6 +11,14 @@ const userInfoReducer = (state = initialStats, action) => {
       return {
         ...state,
         userInfo: {
+          loading: true,
+        },
+      };
+    case GET_USERINFO_SUCCESS:
+      return {
+        ...state,
+        userInfo: {
+          loading: false,
           userName: action.userInfo.username,
           userEmail: action.userInfo.email,
           userPhoto: action.userInfo.photo,
@@ -18,6 +30,7 @@ const userInfoReducer = (state = initialStats, action) => {
       return {
         ...state,
         userInfo: {
+          loading: false,
           userName: null,
           userEmail: null,
           userPhoto: null,

@@ -37,7 +37,7 @@ export const refreshTokenRequest = () => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      dispatch(userLogin(res.data.accessToken));
+      dispatch(userLogin(res.data.data.accessToken));
     })
     .catch((err) => {
       console.log(err.response);
@@ -56,6 +56,7 @@ export const userLogOut = (accessToken, history) => (dispatch) => {
     })
     .then(() => {
       dispatch({ type: USER_LOGOUT });
+      dispatch(deleteUserInfo());
       history.push({ pathname: '/' });
     });
 };
@@ -109,13 +110,31 @@ export const goToHome = (history) => (dispatch) => {
   history.push('/');
 };
 
-// #USERINFO
+// #USERINFO ===================
 export const GET_USERINFO = 'GET_USERINFO';
+export const GET_USERINFO_SUCCESS = 'GET_USERINFO_SUCCESS';
 export const DELETE_USERINFO = 'DELETE_USERINFO';
 
-export const writeUserInfo = (userInfo) => (dispatch) => {
-  dispatch({ type: GET_USERINFO, userInfo });
+export const getUserInfo = (accessToken) => (dispatch) => {
+  dispatch({ type: GET_USERINFO });
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/initialize`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch(writeUserInfo(res.data.data.userInfo));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
 };
+
+export const writeUserInfo = (userInfo) => (dispatch) => {
+  dispatch({ type: GET_USERINFO_SUCCESS, userInfo });
+};
+
+// 탈퇴 =========================
 export const deleteUserInfo = () => (dispatch) => {
   dispatch({ type: DELETE_USERINFO });
 };

@@ -10,27 +10,16 @@ import {
 } from '@heroicons/react/outline';
 import { CogIcon } from '@heroicons/react/solid';
 import UserProfile from './UserProfile';
-import axios from 'axios';
-import { writeUserInfo, userLogOut } from '../actions';
+import { getUserInfo, userLogOut } from '../actions';
 
 function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
+
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/initialize`, {
-        headers: { authorization: `bearer ${accessToken}` },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        dispatch(writeUserInfo(res.data.data.userInfo));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    dispatch(getUserInfo(accessToken));
   }, [accessToken, dispatch]);
 
   const nav = useRef();

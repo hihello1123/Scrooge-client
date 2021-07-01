@@ -16,6 +16,7 @@ const initialStats = {
     signInErr: null,
   },
   userInfo: {
+    loading: false,
     userName: null,
     userEmail: null,
     userPhoto: null,
