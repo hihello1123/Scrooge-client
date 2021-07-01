@@ -10,7 +10,7 @@ function Topper() {
     <>
       <div className="top">
         <div className="top_small top_small_1">
-          <div className="top_inner_title">이번달 총 예산</div>
+          <div className="top_inner_title">이번 달 총 예산</div>
           <div className="top_cost">
             <span className="top_inner_cost_1">
               {top.monthlyBudget

@@ -62,6 +62,7 @@
     height: 50px;
     font-size: $font-default;
     &_input {
+      margin-bottom: 10px;
       font-family: $noto-font;
       font-size: $font-default;
       width: 100%;
@@ -75,20 +76,34 @@
       top: 13px;
       right: 15px;
     }
-    // &_btn {
-    // }
+    .money_btn_group {
+      display: flex;
+      justify-content: space-around;
+      .money_btn {
+        padding: 6px 0px;
+        width: 100%;
+        font-size: 1rem;
+        color: $blue-color;
+        border: 2px solid $blue-color;
+        border-radius: 13px;
+        &:not(:last-child) {
+          margin-right: 3px;
+        }
+      }
+    }
   }
   .memo {
-    margin-right: 15px;
-    font-size: $font-default;
-    height: 50px;
     flex: 2;
+    margin-right: 15px;
+    min-width: 200px;
+    height: 50px;
+    font-size: $font-default;
   }
 }
 
 .date_picker {
   flex: 1;
-  width: auto;
+  width: 157px;
   height: 50px;
   font-size: $font-default;
   font-weight: 400;
