@@ -62,10 +62,12 @@ export const userLogOut = (accessToken, history) => (dispatch) => {
 };
 
 // 이메일 확인 ==========================================
+export const EMAIL_SIGNUP = 'EMAIL_SIGNUP';
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';
 export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 
 export const checkEmailExists = (email) => (dispatch) => {
+  dispatch({ type: EMAIL_SIGNUP });
   axios
     .post(
       `${process.env.REACT_APP_API_URL}/checkemail`,
@@ -80,6 +82,23 @@ export const checkEmailExists = (email) => (dispatch) => {
     })
     .catch(() => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
+    });
+};
+
+// 회원가입 =======================================
+export const userSignUpRequest = (fd, history) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/signup`, fd, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.data.message);
+      dispatch({ type: EMAIL_SIGNUP }); //이메일 체크 완료상태 펄스로 바꾸기
+      dispatch(goToHome(history));
+    })
+    .catch((err) => {
+      console.log(err.response);
     });
 };
 

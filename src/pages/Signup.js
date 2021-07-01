@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkEmailExists, goToHome } from '../actions';
+import { checkEmailExists, userSignUpRequest } from '../actions';
 import { Link, useHistory } from 'react-router-dom';
 import Logo from '../components/Logo';
-import axios from 'axios';
 
 function Signup() {
   const [userInfo, setUserInfo] = useState({
@@ -52,6 +51,7 @@ function Signup() {
 
   let signupRequestHandler = async (e) => {
     if (!userInfo.username || !userInfo.password || !userInfo.email) {
+      //TODO: UX
       if (!userInfo.email) {
         alert('처음부터 시도해주세요');
       }
@@ -73,18 +73,7 @@ function Signup() {
     fd.append('password', userInfo.password);
     fd.append('photo', userInfo.photo);
 
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/signup`, fd, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.message);
-        dispatch(goToHome(history));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    dispatch(userSignUpRequest(fd, history));
   };
 
   return (

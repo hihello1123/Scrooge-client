@@ -1,8 +1,20 @@
-import { EMAIL_SIGNUP_SUCCESS, EMAIL_SIGNUP_ERROR } from '../actions';
+import {
+  EMAIL_SIGNUP,
+  EMAIL_SIGNUP_SUCCESS,
+  EMAIL_SIGNUP_ERROR,
+} from '../actions';
 import initialStats from './initialStats';
 
 const emailExistsReducer = (state = initialStats, action) => {
   switch (action.type) {
+    case EMAIL_SIGNUP:
+      return {
+        ...state,
+        emailExists: {
+          emailSignupMod: false,
+          emailExistsErr: false,
+        },
+      };
     case EMAIL_SIGNUP_SUCCESS:
       return {
         ...state,

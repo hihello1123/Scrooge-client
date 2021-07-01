@@ -30,6 +30,8 @@
       font-size: $font-medium;
       margin-right: 3px;
       margin-bottom: 3px;
+      max-width: 100px;
+      overflow: hidden;
     }
     &_level {
       font-family: $noto-font;
