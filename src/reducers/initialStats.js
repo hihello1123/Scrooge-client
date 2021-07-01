@@ -33,7 +33,24 @@ const initialStats = {
       monthlyUsed: null,
       exMonthlyUsed: null,
     },
-    bottom: null,
+    bottom: [
+      {
+        id: 1,
+        categoryname: '식비',
+        moneyId: 1,
+        moneyCost: 10000,
+        moneyMemo: '롯데리아',
+        moneyDate: '2021-06-22',
+      },
+      {
+        id: 2,
+        categoryname: '식비',
+        moneyId: 1,
+        moneyCost: 10000,
+        moneyMemo: '롯데리아',
+        moneyDate: '2021-06-22',
+      },
+    ],
     categoryList: null,
   },
   budget: {

@@ -132,3 +132,34 @@
     #385ad2;
   border-radius: 13px;
 }
+
+@include mobile {
+  .daily_form {
+    flex-wrap: wrap;
+    .category_dropdown {
+      order: 1;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+    .money {
+      order: 3;
+      margin-right: 0;
+      margin-bottom: 15px;
+      min-width: 100%;
+      height: 100px;
+    }
+    .memo {
+      order: 4;
+      margin-right: 0;
+    }
+    .date_picker {
+      order: 2;
+      margin-right: 5px;
+    }
+    .daily_form_submit {
+      top: calc(100% + 15px);
+      width: 100%;
+      height: 50px;
+    }
+  }
+}
