@@ -18,7 +18,8 @@ export const hello = () => (dispatch) => {
     });
 };
 
-// # 로그인 상태
+// # AUTH
+// 로그인 상태 ==========================================
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
@@ -29,7 +30,21 @@ export const userLogin = (accessToken) => {
   };
 };
 
-// 로그아웃
+// 리프레쉬 토큰
+export const refreshTokenRequest = () => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/refreshtokenrequest`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch(userLogin(res.data.accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+// 로그아웃 ==========================================
 export const userLogOut = (accessToken, history) => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/signout`, {
@@ -45,8 +60,7 @@ export const userLogOut = (accessToken, history) => (dispatch) => {
     });
 };
 
-// # AUTH
-// 이메일 확인
+// 이메일 확인 ==========================================
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';
 export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 
@@ -67,7 +81,8 @@ export const checkEmailExists = (email) => (dispatch) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
     });
 };
-// 로그인
+
+// 로그인 ==========================================
 export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
 
 export const userSignInRequest = (loginInfo) => (dispatch) => {
@@ -88,6 +103,7 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     });
 };
 
+// # 겟
 // 홈으로 이동
 export const goToHome = (history) => (dispatch) => {
   history.push('/');
