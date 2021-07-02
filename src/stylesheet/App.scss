@@ -10,6 +10,7 @@
 @import 'Topper';
 @import 'Login';
 @import 'Loding';
+@import 'DailyList';
 * {
   box-sizing: border-box;
   margin: 0px;
@@ -18,6 +19,7 @@
 body {
   background-color: $white-color;
   margin: 0;
+  min-width: 370px;
   font-family: $noto-font;
   color: $black-color;
 }
@@ -107,6 +109,15 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
   background-color: $white-color;
   border-radius: 8px;
+}
+
+input[type='”text”'],
+input[type='”tel”'],
+input[type='”password”'],
+input[type='”email”'],
+input[type='”search”'],
+textarea {
+  -webkit-appearance: none; /* 인풋내 그림자 제거 */
 }
 
 @include mobile {

@@ -147,9 +147,8 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
       return res;
     })
     .then((res) => {
-      console.log(res.data);
       const redirect = res.data.data.userset.redirect;
-      history.push(redirect); // '/daily'
+      history.push(redirect); // 기본값 /daily
     })
     .catch((err) => {
       console.log(err.response);
@@ -167,9 +166,56 @@ export const deleteUserInfo = () => (dispatch) => {
 
 // #DAILY
 export const GET_DAILY = 'GET_DAILY';
+export const GET_DAILY_SUCCESS = 'GET_DAILY_SUCCESS';
 
-export const getDaily = (daily) => (dispatch) => {
-  dispatch({ type: GET_DAILY, daily });
+export const getDaily = (accessToken) => (dispatch) => {
+  dispatch({ type: GET_DAILY });
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/daypage`, {
+      headers: {
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch(setDaily(res.data.data));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const setDaily = (daily) => {
+  return {
+    type: GET_DAILY_SUCCESS,
+    daily,
+  };
+};
+
+export const postDaily = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/createspendmoney`,
+      {
+        categoryname: data.categoryname,
+        cost: data.cost,
+        memo: data.memo,
+        date: data.date,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      dispatch(getDaily(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
 };
 
 // 이니셜라이즈

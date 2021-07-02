@@ -1,41 +1,34 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDaily } from '../actions';
-import Dailyform from '../components/Dailyform';
 import Topper from '../components/Topper';
+import Dailyform from '../components/Dailyform';
+import DailyList from '../components/DailyList';
 
 function Daily() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const dailyReducer = useSelector((state) => state.dailyReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
+  const { loading } = dailyReducer.daily;
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/daypage`, {
-        headers: {
-          authorization: `bearer ${accessToken}`,
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res);
-        dispatch(getDaily(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }, [accessToken, dispatch]);
+    dispatch(getDaily(accessToken));
+  }, [dispatch, accessToken]);
 
   return (
-    <div className="daily container">
-      <Topper />
-      <div>
-        <div className="daily_form">
+    <>
+      {loading ? (
+        //TODO: 깐지나는 로딩
+        <div>로딩중</div>
+      ) : (
+        <div className="daily container">
+          <Topper />
           <Dailyform />
+          <DailyList />
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

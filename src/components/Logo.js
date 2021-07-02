@@ -7,7 +7,7 @@ function Logo() {
   const pupilRight = useRef();
 
   const eye = () => {
-    if (!pupilLeft) return;
+    if (!pupilLeft || !pupilRight) return;
     const pupilLeftScope = pupilLeft.current.getBoundingClientRect();
     const pupilRightScope = pupilRight.current.getBoundingClientRect();
 

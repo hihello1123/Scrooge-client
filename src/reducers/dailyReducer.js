@@ -1,4 +1,4 @@
-import { GET_DAILY } from '../actions';
+import { GET_DAILY, GET_DAILY_SUCCESS } from '../actions';
 import initialStats from './initialStats';
 
 const dailyReducer = (state = initialStats, action) => {
@@ -7,6 +7,14 @@ const dailyReducer = (state = initialStats, action) => {
       return {
         ...state,
         daily: {
+          loading: true,
+        },
+      };
+    case GET_DAILY_SUCCESS:
+      return {
+        ...state,
+        daily: {
+          loading: false,
           top: {
             monthlyBudget: action.daily.top.monthlyBudget,
             monthlyUsed: action.daily.top.monthlyUsed,

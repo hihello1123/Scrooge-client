@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 0px;
     color: $white-color;
     &_small {
       display: flex;
@@ -113,6 +114,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 0px;
     color: $white-color;
     &_small {
       flex: 1;
@@ -173,14 +175,15 @@
     font-family: $poiret-font;
     font-style: normal;
     font-weight: normal;
-    font-size: $font-Xlarge;
+    font-size: $font-SMLarge;
     line-height: 75px;
 
     &_1 {
       font-family: $poiret-font;
       font-style: normal;
       font-weight: normal;
-      font-size: $font-Xlarge;
+      font-size: $font-SMLarge;
+      line-height: 75px;
     }
   }
 }
@@ -191,6 +194,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 20px;
     width: 100%;
     color: $white-color;
     &_small {
