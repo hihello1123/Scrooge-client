@@ -9,6 +9,7 @@ const isLoggedInReducer = (state = initialStats, action) => {
         userLoggedIn: {
           isLoggedIn: true,
           accessToken: action.accessToken,
+          path: action.path,
         },
       };
     case USER_LOGOUT:
@@ -17,6 +18,7 @@ const isLoggedInReducer = (state = initialStats, action) => {
         userLoggedIn: {
           isLoggedIn: false,
           accessToken: null,
+          path: null,
         },
       };
     default:

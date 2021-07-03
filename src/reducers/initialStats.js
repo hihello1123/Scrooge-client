@@ -11,6 +11,7 @@ const initialStats = {
   userLoggedIn: {
     isLoggedIn: false,
     accessToken: null,
+    path: null,
   },
   userSignIn: {
     signInErr: null,

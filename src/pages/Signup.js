@@ -76,6 +76,7 @@ function Signup() {
   }
 
   function inputHandler(e) {
+    console.log(userInfo);
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   }
 

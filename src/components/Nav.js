@@ -57,9 +57,7 @@ function Nav() {
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <DocumentTextIcon className="nav_icon " />일 별 차트
-              </Link>
+              <DocumentTextIcon className="nav_icon " />일 별 차트
             </li>
             <li>
               <Link to="/">
@@ -72,9 +70,11 @@ function Nav() {
               <LogoutIcon className="nav_icon" />
               로그아웃
             </button>
-            <button className="nav_footer_btn">
-              <CogIcon className="nav_icon_cog" />
-            </button>
+            <Link to="/setting">
+              <button className="nav_footer_btn">
+                <CogIcon className="nav_icon_cog" />
+              </button>
+            </Link>
           </footer>
         </div>
       </nav>

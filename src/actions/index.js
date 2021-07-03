@@ -23,10 +23,11 @@ export const hello = () => (dispatch) => {
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
-export const userLogin = (accessToken) => {
+export const userLogin = (accessToken, path) => {
   return {
     type: USER_LOGIN,
     accessToken,
+    path,
   };
 };
 
@@ -97,7 +98,7 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
       if (String(res.data.message).includes('회원가입')) {
         alert('카카오 회원가입을 해주세요');
       } else {
-        dispatch(userLogin(res.data.data.accessToken));
+        dispatch(userLogin(res.data.data.accessToken, '카카오'));
       }
     })
     .catch((err) => {
@@ -115,7 +116,7 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
       if (String(res.data.message).includes('회원가입')) {
         alert('구글 회원가입을 해주세요');
       } else {
-        dispatch(userLogin(res.data.data.accessToken));
+        dispatch(userLogin(res.data.data.accessToken, '구글'));
       }
     })
     .catch((err) => {
@@ -224,7 +225,6 @@ export const DELETE_USERINFO = 'DELETE_USERINFO';
 
 export const getUserInfo = (accessToken, history) => (dispatch) => {
   dispatch({ type: GET_USERINFO });
-  console.log(accessToken);
   axios
     .get(`${process.env.REACT_APP_API_URL}/initialize`, {
       headers: { authorization: `bearer ${accessToken}` },
@@ -307,4 +307,19 @@ export const postDaily = (data, accessToken) => (dispatch) => {
     });
 };
 
-// 이니셜라이즈
+// 유저정보 수정
+export const USER_EDIT = 'USER_EDIT';
+
+export const userEdit = (fd, accessToken) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/fixuserinfo`, fd, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+    });
+};
