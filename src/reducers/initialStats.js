@@ -11,6 +11,7 @@ const initialStats = {
   userLoggedIn: {
     isLoggedIn: false,
     accessToken: null,
+    path: null,
   },
   userSignIn: {
     signInErr: null,
@@ -41,6 +42,11 @@ const initialStats = {
     budgetGraph: null,
     categories: null,
     userGraph: null,
+  },
+  socialData: {
+    email: null,
+    photo: null,
+    username: null,
   },
   // 년도별 데이터: {
   //   차트data: [
