@@ -7,30 +7,179 @@ function Testing() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
 
-  //진행중 []
+  //진행중
 
-  //기본폼
-  /*axios
-    .get(`${process.env.REACT_APP_API_URL}/엔드포인트`, {
+  // categorysort
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/categorysort`,
+      { id: 1 },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('categorysort엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('categorysort엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /deletecategory
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/deletecategory`,
+      { categoryname: '여가비' },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('deletecategory엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('deletecategory엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /fixcategoryinfo
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/fixcategoryinfo`,
+      {
+        categoryId: 1,
+        categoryname: 'FCI바꿀값',
+        budget: 111111,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('fixcategoryinfo엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('fixcategoryinfo엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /createcategoryinfo
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/createcategoryinfo`,
+      { categoryname: 'GCI 만든값', budget: 222222 },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('createcategoryinfo엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('createcategoryinfo엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /importexcel
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/importexcel`, {
       headers: { authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
     .then((res) => {
-      console.log('엔드포인트 is');
+      console.log('importexcel엔드포인트 is');
       console.log(res.data.data);
     })
     .catch((err) => {
-      console.log('엔드포인트 error is');
+      console.log('importexcel엔드포인트 error is');
       console.log(err.response);
-    });*/
+    });
+
+  // /deletedata
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/deletedata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('deletedata엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('deletedata엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /darkmode
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/darkmode`,
+      { darkmode: true },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('darkmode엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('darkmode엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  // /changemainpage
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/changemainpage`,
+      { redirect: 'New way' },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log('changemainpage엔드포인트 is');
+      console.log(res.data.message);
+    })
+    .catch((err) => {
+      console.log('changemainpage엔드포인트 error is');
+      console.log(err.response);
+    });
+
+  //기본폼
+  // axios
+  //   .get(`${process.env.REACT_APP_API_URL}/엔드포인트`, {
+  //     headers: { authorization: `bearer ${accessToken}` },
+  //     withCredentials: true,
+  //   })
+  //   .then((res) => {
+  //     console.log('엔드포인트 is');
+  //     console.log(res.data.data);
+  //   })
+  //   .catch((err) => {
+  //     console.log('엔드포인트 error is');
+  //     console.log(err.response);
+  //   });
 
   //통과한 것들
   /* 목록 
-  daypage
-  budget
-  initialize
-  getyearlydata
-  getmonthlydata
+  /daypage
+  /budget
+  /initialize
+  /getyearlydata
+  /getmonthlydata
+
   
   axios
     .get(`${process.env.REACT_APP_API_URL}/daypage`, {
