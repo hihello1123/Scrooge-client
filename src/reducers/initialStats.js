@@ -28,29 +28,13 @@ const initialStats = {
     redirect: '/daily',
   },
   daily: {
+    loading: false,
     top: {
       monthlyBudget: null,
       monthlyUsed: null,
       exMonthlyUsed: null,
     },
-    bottom: [
-      {
-        id: 1,
-        categoryname: '식비',
-        moneyId: 1,
-        moneyCost: 10000,
-        moneyMemo: '롯데리아',
-        moneyDate: '2021-06-22',
-      },
-      {
-        id: 2,
-        categoryname: '식비',
-        moneyId: 1,
-        moneyCost: 10000,
-        moneyMemo: '롯데리아',
-        moneyDate: '2021-06-22',
-      },
-    ],
+    bottom: [],
     categoryList: null,
   },
   budget: {

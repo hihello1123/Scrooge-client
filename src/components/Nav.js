@@ -20,7 +20,7 @@ function Nav() {
 
   useEffect(() => {
     dispatch(getUserInfo(accessToken, history));
-  }, [accessToken, dispatch]);
+  }, [accessToken, history, dispatch]);
 
   const nav = useRef();
   const navOpenHandler = () => {

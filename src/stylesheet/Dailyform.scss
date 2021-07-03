@@ -2,6 +2,8 @@
   position: relative;
   display: flex;
   width: 100%;
+  height: 100px;
+  margin-bottom: 50px;
   .category_dropdown {
     position: relative;
     flex: 1;
@@ -30,16 +32,17 @@
     }
     .category_menu {
       position: absolute;
-      z-index: 2;
-      top: 53px;
+      z-index: 99;
+      top: 70px;
       left: 0;
       width: 100%;
       height: 0px;
       overflow: hidden;
       background-color: #fff;
       border-radius: 6px;
-      // transition: 0.3s ease-in;
+      transition: 0.2s ease-in;
       cursor: pointer;
+      opacity: 0;
       li {
         display: flex;
         justify-content: center;
@@ -47,16 +50,20 @@
         width: 100%;
         height: 50px;
       }
+      li.disabled {
+        color: $gray-color;
+      }
     }
     .category_menu.show {
       height: auto;
+      top: 53px;
       box-shadow: 0 3px 5px 0 rgba(63, 65, 80, 0.1);
+      opacity: 100;
     }
   }
   .money {
     position: relative;
     flex: 2;
-    z-index: 2;
     margin-right: 15px;
     width: auto;
     height: 50px;
@@ -80,7 +87,7 @@
       display: flex;
       justify-content: space-around;
       .money_btn {
-        padding: 6px 0px;
+        padding: 6px 5px;
         width: 100%;
         font-size: 1rem;
         color: $blue-color;
@@ -95,47 +102,54 @@
   .memo {
     flex: 2;
     margin-right: 15px;
-    min-width: 200px;
+    min-width: 100px;
     height: 50px;
     font-size: $font-default;
   }
-}
+  .date_picker {
+    flex: 1;
+    width: 157px;
+    height: 50px;
+    font-size: $font-default;
+    font-weight: 400;
+    color: $blue-color;
+    border-radius: 16px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+  }
 
-.date_picker {
-  flex: 1;
-  width: 157px;
-  height: 50px;
-  font-size: $font-default;
-  font-weight: 400;
-  color: $blue-color;
-  border-radius: 16px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-}
+  .formErrMessage {
+    width: 100%;
+    color: #ff3636;
+    text-align: center;
+  }
 
-.daily_form_submit {
-  position: absolute;
-  top: 60px;
-  right: 0px;
-  display: inline-block;
-  width: 197px;
-  height: 34px;
-  color: $white-color;
-  font-size: $font-default;
-  background: linear-gradient(
-      84.73deg,
-      rgba(53, 85, 198, 0.44) 1.92%,
-      rgba(99, 227, 255, 0.44) 100.48%
-    ),
-    #385ad2;
-  border-radius: 13px;
+  .daily_form_submit {
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    display: inline-block;
+    width: 197px;
+    height: 34px;
+    color: $white-color;
+    font-size: $font-default;
+    background: linear-gradient(
+        84.73deg,
+        rgba(53, 85, 198, 0.44) 1.92%,
+        rgba(99, 227, 255, 0.44) 100.48%
+      ),
+      #385ad2;
+    border-radius: 13px;
+  }
 }
 
 @include mobile {
   .daily_form {
     flex-wrap: wrap;
+    height: 100%;
+    margin-bottom: 115px;
     .category_dropdown {
       order: 1;
       margin-right: 0;
@@ -155,6 +169,14 @@
     .date_picker {
       order: 2;
       margin-right: 5px;
+    }
+
+    .formErrMessage {
+      order: 5;
+      margin-top: 15px;
+      width: 100%;
+      color: #ff3636;
+      text-align: center;
     }
     .daily_form_submit {
       top: calc(100% + 15px);

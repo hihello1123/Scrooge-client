@@ -1,19 +1,28 @@
 import React, { useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { postDaily } from '../actions';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
-import { useSelector } from 'react-redux';
 import { ChevronDownIcon } from '@heroicons/react/outline';
-
 import 'react-datepicker/dist/react-datepicker.css';
-import axios from 'axios';
 
 function Dailyform() {
+  const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
 
   const categoryMenu = useRef();
   const categoryBtn = useRef();
   const moneyInput = useRef();
+
+  const [date, setDate] = useState(new Date()); // 날짜 선택
+  const [inputData, setInputData] = useState({
+    categoryname: '지정되지 않은 카테고리',
+    cost: '',
+    memo: '',
+    date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+  });
+  const [err, setErr] = useState(null);
 
   const dailyReducer = useSelector((state) => state.dailyReducer);
   const { categoryList } = dailyReducer.daily;
@@ -23,12 +32,18 @@ function Dailyform() {
   };
 
   const categoryMenuHandler = (e) => {
-    categoryBtn.current.children[0].textContent = e.target.textContent;
+    if (e.target.textContent !== '카테고리 없음') {
+      categoryBtn.current.children[0].textContent = e.target.textContent;
+      setInputData({
+        ...inputData,
+        categoryname: e.target.textContent,
+      });
+    }
     categoryMenu.current.classList.remove('show');
   };
 
   const moneyBtnHandler = (e) => {
-    console.log('천원 추가');
+    const re = '^[0-9]+$';
     let money;
     if (!moneyInput.current.value) {
       moneyInput.current.value = '0';
@@ -38,43 +53,52 @@ function Dailyform() {
     switch (e.target.textContent) {
       case '+10,000':
         money += 10000;
-        console.log('만원 추가');
+        setInputData({
+          ...inputData,
+          cost: String(Number(inputData.cost) + 10000),
+        });
         break;
       case '+1,000':
         money += 1000;
-        console.log('천원 추가');
+        setInputData({
+          ...inputData,
+          cost: String(Number(inputData.cost) + 1000),
+        });
         break;
       case '+100':
         money += 100;
-        console.log('백원 추가');
+        setInputData({
+          ...inputData,
+          cost: String(Number(inputData.cost) + 100),
+        });
         break;
       default:
         break;
     }
-    console.log(moneyInput.current.value);
     moneyInput.current.value = money;
   };
-  const [date, setDate] = useState(new Date()); // 날짜 선택
+
+  const inputChangeHandler = (e) => {
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    });
+    setErr(null);
+  };
 
   const dailySubmitHandler = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/createspendmoney`,
-        {
-          cost: 10000,
-          memo: '',
-          categoryname: '지정되지 않은 카테고리',
-          date,
-        },
-        {
-          headers: { authorization: `bearer ${accessToken}` },
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      });
+    const re = '^[0-9]+$';
+    if (!inputData.cost || !inputData.cost.match(re)) {
+      if (!inputData.cost) {
+        setErr('금액을 적어주세요');
+      }
+      if (!inputData.cost.match(re)) {
+        setErr('금액은 숫자만 입력해주세요');
+      }
+      return;
+    }
+    dispatch(postDaily(inputData, accessToken));
   };
 
   return (
@@ -96,12 +120,14 @@ function Dailyform() {
             ref={categoryMenu}
           >
             {categoryList ? (
-              <></>
+              <>
+                {categoryList.map((el) => {
+                  <li key={`categoryList-${el.id}`}>{el.categoryname}</li>;
+                })}
+              </>
             ) : (
               <>
-                <li>카테고리 없음</li>
-                <li>2</li>
-                <li>3</li>
+                <li className="disabled">카테고리 없음</li>
               </>
             )}
           </ul>
@@ -109,9 +135,10 @@ function Dailyform() {
         <div className="money">
           <input
             className="money_input"
-            name="money"
+            name="cost"
             type="text"
             ref={moneyInput}
+            onChange={inputChangeHandler}
           />
           <label className="money_label" htmlFor="money">
             ￦
@@ -140,7 +167,12 @@ function Dailyform() {
             </button>
           </div>
         </div>
-        <input className="memo" type="text" placeholder="메모" />
+        <input
+          className="memo"
+          type="text"
+          placeholder="메모"
+          onChange={inputChangeHandler}
+        />
         <DatePicker
           className="date_picker"
           selected={date}
@@ -148,10 +180,12 @@ function Dailyform() {
           locale={ko}
           dateFormat="yyyy-MM-dd"
         />
+        {err ? <div className="formErrMessage">{err}</div> : <></>}
         <button className="daily_form_submit" onClick={dailySubmitHandler}>
           지출 내역 작성
         </button>
       </form>
+      <div className="top hr"></div>
     </>
   );
 }
