@@ -211,7 +211,7 @@ export const postDaily = (data, accessToken) => (dispatch) => {
         withCredentials: true,
       }
     )
-    .then((res) => {
+    .then(() => {
       dispatch(getDaily(accessToken));
     })
     .catch((err) => {
@@ -219,6 +219,52 @@ export const postDaily = (data, accessToken) => (dispatch) => {
     });
 };
 
-export const editDaily = (data) => (dispatch) => {};
-
-// 이니셜라이즈
+export const editDaily = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/editspendmoney`,
+      {
+        moneyId: data.moneyId,
+        categoryname: data.categoryname,
+        cost: data.cost,
+        memo: data.memo,
+        date: data.date,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getDaily(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+// TODO: 나중에 시간 되면 getDaily로 한번에 전체데이터를 받아오지 말고, 수정하거나 삭제한 내역만 받아오기
+export const deleteDaily = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/deletespendmoney`,
+      {
+        moneyId: data,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getDaily(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
