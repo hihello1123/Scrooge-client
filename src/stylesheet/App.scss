@@ -120,6 +120,23 @@ textarea {
   -webkit-appearance: none; /* 인풋내 그림자 제거 */
 }
 
+.modal {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 24px;
+  background: rgba(241, 245, 255, 0.2);
+  backdrop-filter: blur(20px);
+  &.show {
+    display: flex;
+  }
+}
+
 @include mobile {
   body {
     padding: 24px;

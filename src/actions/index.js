@@ -218,4 +218,6 @@ export const postDaily = (data, accessToken) => (dispatch) => {
     });
 };
 
+export const editDaily = (data) => (dispatch) => {};
+
 // 이니셜라이즈

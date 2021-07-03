@@ -5,15 +5,20 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useEffect } from 'react';
 
-function Dailyform() {
+function Dailyform({ editMode, item }) {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const dailyReducer = useSelector((state) => state.dailyReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
+  const { categoryList } = dailyReducer.daily;
 
+  const dailyForm = useRef();
   const categoryMenu = useRef();
   const categoryBtn = useRef();
   const moneyInput = useRef();
+  const memoInput = useRef();
 
   const [date, setDate] = useState(new Date()); // 날짜 선택
   const [inputData, setInputData] = useState({
@@ -24,8 +29,35 @@ function Dailyform() {
   });
   const [err, setErr] = useState(null);
 
-  const dailyReducer = useSelector((state) => state.dailyReducer);
-  const { categoryList } = dailyReducer.daily;
+  useEffect(() => {
+    if (editMode) {
+      dailyForm.current.classList.add('editMode');
+    }
+    if (item) {
+      categoryBtn.current.children[0].textContent = item.emoji || '카테고리';
+      moneyInput.current.placeholder = item.cost;
+      memoInput.current.placeholder = item.memo || '메모';
+
+      const dateArr = item.date.split('-');
+      setDate(
+        new Date(Number(dateArr[0]), Number(dateArr[1]) - 1, Number(dateArr[2]))
+      );
+      setInputData({
+        categoryname: item.emoji || '지정되지 않은 카테고리',
+        cost: String(item.cost),
+        memo: item.memo || '',
+        date: item.date,
+      });
+    }
+  }, [editMode, item]);
+
+  const setDateHandler = (date) => {
+    setDate(date);
+    setInputData({
+      ...inputData,
+      date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+    });
+  };
 
   const categoryDropdownHandler = () => {
     categoryMenu.current.classList.toggle('show');
@@ -43,7 +75,6 @@ function Dailyform() {
   };
 
   const moneyBtnHandler = (e) => {
-    const re = '^[0-9]+$';
     let money;
     if (!moneyInput.current.value) {
       moneyInput.current.value = '0';
@@ -83,6 +114,7 @@ function Dailyform() {
       ...inputData,
       [e.target.name]: e.target.value,
     });
+    console.log(inputData);
     setErr(null);
   };
 
@@ -90,20 +122,32 @@ function Dailyform() {
     e.preventDefault();
     const re = '^[0-9]+$';
     if (!inputData.cost || !inputData.cost.match(re)) {
-      if (!inputData.cost) {
-        setErr('금액을 적어주세요');
-      }
       if (!inputData.cost.match(re)) {
         setErr('금액은 숫자만 입력해주세요');
       }
+      if (!inputData.cost) {
+        setErr('금액을 적어주세요');
+      }
+      return;
+    } else if (inputData.cost === '0') {
+      setErr('0원은 안돼요');
       return;
     }
-    dispatch(postDaily(inputData, accessToken));
+
+    switch (e.target.textContent) {
+      case '지출 내역 작성':
+        dispatch(postDaily(inputData, accessToken));
+        break;
+      case '지출 내역 수정':
+        break;
+      default:
+        return;
+    }
   };
 
   return (
     <>
-      <form className="daily_form">
+      <form className="daily_form" ref={dailyForm}>
         <div className="category_dropdown">
           <button
             type="button"
@@ -122,7 +166,9 @@ function Dailyform() {
             {categoryList ? (
               <>
                 {categoryList.map((el) => {
-                  <li key={`categoryList-${el.id}`}>{el.categoryname}</li>;
+                  return (
+                    <li key={`categoryList-${el.id}`}>{el.categoryname}</li>
+                  );
                 })}
               </>
             ) : (
@@ -169,23 +215,26 @@ function Dailyform() {
         </div>
         <input
           className="memo"
+          name="memo"
           type="text"
           placeholder="메모"
           onChange={inputChangeHandler}
+          ref={memoInput}
         />
         <DatePicker
           className="date_picker"
           selected={date}
-          onChange={(date) => setDate(date)}
+          onChange={(date) => {
+            setDateHandler(date);
+          }}
           locale={ko}
           dateFormat="yyyy-MM-dd"
         />
         {err ? <div className="formErrMessage">{err}</div> : <></>}
         <button className="daily_form_submit" onClick={dailySubmitHandler}>
-          지출 내역 작성
+          {editMode ? '지출 내역 수정' : '지출 내역 작성'}
         </button>
       </form>
-      <div className="top hr"></div>
     </>
   );
 }

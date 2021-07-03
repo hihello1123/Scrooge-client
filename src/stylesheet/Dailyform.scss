@@ -1,3 +1,24 @@
+.daily_form.editMode {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  .category_toggle_btn,
+  .date_picker,
+  .memo,
+  .money_input {
+    border: 1px solid $light-gray-color;
+  }
+  .money_btn {
+    background-color: #fff;
+  }
+  .date_picker {
+    width: 105px;
+    padding: 0 0;
+  }
+  .top.hr {
+    display: none;
+  }
+}
+
 .daily_form {
   position: relative;
   display: flex;
@@ -121,9 +142,12 @@
   }
 
   .formErrMessage {
+    position: absolute;
+    top: -25px;
     width: 100%;
     color: #ff3636;
     text-align: center;
+    font-size: $font-small;
   }
 
   .daily_form_submit {
@@ -146,6 +170,9 @@
 }
 
 @include mobile {
+  .daily_form.editMode {
+    margin-bottom: 120px;
+  }
   .daily_form {
     flex-wrap: wrap;
     height: 100%;
@@ -172,11 +199,9 @@
     }
 
     .formErrMessage {
+      position: static;
       order: 5;
       margin-top: 15px;
-      width: 100%;
-      color: #ff3636;
-      text-align: center;
     }
     .daily_form_submit {
       top: calc(100% + 15px);
