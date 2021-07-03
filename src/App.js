@@ -19,8 +19,8 @@ function App() {
       dispatch(getKakaoCode(authorizationCode));
     }
 
-    dispatch(refreshTokenRequest());
-  }, [dispatch]);
+    // dispatch(refreshTokenRequest());
+  }, []);
   return (
     <>
       <AppRouter />

@@ -96,6 +96,7 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
       authorizationCode,
     })
     .then((res) => {
+      console.log('hahaha');
       if (String(res.data.message).includes('회원가입')) {
         alert('카카오 회원가입을 해주세요');
       } else {
@@ -114,6 +115,7 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
       authorizationCode,
     })
     .then((res) => {
+      console.log(res);
       if (String(res.data.message).includes('회원가입')) {
         alert('구글 회원가입을 해주세요');
       } else {

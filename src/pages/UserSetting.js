@@ -119,15 +119,30 @@ function UserSetting() {
       <label>설정</label>
       <div className="container_bottom">
         <div className="container_bottom_items">
-          <div>패널들</div>
-          <div>컨트롤러</div>
+          <div>다크모드</div>
+          <div>버튼만들기</div>
         </div>
-        <div className="container_bottom_items">패널들</div>
-        <div className="container_bottom_items">패널들</div>
-        <div className="container_bottom_items">패널들</div>
-        <div className="container_bottom_items">패널들</div>
-        <div className="container_bottom_items">패널들</div>
-        <div className="container_bottom_items">패널들</div>
+        <div className="container_bottom_items">
+          <div>데이터삭제</div>
+        </div>
+        <div className="container_bottom_items">
+          <div>메인페이지설정</div>
+        </div>
+        <div className="container_bottom_items">
+          <div>엑셀 파일로 내보내기</div>
+          <div> - 2레벨부터 사용가능</div>
+        </div>
+        <div className="container_bottom_items">
+          <div>테마 설정</div>
+          <div> - 2레벨부터 사용가능</div>
+        </div>
+        <div className="container_bottom_items">
+          <div>주기 설정</div>
+          <div> - 2레벨부터 사용가능</div>
+        </div>
+        <div className="container_bottom_items">
+          <div>회원 탈퇴</div>
+        </div>
       </div>
     </div>
   );
