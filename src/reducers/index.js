@@ -5,6 +5,7 @@ import isLoggedInReducer from './isLoggedInReducer';
 import userInfoReducer from './userInfoReducer';
 import dailyReducer from './dailyReducer';
 import userSignInReducer from './userSignInReducer';
+import socialDataReducer from './socialDataReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   userInfoReducer,
   dailyReducer,
   userSignInReducer,
+  socialDataReducer,
 });
 
 export default rootReducer;

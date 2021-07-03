@@ -58,6 +58,11 @@ const initialStats = {
     categories: null,
     userGraph: null,
   },
+  socialData: {
+    email: null,
+    photo: null,
+    username: null,
+  },
   // 년도별 데이터: {
   //   차트data: [
   //     [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],

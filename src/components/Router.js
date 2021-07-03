@@ -5,6 +5,7 @@ import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 import Daily from '../pages/Daily';
 import Testing from '../pages/TestPage';
+import Login from './Login';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -19,6 +20,9 @@ function ScoorgeRoute() {
           <>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
             <Route exact path="/signup">
               <Signup />

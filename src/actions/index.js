@@ -85,6 +85,94 @@ export const checkEmailExists = (email) => (dispatch) => {
     });
 };
 
+// 소셜 로그인
+
+export const getKakaoCode = (authorizationCode) => (dispatch) => {
+  console.log('카카오에서 받은 코드 : ', authorizationCode);
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/kakaologin`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      if (String(res.data.message).includes('회원가입')) {
+        alert('카카오 회원가입을 해주세요');
+      } else {
+        dispatch(userLogin(res.data.data.accessToken));
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const getGoogleCode = (authorizationCode) => (dispatch) => {
+  console.log('구글에서 받은 코드 : ', authorizationCode);
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      if (String(res.data.message).includes('회원가입')) {
+        alert('구글 회원가입을 해주세요');
+      } else {
+        dispatch(userLogin(res.data.data.accessToken));
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+// 소셜 회원가입
+export const kakaoSignUp = (authorizationCode) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/kakaocheck`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log('KSU is', res);
+      dispatch(socialData({ email: res.data.data }));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const googleSignUp = (authorizationCode) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/googlecheck`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log('GSU said', res);
+      dispatch(socialData({ email: res.data.data }));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const SOCIAL_DATA = 'SOCIAL_DATA';
+
+export const socialData = (socialData) => (dispatch) => {
+  dispatch({ type: SOCIAL_DATA, socialData: socialData });
+};
+
+export const SOCIAL_NULL = 'SOCIAL_NULL';
+
+export const socialSignUp = (fd, history) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/socialsignup`, fd)
+    .then((res) => {
+      console.log(res.data.message);
+      dispatch({ type: SOCIAL_NULL });
+      dispatch(goToHome(history));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
 // 회원가입 =======================================
 export const userSignUpRequest = (fd, history) => (dispatch) => {
   axios
@@ -136,6 +224,7 @@ export const DELETE_USERINFO = 'DELETE_USERINFO';
 
 export const getUserInfo = (accessToken, history) => (dispatch) => {
   dispatch({ type: GET_USERINFO });
+  console.log(accessToken);
   axios
     .get(`${process.env.REACT_APP_API_URL}/initialize`, {
       headers: { authorization: `bearer ${accessToken}` },
