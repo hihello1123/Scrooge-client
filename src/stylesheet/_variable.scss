@@ -11,13 +11,13 @@ $light-gray-color: #d5e0f1;
 $noto-font: 'Noto Sans KR', sans-serif;
 $poiret-font: 'Poiret One', sans-serif;
 
-$font-small: 0.875rem;
-$font-default: 1rem;
-$font-medium: 1.121rem;
-$font-large: 1.5rem;
-$font-SMLarge: 3rem;
-$font-Mlarge: 3rem;
-$font-Xlarge: 4rem;
+$font-small: 0.875rem; // 14px
+$font-default: 1rem; // 16px
+$font-medium: 1.121rem; // 18px
+$font-large: 1.5rem; // 24px
+$font-SMLarge: 2rem; // 32px
+$font-Mlarge: 3rem; // 48px
+$font-Xlarge: 4rem; // 64px
 
 // Breakpoints
 // TODO: px조종 필요

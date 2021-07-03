@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export const HELLO_LOADING = 'HELLO_LOADING';
 export const HELLO_SUCCESS = 'HELLO_SUCCESS';
@@ -306,6 +307,8 @@ export const postDaily = (data, accessToken) => (dispatch) => {
       console.log(err.response);
     });
 };
+
+export const editDaily = (data) => (dispatch) => {};
 
 // 유저정보 수정
 export const USER_EDIT = 'USER_EDIT';

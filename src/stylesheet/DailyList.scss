@@ -28,14 +28,14 @@
     &_dropdown_menu {
       position: absolute;
       z-index: 99;
-      top: 60px;
+      top: 0;
       right: 0;
       width: 200px;
       height: 0px;
       overflow: hidden;
       background-color: #fff;
       border-radius: 16px;
-      transition: height 0.2s ease-in-out;
+      transition: height 0.5s cubic-bezier(0.42, -0.57, 0.3, 0.75);
       &.show {
         height: 110px;
         border: 1px solid $light-gray-color;
@@ -49,7 +49,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 196px;
+      min-width: 196px;
       height: 55px;
       color: $gray-color;
       cursor: pointer;
@@ -67,6 +67,25 @@
           background-color: rgb(246, 246, 246);
         }
       }
+    }
+  }
+  .dailyItemWarn {
+    width: 441px;
+    height: 269px;
+    color: $blue-color;
+    h3 {
+      margin-bottom: 20px;
+      font-size: $font-large;
+    }
+    p {
+      margin-bottom: 30px;
+      font-size: $font-medium;
+    }
+    .delete {
+      width: 383px;
+      height: 60px;
+      border-radius: 16px;
+      font-size: $font-large;
     }
   }
 }
