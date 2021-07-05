@@ -11,7 +11,6 @@ function Login({ modalSet }) {
     password: '',
   });
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const loginHandler = async (e) => {
     if (!loginInfo.email || !loginInfo.password) {
@@ -58,6 +57,7 @@ function Login({ modalSet }) {
           className="password"
           required
         ></input>
+        {signInErr ? <div>에러메시지</div> : <></>}
         <button className="signin_submit submit" onClick={loginHandler}>
           로그인
         </button>

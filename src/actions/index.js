@@ -104,9 +104,11 @@ export const userSignUpRequest = (fd, history) => (dispatch) => {
 };
 
 // 로그인 ==========================================
+export const USER_SIGNIN = 'USER_SIGNIN';
 export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
 
 export const userSignInRequest = (loginInfo) => (dispatch) => {
+  dispatch({ type: USER_SIGNIN });
   axios
     .post(
       `${process.env.REACT_APP_API_URL}/login`,
@@ -119,8 +121,8 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     .then((res) => {
       dispatch(userLogin(res.data.data.accessToken));
     })
-    .catch((err) => {
-      dispatch({ type: USER_SIGNIN_ERROR, err });
+    .catch(() => {
+      dispatch({ type: USER_SIGNIN_ERROR });
     });
 };
 
