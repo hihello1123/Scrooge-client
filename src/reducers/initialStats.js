@@ -39,9 +39,11 @@ const initialStats = {
     categoryList: null,
   },
   budget: {
-    budgetGraph: null,
+    loading: true,
     categories: null,
+    budgetGraph: null,
     userGraph: null,
+    err: false,
   },
   socialData: {
     email: null,
