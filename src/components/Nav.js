@@ -57,7 +57,10 @@ function Nav() {
               </Link>
             </li>
             <li>
-              <DocumentTextIcon className="nav_icon " />일 별 차트
+              <Link to="/yearly">
+                <DocumentTextIcon className="nav_icon " />
+                연도별
+              </Link>
             </li>
             <li>
               <Link to="/">

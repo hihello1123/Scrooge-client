@@ -241,7 +241,13 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
     })
     .then((res) => {
       const redirect = res.data.data.userset.redirect;
-      history.push(redirect); // 기본값 /daily
+      console.log(res);
+      const pageList = ['daily', 'monthly', 'yearly', 'budget'];
+      if (pageList.includes(redirect)) {
+        history.push(redirect); // 기본값 /daily
+      } else {
+        history.push('/daily');
+      }
     })
     .catch((err) => {
       console.log(err.response);
@@ -327,5 +333,22 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
+    });
+};
+
+//연도별 데이터
+export const yearlyList = (accessToken) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('yearlydata is');
+      console.log(res.data.data);
+    })
+    .catch((err) => {
+      console.log('yearlydata error is');
+      console.log(err.response);
     });
 };
