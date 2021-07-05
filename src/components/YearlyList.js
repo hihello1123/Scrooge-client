@@ -22,7 +22,6 @@ function YearlyList() {
           <div>
             {result.date.split('-')[1]}월 {result.date.split('-')[2]}일
           </div>
-          <br />
           <div>
             {result.memo} {result.cost}원
           </div>
