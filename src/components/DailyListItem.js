@@ -1,9 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { DotsVerticalIcon } from '@heroicons/react/outline';
 import Dailyform from './Dailyform';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteDaily } from '../actions';
+
 function DailyListItem({ item }) {
-  //TODO: 날짜 변환 2021-7-2 => new Date(2021,6,2)
-  const { cost, date, emoji, memo } = item;
+  const dispatch = useDispatch();
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
+
+  const { cost, date, emoji, memo, moneyId } = item;
 
   const dailyEditMenu = useRef();
   const deleteWarnDropDown = useRef();
@@ -22,10 +28,11 @@ function DailyListItem({ item }) {
   };
 
   const deleteDropDownHandler = () => {
-    console.log('삭제버튼 열기');
     deleteWarnDropDown.current.classList.toggle('show');
   };
-
+  const deleteItemHandler = () => {
+    dispatch(deleteDaily(moneyId, accessToken));
+  };
   return (
     <>
       {edit ? (
@@ -68,7 +75,9 @@ function DailyListItem({ item }) {
               <br />
               복구할 수 없습니다.
             </p>
-            <button className="delete submit">영구 삭제</button>
+            <button className="delete submit" onClick={deleteItemHandler}>
+              영구 삭제
+            </button>
           </div>
         </div>
       )}

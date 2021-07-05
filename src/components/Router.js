@@ -8,6 +8,7 @@ import Testing from '../pages/TestPage';
 import Login from './Login';
 import UserSetting from '../pages/UserSetting';
 import Yearly from '../pages/Yearly';
+import Budget from '../pages/Budget';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -29,7 +30,6 @@ function ScoorgeRoute() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            {/* // TODO: 랜딩, 로그인, 로그아웃 페이지 */}
           </>
         ) : (
           <>
@@ -39,13 +39,15 @@ function ScoorgeRoute() {
             <Route exact path="/daily">
               <Daily />
             </Route>
-            <Route exact path="/setting">
-              <UserSetting />
-            </Route>
             <Route exact path="/yearly">
               <Yearly />
             </Route>
-            {/* // TODO: 일별, 월별, 년별, 설정, 예산관리 */}
+            <Route exact path="/budget">
+              <Budget />
+            </Route>
+            <Route exact path="/setting">
+              <UserSetting />
+            </Route>
           </>
         )}
       </Switch>

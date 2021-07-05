@@ -203,9 +203,11 @@ export const userSignUpRequest = (fd, history) => (dispatch) => {
 };
 
 // 로그인 ==========================================
+export const USER_SIGNIN = 'USER_SIGNIN';
 export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
 
 export const userSignInRequest = (loginInfo) => (dispatch) => {
+  dispatch({ type: USER_SIGNIN });
   axios
     .post(
       `${process.env.REACT_APP_API_URL}/login`,
@@ -218,8 +220,8 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     .then((res) => {
       dispatch(userLogin(res.data.data.accessToken));
     })
-    .catch((err) => {
-      dispatch({ type: USER_SIGNIN_ERROR, err });
+    .catch(() => {
+      dispatch({ type: USER_SIGNIN_ERROR });
     });
 };
 
@@ -316,7 +318,7 @@ export const postDaily = (data, accessToken) => (dispatch) => {
         withCredentials: true,
       }
     )
-    .then((res) => {
+    .then(() => {
       dispatch(getDaily(accessToken));
     })
     .catch((err) => {
@@ -324,8 +326,57 @@ export const postDaily = (data, accessToken) => (dispatch) => {
     });
 };
 
-export const editDaily = (data) => (dispatch) => {};
+export const editDaily = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/editspendmoney`,
+      {
+        moneyId: data.moneyId,
+        categoryname: data.categoryname,
+        cost: data.cost,
+        memo: data.memo,
+        date: data.date,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getDaily(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+// TODO: 나중에 시간 되면 getDaily로 한번에 전체데이터를 받아오지 말고, 수정하거나 삭제한 내역만 받아오기
+export const deleteDaily = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/deletespendmoney`,
+      {
+        moneyId: data,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getDaily(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
 
+// 설정 ==========================
 // 유저정보 수정
 export const USER_EDIT = 'USER_EDIT';
 
@@ -360,5 +411,26 @@ export const yearlyList = (accessToken) => (dispatch) => {
     .catch((err) => {
       console.log('yearlydata error is');
       console.log(err.response);
+    });
+};
+
+// 예산 =============================
+export const GET_BUDGET = 'GET_BUDGET';
+export const GET_BUDGET_SUCCESS = 'GET_BUDGET_SUCCESS';
+export const GET_BUDGET_ERROR = 'GET_BUDGET_ERROR';
+
+export const getBudget = (accessToken) => (dispatch) => {
+  dispatch({ type: GET_BUDGET });
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/budget`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch({ type: GET_BUDGET_SUCCESS, data: res.data.data });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({ type: GET_BUDGET_ERROR });
     });
 };

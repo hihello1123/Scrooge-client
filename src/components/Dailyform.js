@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { postDaily } from '../actions';
+import { postDaily, editDaily } from '../actions';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import { ChevronDownIcon } from '@heroicons/react/outline';
@@ -47,6 +47,7 @@ function Dailyform({ editMode, item }) {
         cost: String(item.cost),
         memo: item.memo || '',
         date: item.date,
+        moneyId: item.moneyId,
       });
     }
   }, [editMode, item]);
@@ -139,6 +140,7 @@ function Dailyform({ editMode, item }) {
         dispatch(postDaily(inputData, accessToken));
         break;
       case '지출 내역 수정':
+        dispatch(editDaily(inputData, accessToken));
         break;
       default:
         return;

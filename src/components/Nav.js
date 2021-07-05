@@ -6,6 +6,7 @@ import {
   DocumentTextIcon,
   LogoutIcon,
   MenuIcon,
+  ChartPieIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import { CogIcon } from '@heroicons/react/solid';
@@ -63,8 +64,9 @@ function Nav() {
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <DocumentTextIcon className="nav_icon " />일 별 차트
+              <Link to="/budget">
+                <ChartPieIcon className="nav_icon " />
+                예산 관리
               </Link>
             </li>
           </ul>

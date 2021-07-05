@@ -126,7 +126,9 @@ function Signup() {
 
   return (
     <div className="signup">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       {email ? (
         <>
           <SocialSignUpPage />
@@ -185,11 +187,8 @@ function Signup() {
             이미 아이디가 있으신가요? <Link to="/">로그인</Link> 하러가기
           </p>
           <div className="inputZone">
-            <div className="social_loginBtn_group">
-              <button
-                className="kakaoTalk social_loginBtn"
-                onClick={kakaoLogin}
-              >
+            <div className="social_signup_group">
+              <button className="kakaoTalk social_signup" onClick={kakaoLogin}>
                 <svg
                   className="social_login_SVG"
                   width="2500"
@@ -208,7 +207,7 @@ function Signup() {
                 </svg>
                 카카오톡 버튼
               </button>
-              <button className="google social_loginBtn" onClick={googleLogin}>
+              <button className="google social_signup" onClick={googleLogin}>
                 <svg
                   className="social_login_SVG"
                   width="256px"
