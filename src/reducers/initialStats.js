@@ -48,12 +48,56 @@ const initialStats = {
     photo: null,
     username: null,
   },
-  budget: {
-    loading: true,
-    categories: null,
-    usedGraph: null,
-    budgetGraph: null,
-    err: false,
+  yearlyData: {
+    top: [],
+    bottom: {
+      best: [
+        {
+          date: 'YYYY-MM-DD',
+          categoryname: '치킨',
+          saveMoney: 5000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          categoryname: '피자',
+          saveMoney: 6000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          categoryname: '떡볶이',
+          saveMoney: 7000,
+        },
+      ],
+      topthree: [
+        {
+          date: 'YYYY-MM-DD',
+          memo: '치킨',
+          cost: 7000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          memo: '피자',
+          cost: 6000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          memo: '떡볶이',
+          cost: 5000,
+        },
+      ],
+      achievement: [
+        {
+          scrooge: [],
+          leastspend: [],
+        },
+      ],
+    },
   },
+  // 년도별 데이터: {
+  //   차트data: [
+  //     [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
+  //     [new Date(2021, 8, 12), 100000],
+  //   ]
+  // }
 };
 export default initialStats;

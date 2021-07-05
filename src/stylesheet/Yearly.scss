@@ -1,0 +1,91 @@
+.yearly {
+  font-family: $noto-font;
+  color: $white-color;
+  &_bottom {
+    display: flex;
+    flex-direction: row;
+
+    &_title {
+      color: $black-color;
+      margin: 20px;
+    }
+
+    &_rank {
+      font-size: $font-SMlarge;
+    }
+
+    &_result {
+      font-size: $font-large;
+    }
+
+    &_container {
+      flex: 1;
+      margin-right: 50px;
+      background-color: #ffffff;
+      align-items: center;
+      border-radius: 22px;
+      width: 414px;
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+
+      &_inner {
+        padding: 20px;
+        line-height: 100%;
+        justify-content: space-between;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        border-radius: 23px;
+        width: 90%;
+        height: 588px;
+        flex: 1;
+        margin-bottom: 10px;
+        &_1 {
+          padding: 20px;
+          line-height: 100%;
+          justify-content: space-between;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          border-radius: 23px;
+          width: 90%;
+          height: 588px;
+          flex: 1;
+          margin-bottom: 10px;
+          background-color: #446cfb;
+        }
+
+        &_2 {
+          padding: 20px;
+          line-height: 100%;
+          justify-content: space-between;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          border-radius: 23px;
+          width: 90%;
+          height: 588px;
+          flex: 1;
+          margin-bottom: 10px;
+          background-color: #61b3ff;
+        }
+
+        &_3 {
+          padding: 20px;
+          line-height: 100%;
+          justify-content: space-between;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          border-radius: 23px;
+          width: 90%;
+          height: 500px;
+          flex: 1;
+          margin-bottom: 10px;
+          background-color: #77e4ff;
+        }
+      }
+    }
+  }
+}

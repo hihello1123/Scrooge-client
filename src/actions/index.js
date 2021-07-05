@@ -97,7 +97,6 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
       authorizationCode,
     })
     .then((res) => {
-      console.log('hahaha');
       if (String(res.data.message).includes('회원가입')) {
         alert('카카오 회원가입을 해주세요');
       } else {
@@ -106,6 +105,9 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err.response);
+      if (err.response.data.message.includes('회원가입')) {
+        alert('카카오 회원가입을 해주세요');
+      }
     });
 };
 
@@ -125,6 +127,9 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err.response);
+      if (err.response.data.message.includes('회원가입')) {
+        alert('구글 회원가입을 해주세요');
+      }
     });
 };
 
@@ -140,6 +145,7 @@ export const kakaoSignUp = (authorizationCode) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err.response);
+      alert(err.response.data.message);
     });
 };
 
@@ -154,6 +160,7 @@ export const googleSignUp = (authorizationCode) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      alert(err.response.data.message);
     });
 };
 
@@ -387,7 +394,9 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
-// 연도별 데이터 ==================
+//연도별 데이터
+export const YEARLY_DATA = 'YEARLY_DATA';
+
 export const yearlyList = (accessToken) => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
@@ -397,6 +406,7 @@ export const yearlyList = (accessToken) => (dispatch) => {
     .then((res) => {
       console.log('yearlydata is');
       console.log(res.data.data);
+      dispatch({ type: YEARLY_DATA, yearlyData: res.data.data });
     })
     .catch((err) => {
       console.log('yearlydata error is');
