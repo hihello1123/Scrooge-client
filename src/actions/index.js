@@ -82,8 +82,9 @@ export const checkEmailExists = (email) => (dispatch) => {
     .then(() => {
       dispatch({ type: EMAIL_SIGNUP_SUCCESS });
     })
-    .catch(() => {
+    .catch((err) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
+      alert('가입된 이메일입니다.');
     });
 };
 

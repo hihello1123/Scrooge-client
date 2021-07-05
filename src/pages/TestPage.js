@@ -9,6 +9,21 @@ function Testing() {
 
   //진행중
 
+  //getyearlydata
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('yearlydata is');
+      console.log(res.data.data);
+    })
+    .catch((err) => {
+      console.log('yearlydata error is');
+      console.log(err.response);
+    });
+
   // categorysort
   axios
     .post(
@@ -174,13 +189,10 @@ function Testing() {
 
   //통과한 것들
   /* 목록 
-  /daypage
-  /budget
-  /initialize
-  /getyearlydata
-  /getmonthlydata
 
   
+  //daypage
+
   axios
     .get(`${process.env.REACT_APP_API_URL}/daypage`, {
       headers: { authorization: `bearer ${accessToken}` },
@@ -195,6 +207,8 @@ function Testing() {
       console.log(err.response);
     });
 
+
+  //budget
   axios
     .get(`${process.env.REACT_APP_API_URL}/budget`, {
       headers: { authorization: `bearer ${accessToken}` },
@@ -209,6 +223,8 @@ function Testing() {
       console.log(err.response);
     });
 
+
+  //initialize
   axios
     .get(`${process.env.REACT_APP_API_URL}/initialize`, {
       headers: { authorization: `bearer ${accessToken}` },
@@ -223,20 +239,9 @@ function Testing() {
       console.log(err.response);
     });
 
-    axios
-    .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
-      headers: { authorization: `bearer ${accessToken}` },
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log('yearlydata is');
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log('yearlydata error is');
-      console.log(err.response);
-    });
 
+
+  //getmonthlydata
   axios
     .get(`${process.env.REACT_APP_API_URL}/getmonthlydata`, {
       headers: { authorization: `bearer ${accessToken}` },
