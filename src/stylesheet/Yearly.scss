@@ -1,0 +1,24 @@
+.yearly {
+  font-family: $noto-font;
+  &_bottom {
+    display: flex;
+    flex-direction: row;
+    &_container {
+      flex: 1;
+      margin-right: 50px;
+      background-color: #ffffff;
+      align-items: center;
+      border-radius: 22px;
+      width: 414px;
+      height: 588px;
+      display: flex;
+      &_inner {
+        &_1 {
+          flex: 1;
+          margin-bottom: 10px;
+          background-color: gray;
+        }
+      }
+    }
+  }
+}

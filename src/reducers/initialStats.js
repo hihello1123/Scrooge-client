@@ -48,6 +48,19 @@ const initialStats = {
     photo: null,
     username: null,
   },
+  yearlyData: {
+    top: null,
+    bottom: {
+      best: null,
+      topthree: null,
+      achieve: [
+        {
+          scrooge: null,
+          leastspend: null,
+        },
+      ],
+    },
+  },
   // 년도별 데이터: {
   //   차트data: [
   //     [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
