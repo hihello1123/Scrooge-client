@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkEmailExists, userSignUpRequest } from '../actions';
+import {
+  checkEmailExists,
+  googleSignUp,
+  kakaoSignUp,
+  userSignUpRequest,
+} from '../actions';
 import { Link, useHistory } from 'react-router-dom';
 import Logo from '../components/Logo';
+import SocialSignUpPage from './SocialSignUpPage';
 
 function Signup() {
   const [userInfo, setUserInfo] = useState({
@@ -14,8 +20,49 @@ function Signup() {
   });
   const emailExistsReducer = useSelector((state) => state.emailExistsReducer);
   const { emailSignupMod } = emailExistsReducer.emailExists;
+  const socialDataReducer = useSelector((state) => state.socialDataReducer);
+  const { email } = socialDataReducer.socialData;
+  console.log(socialDataReducer.socialData);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // 소셜 회원가입부분
+
+  useEffect(() => {
+    let url = new URL(window.location.href);
+    const address = url.search;
+
+    const authorizationCode = url.searchParams.get('code');
+
+    if (!authorizationCode) {
+      return;
+    } else if (address.includes('www.googleapis.com')) {
+      dispatch(googleSignUp(authorizationCode));
+    } else {
+      dispatch(kakaoSignUp(authorizationCode));
+    }
+  }, []);
+
+  //카카오 로그인 =============
+
+  const kakaoLogin = (e) => {
+    e.preventDefault();
+    window.location.assign(
+      process.env.REACT_APP_KAKAO_SIGNUP_URL,
+      '카카오 로그인'
+    );
+  };
+  //====================
+
+  //구글 로그인 ===============
+  const googleLogin = (e) => {
+    e.preventDefault();
+    window.location.assign(
+      process.env.REACT_APP_GOOGLE_SIGNUP_URL,
+      '구글 로그인'
+    );
+  };
+  //====================
 
   //함수 부분
   function clicked(e) {
@@ -27,6 +74,7 @@ function Signup() {
   }
 
   function inputHandler(e) {
+    console.log(userInfo);
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   }
 
@@ -79,7 +127,11 @@ function Signup() {
   return (
     <div className="signup">
       <Logo />
-      {emailSignupMod ? (
+      {email ? (
+        <>
+          <SocialSignUpPage />
+        </>
+      ) : emailSignupMod ? (
         <div className="inputZone">
           <form className="signup_form">
             <label htmlFor="photo">사진</label>
@@ -133,8 +185,8 @@ function Signup() {
             이미 아이디가 있으신가요? <Link to="/">로그인</Link> 하러가기
           </p>
           <div className="inputZone">
-            <div className="social_loginBtn_group">
-              <button className="kakaoTalk social_loginBtn" onClick={clicked}>
+            <div className="social_signup_group">
+              <button className="kakaoTalk social_signup" onClick={kakaoLogin}>
                 <svg
                   className="social_login_SVG"
                   width="2500"
@@ -153,7 +205,7 @@ function Signup() {
                 </svg>
                 카카오톡 버튼
               </button>
-              <button className="google social_loginBtn" onClick={clicked}>
+              <button className="google social_signup" onClick={googleLogin}>
                 <svg
                   className="social_login_SVG"
                   width="256px"

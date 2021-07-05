@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Daily from './Daily';
 import Login from '../components/Login';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);

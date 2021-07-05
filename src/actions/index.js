@@ -24,10 +24,11 @@ export const hello = () => (dispatch) => {
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
-export const userLogin = (accessToken) => {
+export const userLogin = (accessToken, path) => {
   return {
     type: USER_LOGIN,
     accessToken,
+    path,
   };
 };
 
@@ -81,8 +82,99 @@ export const checkEmailExists = (email) => (dispatch) => {
     .then(() => {
       dispatch({ type: EMAIL_SIGNUP_SUCCESS });
     })
-    .catch(() => {
+    .catch((err) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
+      alert('가입된 이메일입니다.');
+    });
+};
+
+// 소셜 로그인
+
+export const getKakaoCode = (authorizationCode) => (dispatch) => {
+  console.log('카카오에서 받은 코드 : ', authorizationCode);
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/kakaologin`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log('hahaha');
+      if (String(res.data.message).includes('회원가입')) {
+        alert('카카오 회원가입을 해주세요');
+      } else {
+        dispatch(userLogin(res.data.data.accessToken, '카카오'));
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const getGoogleCode = (authorizationCode) => (dispatch) => {
+  console.log('구글에서 받은 코드 : ', authorizationCode);
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log(res);
+      if (String(res.data.message).includes('회원가입')) {
+        alert('구글 회원가입을 해주세요');
+      } else {
+        dispatch(userLogin(res.data.data.accessToken, '구글'));
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+// 소셜 회원가입
+export const kakaoSignUp = (authorizationCode) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/kakaocheck`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log('KSU is', res);
+      dispatch(socialData({ email: res.data.data }));
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const googleSignUp = (authorizationCode) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/googlecheck`, {
+      authorizationCode,
+    })
+    .then((res) => {
+      console.log('GSU said', res);
+      dispatch(socialData({ email: res.data.data }));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const SOCIAL_DATA = 'SOCIAL_DATA';
+
+export const socialData = (socialData) => (dispatch) => {
+  dispatch({ type: SOCIAL_DATA, socialData: socialData });
+};
+
+export const SOCIAL_NULL = 'SOCIAL_NULL';
+
+export const socialSignUp = (fd, history) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/socialsignup`, fd)
+    .then((res) => {
+      console.log(res.data.message);
+      dispatch({ type: SOCIAL_NULL });
+      dispatch(goToHome(history));
+    })
+    .catch((err) => {
+      console.log(err.response);
     });
 };
 
@@ -268,5 +360,22 @@ export const deleteDaily = (data, accessToken) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err.response);
+    });
+};
+
+// 유저정보 수정
+export const USER_EDIT = 'USER_EDIT';
+
+export const userEdit = (fd, accessToken) => (dispatch) => {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/fixuserinfo`, fd, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
     });
 };
