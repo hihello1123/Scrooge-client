@@ -9,21 +9,6 @@ function Testing() {
 
   //진행중
 
-  //getyearlydata
-  axios
-    .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
-      headers: { authorization: `bearer ${accessToken}` },
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log('yearlydata is');
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log('yearlydata error is');
-      console.log(err.response);
-    });
-
   // categorysort
   axios
     .post(
@@ -253,6 +238,21 @@ function Testing() {
     })
     .catch((err) => {
       console.log('monthlydata error is');
+      console.log(err.response);
+    });
+
+    //getyearlydata
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('yearlydata is');
+      console.log(res.data.data);
+    })
+    .catch((err) => {
+      console.log('yearlydata error is');
       console.log(err.response);
     });
 */
