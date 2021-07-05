@@ -7,8 +7,8 @@ function YearlyList() {
 
   function succeedPromise(result) {
     if (result) {
-      return `${result.date.slice(5, 7)}월 ${result.categoryname} ${
-        result.saveMoney
+      return `${result.date.split('-')[1]}월 ${result.categoryname} ${
+        result.cost
       }원`;
     } else {
       return '지출을 입력해주세요';
@@ -20,7 +20,7 @@ function YearlyList() {
       return (
         <>
           <div>
-            {result.date.slice(5, 7)}월 {result.date.slice(8)}일
+            {result.date.split('-')[1]}월 {result.date.split('-')[2]}일
           </div>
           <br />
           <div>
@@ -37,16 +37,6 @@ function YearlyList() {
     <div className="yearly_bottom">
       <div className="yearly_bottom_container">
         <div className="yearly_bottom_title">올해 성공한 약속</div>
-        {/* {best.map((item, i) => {
-          return (
-            <div className={'yearly_bottom_container_inner_' + (i + 1)} key={i}>
-              <div className="yearly_bottom_rank">{i}등</div>
-              <div className="yearly_bottom_result">
-                {succeedPromise(best[0])}
-              </div>
-            </div>
-          );
-        })} */}
         <div className="yearly_bottom_container_inner_1">
           <div className="yearly_bottom_rank">1등</div>
           <div className="yearly_bottom_result">{succeedPromise(best[0])}</div>
