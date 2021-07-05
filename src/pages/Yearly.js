@@ -8,9 +8,9 @@ function Yearly() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
-  // useEffect(() => {
-  //   dispatch(yearlyList(accessToken));
-  // });
+  useEffect(() => {
+    dispatch(yearlyList(accessToken));
+  });
   return (
     <div className="yearly container">
       <Chart
