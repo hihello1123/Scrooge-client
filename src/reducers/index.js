@@ -7,6 +7,7 @@ import dailyReducer from './dailyReducer';
 import userSignInReducer from './userSignInReducer';
 import socialDataReducer from './socialDataReducer';
 import yearlyReducer from './yearlyReducer';
+import getBudgetReducer from './getBudgetReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   userSignInReducer,
   socialDataReducer,
   yearlyReducer,
+  getBudgetReducer,
 });
 
 export default rootReducer;
