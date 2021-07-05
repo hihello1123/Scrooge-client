@@ -49,14 +49,46 @@ const initialStats = {
     username: null,
   },
   yearlyData: {
-    top: null,
+    top: [],
     bottom: {
-      best: null,
-      topthree: null,
-      achieve: [
+      best: [
         {
-          scrooge: null,
-          leastspend: null,
+          date: 'YYYY-MM-DD',
+          categoryname: '치킨',
+          saveMoney: 5000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          categoryname: '피자',
+          saveMoney: 6000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          categoryname: '떡볶이',
+          saveMoney: 7000,
+        },
+      ],
+      topthree: [
+        {
+          date: 'YYYY-MM-DD',
+          memo: '치킨',
+          cost: 7000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          memo: '피자',
+          cost: 6000,
+        },
+        {
+          date: 'YYYY-MM-DD',
+          memo: '떡볶이',
+          cost: 5000,
+        },
+      ],
+      achievement: [
+        {
+          scrooge: [],
+          leastspend: [],
         },
       ],
     },
