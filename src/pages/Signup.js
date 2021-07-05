@@ -126,7 +126,9 @@ function Signup() {
 
   return (
     <div className="signup">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       {email ? (
         <>
           <SocialSignUpPage />
