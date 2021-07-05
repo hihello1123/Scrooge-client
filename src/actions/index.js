@@ -369,6 +369,7 @@ export const deleteDaily = (data, accessToken) => (dispatch) => {
     });
 };
 
+// 설정 ==========================
 // 유저정보 수정
 export const USER_EDIT = 'USER_EDIT';
 
@@ -386,7 +387,7 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
-//연도별 데이터
+// 연도별 데이터 ==================
 export const yearlyList = (accessToken) => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/getyearlydata`, {
@@ -400,5 +401,26 @@ export const yearlyList = (accessToken) => (dispatch) => {
     .catch((err) => {
       console.log('yearlydata error is');
       console.log(err.response);
+    });
+};
+
+// 예산 =============================
+export const GET_BUDGET = 'GET_BUDGET';
+export const GET_BUDGET_SUCCESS = 'GET_BUDGET_SUCCESS';
+export const GET_BUDGET_ERROR = 'GET_BUDGET_ERROR';
+
+export const getBudget = (accessToken) => (dispatch) => {
+  dispatch({ type: GET_BUDGET });
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/budget`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch({ type: GET_BUDGET_SUCCESS, data: res.data.data });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({ type: GET_BUDGET_ERROR });
     });
 };

@@ -48,11 +48,12 @@ const initialStats = {
     photo: null,
     username: null,
   },
-  // 년도별 데이터: {
-  //   차트data: [
-  //     [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
-  //     [new Date(2021, 8, 12), 100000],
-  //   ]
-  // }
+  budget: {
+    loading: true,
+    categories: null,
+    usedGraph: null,
+    budgetGraph: null,
+    err: false,
+  },
 };
 export default initialStats;

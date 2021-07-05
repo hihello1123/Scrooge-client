@@ -1,0 +1,40 @@
+.budget {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  &_category {
+    padding: 17px;
+    width: 100%;
+    height: auto;
+    border-radius: 22px;
+    background-color: #fff;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid $light-gray-color;
+      border-radius: 16px;
+    }
+  }
+  &_chart {
+    .usedGraph {
+      width: 355px;
+      margin-bottom: 20px;
+      border-radius: 22px;
+      background-color: #fff;
+      overflow: hidden;
+    }
+  }
+}
+
+@include mobile {
+  .budget {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    &_category {
+      order: -1;
+    }
+  }
+}
