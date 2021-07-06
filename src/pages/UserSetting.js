@@ -58,9 +58,11 @@ function UserSetting() {
     <div className="container">
       <label>프로필 편집</label>
       <div className="container_edit">
-        <div className="inputZone">
-          <form className="signup_form">
-            <img src={userPhoto} alt=""></img>
+        <div className="edit_inputZone">
+          <div className="edit_img">
+            <img src={userPhoto} alt="사진" className="pre_img" />
+          </div>
+          <form className="edit_form">
             <label htmlFor="photo">사진</label>
             <input
               id="photo"
@@ -77,12 +79,12 @@ function UserSetting() {
               name="username"
               type="username"
               onChange={inputHandler}
-              className="username signup_input"
+              className="username edit_input"
               required
               placeholder={userName}
             ></input>
             <label htmlFor="email">이메일</label>
-            <div className="signup_input">{userEmail}</div>
+            <div className="edit_input">{userEmail}</div>
             {!path ? (
               <>
                 <label htmlFor="password">비밀번호</label>
@@ -91,7 +93,7 @@ function UserSetting() {
                   name="password"
                   type="password"
                   onChange={inputHandler}
-                  className="password signup_input"
+                  className="password edit_input"
                   required
                 />
                 <label htmlFor="passwordCheck">비밀번호 확인</label>
@@ -100,7 +102,7 @@ function UserSetting() {
                   name="passwordCheck"
                   type="password"
                   onChange={inputHandler}
-                  className="passwordCheck signup_input"
+                  className="passwordCheck edit_input"
                   required
                 />
               </>

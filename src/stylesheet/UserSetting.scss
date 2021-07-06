@@ -3,7 +3,6 @@
   background-color: white;
   width: 857px;
   margin-bottom: 29px;
-  padding: 30px;
 }
 
 .container_bottom {
@@ -20,4 +19,47 @@
     padding: 20px;
     vertical-align: bottom;
   }
+}
+
+.edit_input {
+  margin-top: 5px;
+  margin-bottom: 8px;
+  width: 400px;
+  height: 50px;
+  color: $blue-color;
+  font-size: $font-default;
+  font-weight: 500;
+  background-color: #fff;
+  border: 1px solid $gray-color;
+  border-radius: 13px;
+  padding: 15px;
+}
+
+.edit_inputZone {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit_img {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.pre_img {
+  max-width: 300px;
+  overflow: hidden;
+  object-position: center;
+}
+.edit_form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
 }
