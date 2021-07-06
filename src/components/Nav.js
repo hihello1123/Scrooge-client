@@ -7,6 +7,7 @@ import {
   LogoutIcon,
   MenuIcon,
   ChartPieIcon,
+  GlobeIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import { CogIcon } from '@heroicons/react/solid';
@@ -46,7 +47,7 @@ function Nav() {
           <UserProfile />
           <ul className="nav_container_ul">
             <li className="focused">
-              <Link to="/daily">
+              <Link to="/daily" onClick={navCloseHandler}>
                 <DocumentTextIcon className="nav_icon " />
                 지출 리스트
               </Link>
@@ -58,13 +59,13 @@ function Nav() {
               </Link>
             </li>
             <li>
-              <Link to="/yearly">
-                <DocumentTextIcon className="nav_icon " />
+              <Link to="/yearly" onClick={navCloseHandler}>
+                <GlobeIcon className="nav_icon " />
                 연도별
               </Link>
             </li>
             <li>
-              <Link to="/budget">
+              <Link to="/budget" onClick={navCloseHandler}>
                 <ChartPieIcon className="nav_icon " />
                 예산 관리
               </Link>
@@ -82,7 +83,7 @@ function Nav() {
               로그아웃
             </button>
             <Link to="/setting">
-              <button className="nav_footer_btn">
+              <button className="nav_footer_btn" onClick={navCloseHandler}>
                 <CogIcon className="nav_icon_cog" />
               </button>
             </Link>

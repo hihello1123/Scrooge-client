@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { DotsVerticalIcon } from '@heroicons/react/outline';
+import { Emoji } from 'emoji-mart';
 import Dailyform from './Dailyform';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteDaily } from '../actions';
@@ -39,7 +40,9 @@ function DailyListItem({ item }) {
         <Dailyform editMode={true} item={item} />
       ) : (
         <div className="dailyList_item">
-          <div className="">{emoji}</div>
+          <div>
+            <Emoji emoji={emoji} set="twitter" size={30} />
+          </div>
           <div className="">{cost}</div>
           <div className="">{memo}</div>
           <div className="">{date}</div>
