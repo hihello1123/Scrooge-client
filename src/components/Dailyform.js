@@ -6,6 +6,7 @@ import { ko } from 'date-fns/esm/locale';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect } from 'react';
+import { Emoji } from 'emoji-mart';
 
 function Dailyform({ editMode, item }) {
   const dispatch = useDispatch();
@@ -14,27 +15,36 @@ function Dailyform({ editMode, item }) {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   const { categoryList } = dailyReducer.daily;
 
+  // ref
   const dailyForm = useRef();
   const categoryMenu = useRef();
   const categoryBtn = useRef();
   const moneyInput = useRef();
   const memoInput = useRef();
 
+  // 상태
   const [date, setDate] = useState(new Date()); // 날짜 선택
   const [inputData, setInputData] = useState({
     categoryname: '지정되지 않은 카테고리',
     cost: '',
     memo: '',
-    date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+    date: `${date.getFullYear()}-${
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : `date.getMonth() + 1`
+    }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`,
   });
   const [err, setErr] = useState(null);
+  const [categoryBtnEmoji, setCategoryBtnEmoji] = useState(null);
 
+  // 수정폼 일 때
   useEffect(() => {
+    // 초기 설정
     if (editMode) {
       dailyForm.current.classList.add('editMode');
     }
     if (item) {
-      categoryBtn.current.children[0].textContent = item.emoji || '카테고리';
+      setCategoryBtnEmoji(item.emoji);
       moneyInput.current.placeholder = item.cost;
       memoInput.current.placeholder = item.memo || '메모';
 
@@ -52,6 +62,7 @@ function Dailyform({ editMode, item }) {
     }
   }, [editMode, item]);
 
+  // 날짜
   const setDateHandler = (date) => {
     setDate(date);
     setInputData({
@@ -60,21 +71,32 @@ function Dailyform({ editMode, item }) {
     });
   };
 
+  // 카테고리 드롭다운
   const categoryDropdownHandler = () => {
     categoryMenu.current.classList.toggle('show');
   };
 
+  // 카테고리 선택 핸들러
   const categoryMenuHandler = (e) => {
     if (e.target.textContent !== '카테고리 없음') {
-      categoryBtn.current.children[0].textContent = e.target.textContent;
-      setInputData({
-        ...inputData,
-        categoryname: e.target.textContent,
-      });
+      if (e.target.nodeName === 'SPAN') {
+        setCategoryBtnEmoji(e.target.parentNode.parentNode.id);
+        setInputData({
+          ...inputData,
+          categoryname: e.target.parentNode.parentNode.id,
+        });
+      } else {
+        console.dir(e.target.id);
+        setInputData({
+          ...inputData,
+          categoryname: e.target.id,
+        });
+      }
     }
     categoryMenu.current.classList.remove('show');
   };
 
+  // 금액 인풋
   const moneyBtnHandler = (e) => {
     let money;
     if (!moneyInput.current.value) {
@@ -110,6 +132,7 @@ function Dailyform({ editMode, item }) {
     moneyInput.current.value = money;
   };
 
+  // 온체인지 핸들러
   const inputChangeHandler = (e) => {
     setInputData({
       ...inputData,
@@ -119,12 +142,14 @@ function Dailyform({ editMode, item }) {
     setErr(null);
   };
 
+  // submit
   const dailySubmitHandler = (e) => {
     e.preventDefault();
+    // 에러 메시지
     const re = '^[0-9]+$';
     if (!inputData.cost || !inputData.cost.match(re)) {
       if (!inputData.cost.match(re)) {
-        setErr('금액은 숫자만 입력해주세요');
+        setErr('숫자를 입력해주세요');
       }
       if (!inputData.cost) {
         setErr('금액을 적어주세요');
@@ -135,6 +160,7 @@ function Dailyform({ editMode, item }) {
       return;
     }
 
+    // 작성, 수정
     switch (e.target.textContent) {
       case '지출 내역 작성':
         dispatch(postDaily(inputData, accessToken));
@@ -157,7 +183,11 @@ function Dailyform({ editMode, item }) {
             onClick={categoryDropdownHandler}
             ref={categoryBtn}
           >
-            <p>카테고리</p>
+            <Emoji
+              emoji={categoryBtnEmoji || 'grey_question'}
+              set="twitter"
+              size={30}
+            />
             <ChevronDownIcon className="category_toggle_btn_icon" />
           </button>
           <ul
@@ -166,13 +196,13 @@ function Dailyform({ editMode, item }) {
             ref={categoryMenu}
           >
             {categoryList ? (
-              <>
-                {categoryList.map((el) => {
-                  return (
-                    <li key={`categoryList-${el.id}`}>{el.categoryname}</li>
-                  );
-                })}
-              </>
+              categoryList.map((el) => {
+                return (
+                  <li key={`categoryList-${el.id}`} id={el.emoji}>
+                    <Emoji emoji={el.emoji} set="twitter" size={30} />
+                  </li>
+                );
+              })
             ) : (
               <>
                 <li className="disabled">카테고리 없음</li>

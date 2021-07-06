@@ -305,7 +305,7 @@ export const postDaily = (data, accessToken) => (dispatch) => {
     .post(
       `${process.env.REACT_APP_API_URL}/createspendmoney`,
       {
-        categoryname: data.categoryname,
+        categoryname: data.categoryname, // 'pig2'
         cost: data.cost,
         memo: data.memo,
         date: data.date,
@@ -432,5 +432,27 @@ export const getBudget = (accessToken) => (dispatch) => {
     .catch((err) => {
       console.log(err.response);
       dispatch({ type: GET_BUDGET_ERROR });
+    });
+};
+
+export const createBudget = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/createcategoryinfo`,
+      {
+        categoryname: data.categoryname,
+        budget: data.budget,
+        emoji: data.emoji,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getBudget(accessToken));
+    })
+    .catch((err) => {
+      console.log(err.response);
     });
 };

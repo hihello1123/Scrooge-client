@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Chart from 'react-google-charts';
 import { useSelector, useDispatch } from 'react-redux';
+import { getBudget, createBudget, GET_BUDGET } from '../actions';
+import { PlusIcon, XIcon } from '@heroicons/react/outline';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { Emoji } from 'emoji-mart';
-import { getBudget } from '../actions';
 
 function Budget() {
   const dispatch = useDispatch();
@@ -13,11 +14,80 @@ function Budget() {
   const getBudgetReducer = useSelector((state) => state.getBudgetReducer);
   const { loading, categories, usedGraph, budgetGraph } =
     getBudgetReducer.budget;
-  const [budgetEmoji, setEmoji] = useState('');
+
+  const randomEmoji = () => {
+    const randomNum = Math.floor(Math.random() * 10);
+    const emojiArr = [
+      'pizza',
+      'car',
+      'taxi',
+      'carrot',
+      'grapes',
+      'cry',
+      'ghost',
+      'see_no_evil',
+      'pig2',
+      'moyai',
+    ];
+
+    return emojiArr[randomNum];
+  };
+  const [budgetEmoji, setEmoji] = useState(randomEmoji);
+  const [editMode, setEditMode] = useState(false);
+  const [inputData, setInputData] = useState({
+    categoryname: '',
+    budget: '',
+    emoji: budgetEmoji,
+  });
+  const emojiSelectHandler = (data) => {
+    setEmoji(data);
+    setInputData({
+      ...inputData,
+      emoji: data,
+    });
+  };
+
   useEffect(() => {
     dispatch(getBudget(accessToken));
-    console.log(categories);
+
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+      dispatch({ type: GET_BUDGET }); // 메모리 누수 방지
+    };
   }, [dispatch, accessToken]);
+
+  const emojiPicker = useRef();
+  const emojiBtn = useRef();
+  const emojiBoxHandler = () => {
+    emojiPicker.current.classList.toggle('show');
+  };
+  const handleClick = (e) => {
+    try {
+      if (
+        !emojiPicker.current.contains(e.target) &&
+        !emojiBtn.current.contains(e.target)
+      ) {
+        emojiPicker.current.classList.remove('show');
+      }
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const inputHandler = (e) => {
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const createBudgetBtnHandler = (e) => {
+    e.preventDefault();
+    if (!inputData.categoryname || !inputData.budget) return;
+    dispatch(createBudget(inputData, accessToken));
+  };
+
   const pieChartColor = {
     0: { color: '#1565C0' },
     1: { color: '#1976D2' },
@@ -54,80 +124,92 @@ function Budget() {
         <>로딩중...</>
       ) : (
         <div className="budget container">
-          <div className="budget_chart">
-            <div className="usedGraph">
-              <Chart
-                width={'500px'}
-                height={'300px'}
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={usedGraph}
-                options={{
-                  title: '이번 달 지출 분포도',
-                  slices: pieChartColor,
-                  chartArea: { left: 20, top: 58, width: '65%', height: '75%' },
-                  fontSize: 14,
-                  fontName: 'Noto Sans KR',
-                  titleTextStyle: {
-                    fontSize: 18,
-                    fontName: 'Noto Sans KR',
-                    bold: false,
-                  },
-                  tooltip: {
-                    textStyle: {
-                      fontSize: 14,
-                      fontName: 'Noto Sans KR',
+          <div className="budget_chart_group">
+            <div className="budget_chart">
+              <div className="budgit_chart_frame">
+                <Chart
+                  width={'500px'}
+                  height={'300px'}
+                  chartType="PieChart"
+                  loader={<div>Loading Chart</div>}
+                  data={[
+                    ['Task', '총 지출 금액'],
+                    ['지정되지 않은 카테고리', 10000],
+                    ['용돈', 0],
+                    ['ㅐㅑㅓ', 0],
+                    ['월급', 0],
+                    ['밥', 0],
+                  ]}
+                  options={{
+                    title: '이번 달 지출 분포도',
+                    sliceVisibilityThreshold: 0,
+                    slices: pieChartColor,
+                    chartArea: {
+                      left: 20,
+                      top: 58,
+                      width: '65%',
+                      height: '75%',
                     },
-                  },
-                }}
-              />
+                    fontSize: 14,
+                    fontName: 'Noto Sans KR',
+                    titleTextStyle: {
+                      fontSize: 18,
+                      fontName: 'Noto Sans KR',
+                      bold: false,
+                    },
+                    tooltip: {
+                      textStyle: {
+                        fontSize: 14,
+                        fontName: 'Noto Sans KR',
+                      },
+                    },
+                  }}
+                />
+              </div>
             </div>
-            <div className="usedGraph">
-              <Chart
-                width={'500px'}
-                height={'300px'}
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={budgetGraph}
-                options={{
-                  title: '이번 달 예산 계획 분포도',
-                  sliceVisibilityThreshold: 0,
-                  slices: pieChartColor,
-                  chartArea: { left: 20, top: 58, width: '65%', height: '75%' },
-                  fontSize: 14,
-                  fontName: 'Noto Sans KR',
-                  titleTextStyle: {
-                    fontSize: 18,
-                    fontName: 'Noto Sans KR',
-                    bold: false,
-                  },
-                  tooltip: {
-                    textStyle: {
-                      fontSize: 14,
-                      fontName: 'Noto Sans KR',
+            <div className="budget_chart">
+              <div className="budgit_chart_frame">
+                <Chart
+                  width={'500px'}
+                  height={'300px'}
+                  chartType="PieChart"
+                  loader={<div>Loading Chart</div>}
+                  data={budgetGraph}
+                  options={{
+                    title: '이번 달 예산 계획 분포도',
+                    sliceVisibilityThreshold: 0,
+                    slices: pieChartColor,
+                    chartArea: {
+                      left: 20,
+                      top: 58,
+                      width: '65%',
+                      height: '75%',
                     },
-                  },
-                }}
-                rootProps={{ 'data-testid': '1' }}
-              />
+                    fontSize: 14,
+                    fontName: 'Noto Sans KR',
+                    titleTextStyle: {
+                      fontSize: 18,
+                      fontName: 'Noto Sans KR',
+                      bold: false,
+                    },
+                    tooltip: {
+                      textStyle: {
+                        fontSize: 14,
+                        fontName: 'Noto Sans KR',
+                      },
+                    },
+                  }}
+                  rootProps={{ 'data-testid': '1' }}
+                />
+              </div>
             </div>
           </div>
-          {/* <Emoji emoji={budgetEmoji} set="twitter" size={64} />
-          <Picker
-            set="twitter"
-            onClick={(emoji) => {
-              setEmoji(emoji.id);
-            }}
-            title="Pick your emoji…"
-            emoji="point_up"
-            color="#385ad2"
-          /> */}
           <div className="budget_category">
             <ul>
               {categories.map((item, i) => {
                 return (
-                  <li key={`categories-${i}`}>
-                    <Emoji emoji="moyai" set="twitter" size={60} />
+                  <li key={`categories-${i}`} className="budget_category_li">
+                    <Emoji emoji={item.categoryemoji} set="twitter" size={45} />
                     <span>{item.categoryname}</span>
                     <span>{item.categoryrest}</span>
                     <span>/{item.categorybudget}</span>
@@ -135,10 +217,68 @@ function Budget() {
                   </li>
                 );
               })}
-              <li>
-                <button>+</button>
-              </li>
             </ul>
+            {editMode ? (
+              <>
+                <div className="budget_category_edit">
+                  <div className="emoji_box">
+                    <button
+                      className="emoji"
+                      onClick={emojiBoxHandler}
+                      ref={emojiBtn}
+                    >
+                      <Emoji emoji={budgetEmoji} set="twitter" size={42} />
+                    </button>
+                    <div className="emoji_picker" ref={emojiPicker}>
+                      <Picker
+                        set="twitter"
+                        onClick={(emoji) => {
+                          emojiSelectHandler(emoji.id);
+                        }}
+                        title="Pick your emoji…"
+                        emoji="point_up"
+                        color="#385ad2"
+                        style={{
+                          position: 'absolute',
+                          top: '65px',
+                          left: '20px',
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <form>
+                    <label htmlFor="budgetName">예산 이름</label>
+                    <input
+                      type="text"
+                      id="budgetName"
+                      name="categoryname"
+                      onChange={inputHandler}
+                    />
+                    <label htmlFor="budget">예산</label>
+                    <input
+                      type="text"
+                      id="budget"
+                      name="budget"
+                      onChange={inputHandler}
+                    />
+                    <button className="submit" onClick={createBudgetBtnHandler}>
+                      예산 생성
+                    </button>
+                  </form>
+                </div>
+              </>
+            ) : (
+              <>
+                <button
+                  className="budget_edit_mode"
+                  onClick={() => {
+                    setEditMode(!editMode);
+                  }}
+                >
+                  <PlusIcon className="plus_icon" />
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

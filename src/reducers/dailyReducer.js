@@ -21,7 +21,7 @@ const dailyReducer = (state = initialStats, action) => {
             exMonthlyUsed: action.daily.top.exMonthlyUsed,
           },
           bottom: action.daily.bottom,
-          categorylist: action.daily.categorylist,
+          categoryList: action.daily.categoryList,
         },
       };
     default:

@@ -33,9 +33,9 @@
     .category_toggle_btn {
       position: relative;
       min-width: 150px;
+      padding-right: 40px;
       width: 100%;
       height: 50px;
-      padding: 15px 32px 15px 17px;
       text-align: start;
       background-color: #fff;
       font-size: $font-default;
@@ -43,6 +43,13 @@
       color: $blue-color;
       border-radius: 16px;
       cursor: pointer;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+      }
       &_icon {
         position: absolute;
         top: 13px;
@@ -143,11 +150,12 @@
 
   .formErrMessage {
     position: absolute;
-    top: -25px;
-    width: 100%;
+    bottom: 18px;
+    right: 205px;
     color: #ff3636;
     text-align: center;
     font-size: $font-small;
+    border-radius: 5px;
   }
 
   .daily_form_submit {
@@ -202,6 +210,7 @@
       position: static;
       order: 5;
       margin-top: 15px;
+      width: 100%;
     }
     .daily_form_submit {
       top: calc(100% + 15px);

@@ -7,6 +7,7 @@ import {
   LogoutIcon,
   MenuIcon,
   ChartPieIcon,
+  GlobeIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import { CogIcon } from '@heroicons/react/solid';
@@ -59,7 +60,7 @@ function Nav() {
             </li>
             <li>
               <Link to="/yearly">
-                <DocumentTextIcon className="nav_icon " />
+                <GlobeIcon className="nav_icon " />
                 연도별
               </Link>
             </li>

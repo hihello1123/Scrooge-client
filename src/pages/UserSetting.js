@@ -18,12 +18,10 @@ function UserSetting() {
   });
 
   function inputHandler(e) {
-    console.log(tempInfo);
     setTempInfo({ ...tempInfo, [e.target.name]: e.target.value });
   }
 
   function inputPhoto(e) {
-    console.log(tempInfo);
     let file = e.target.files[0];
     console.log(file);
     setTempInfo({

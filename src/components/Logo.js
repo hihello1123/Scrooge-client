@@ -64,7 +64,7 @@ function Logo() {
       </div>
       <div className="logo-small">
         <img
-          src={process.env.PUBLIC_URL + './logoXS.png'}
+          src={process.env.PUBLIC_URL + '/logoXS.png'}
           alt="스크루지 모바일"
         />
       </div>
