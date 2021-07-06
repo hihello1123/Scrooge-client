@@ -134,7 +134,7 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
 };
 
 // 소셜 회원가입
-export const kakaoSignUp = (authorizationCode) => (dispatch) => {
+export const kakaoSignUp = (authorizationCode, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_API_URL}/kakaocheck`, {
       authorizationCode,
@@ -146,10 +146,12 @@ export const kakaoSignUp = (authorizationCode) => (dispatch) => {
     .catch((err) => {
       console.log(err.response);
       alert(err.response.data.message);
+      dispatch(socialDataDelete());
+      dispatch(goToHome(history));
     });
 };
 
-export const googleSignUp = (authorizationCode) => (dispatch) => {
+export const googleSignUp = (authorizationCode, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_API_URL}/googlecheck`, {
       authorizationCode,
@@ -161,23 +163,28 @@ export const googleSignUp = (authorizationCode) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       alert(err.response.data.message);
+      dispatch(socialDataDelete());
+      dispatch(goToHome(history));
     });
 };
 
 export const SOCIAL_DATA = 'SOCIAL_DATA';
+export const SOCIAL_DELETE = 'SOCIAL_DELETE';
 
 export const socialData = (socialData) => (dispatch) => {
   dispatch({ type: SOCIAL_DATA, socialData: socialData });
 };
 
-export const SOCIAL_NULL = 'SOCIAL_NULL';
+export const socialDataDelete = () => (dispatch) => {
+  dispatch({ type: SOCIAL_DELETE });
+};
 
 export const socialSignUp = (fd, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_API_URL}/socialsignup`, fd)
     .then((res) => {
       console.log(res.data.message);
-      dispatch({ type: SOCIAL_NULL });
+      dispatch({ type: SOCIAL_DELETE });
       dispatch(goToHome(history));
     })
     .catch((err) => {

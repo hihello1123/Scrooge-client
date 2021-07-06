@@ -52,9 +52,9 @@ function Nav() {
               </Link>
             </li>
             <li>
-              <Link to="/test">
+              <Link to="/monthly">
                 <DocumentTextIcon className="nav_icon " />
-                테스트
+                월별
               </Link>
             </li>
             <li>
@@ -67,6 +67,12 @@ function Nav() {
               <Link to="/budget">
                 <ChartPieIcon className="nav_icon " />
                 예산 관리
+              </Link>
+            </li>
+            <li>
+              <Link to="/test">
+                <DocumentTextIcon className="nav_icon " />
+                테스트
               </Link>
             </li>
           </ul>

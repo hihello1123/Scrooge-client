@@ -55,7 +55,7 @@ const initialStats = {
     bottom: {
       best: [],
       topthree: [],
-      achievement: [
+      achieve: [
         {
           scrooge: [],
           leastspend: [],

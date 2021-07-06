@@ -9,6 +9,7 @@ import Login from './Login';
 import UserSetting from '../pages/UserSetting';
 import Yearly from '../pages/Yearly';
 import Budget from '../pages/Budget';
+import Monthly from '../pages/Monthly';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -38,6 +39,9 @@ function ScoorgeRoute() {
             </Route>
             <Route exact path="/daily">
               <Daily />
+            </Route>
+            <Route exact path="/monthly">
+              <Monthly />
             </Route>
             <Route exact path="/yearly">
               <Yearly />

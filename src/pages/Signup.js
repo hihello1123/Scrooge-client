@@ -22,7 +22,6 @@ function Signup() {
   const { emailSignupMod } = emailExistsReducer.emailExists;
   const socialDataReducer = useSelector((state) => state.socialDataReducer);
   const { email } = socialDataReducer.socialData;
-  console.log(socialDataReducer.socialData);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -37,9 +36,9 @@ function Signup() {
     if (!authorizationCode) {
       return;
     } else if (address.includes('www.googleapis.com')) {
-      dispatch(googleSignUp(authorizationCode));
+      dispatch(googleSignUp(authorizationCode, history));
     } else {
-      dispatch(kakaoSignUp(authorizationCode));
+      dispatch(kakaoSignUp(authorizationCode, history));
     }
   }, []);
 
@@ -63,15 +62,6 @@ function Signup() {
     );
   };
   //====================
-
-  //함수 부분
-  function clicked(e) {
-    if (e.target.outerText === '카카오톡 버튼') {
-      return console.log('카톡이지롱');
-    } else if (e.target.outerText === '구글 버튼') {
-      return console.log('구글이지롱');
-    }
-  }
 
   function inputHandler(e) {
     console.log(userInfo);

@@ -115,7 +115,6 @@ function Dailyform({ editMode, item }) {
       ...inputData,
       [e.target.name]: e.target.value,
     });
-    console.log(inputData);
     setErr(null);
   };
 

@@ -8,11 +8,9 @@ function SocialSignUpPage() {
   const history = useHistory();
   const socialDataReducer = useSelector((state) => state.socialDataReducer);
   const socialDatas = socialDataReducer.socialData;
-  console.log('socialDatas are', socialDatas);
 
   function inputHandler(e) {
     dispatch(socialData({ ...socialDatas, username: e.target.value }));
-    console.log({ ...socialDatas });
   }
 
   function inputPhoto(e) {

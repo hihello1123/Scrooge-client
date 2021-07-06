@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSignInRequest } from '../actions';
+import { socialDataDelete, userSignInRequest } from '../actions';
 import { Link } from 'react-router-dom';
 import { MailIcon, XIcon } from '@heroicons/react/outline';
 
@@ -151,7 +151,11 @@ function Login({ modalSet }) {
         </>
       )}
       <div>
-        아이디가 없으신가요? <Link to="/signup">회원가입</Link>하러가기
+        아이디가 없으신가요?{' '}
+        <Link to="/signup" onClick={dispatch(socialDataDelete())}>
+          회원가입
+        </Link>
+        하러가기
       </div>
     </div>
   );

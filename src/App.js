@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
 import AppRouter from './components/Router';
 import { useDispatch } from 'react-redux';
-import { refreshTokenRequest, getGoogleCode, getKakaoCode } from './actions';
+import {
+  refreshTokenRequest,
+  getGoogleCode,
+  getKakaoCode,
+  socialDataDelete,
+} from './actions';
 require('dotenv').config();
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(socialDataDelete());
     let url = new URL(window.location.href);
     let address = url.search;
 
@@ -19,7 +25,7 @@ function App() {
       dispatch(getKakaoCode(authorizationCode));
     }
 
-    // dispatch(refreshTokenRequest());
+    dispatch(refreshTokenRequest());
   }, []);
   return (
     <>

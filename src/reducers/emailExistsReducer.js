@@ -32,15 +32,6 @@ const emailExistsReducer = (state = initialStats, action) => {
           emailExistsErr: true,
         },
       };
-    case SOCIAL_NULL:
-      return {
-        ...state,
-        socialData: {
-          email: null,
-          photo: null,
-          username: null,
-        },
-      };
     default:
       return state;
   }
