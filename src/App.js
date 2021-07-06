@@ -19,7 +19,7 @@ function App() {
       dispatch(getKakaoCode(authorizationCode));
     }
 
-    // dispatch(refreshTokenRequest());
+    dispatch(refreshTokenRequest());
   }, []);
   return (
     <>

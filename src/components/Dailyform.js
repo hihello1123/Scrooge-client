@@ -25,7 +25,7 @@ function Dailyform({ editMode, item }) {
   // 상태
   const [date, setDate] = useState(new Date()); // 날짜 선택
   const [inputData, setInputData] = useState({
-    categoryname: '지정되지 않은 카테고리',
+    categoryname: 'grey_question',
     cost: '',
     memo: '',
     date: `${date.getFullYear()}-${
@@ -53,7 +53,7 @@ function Dailyform({ editMode, item }) {
         new Date(Number(dateArr[0]), Number(dateArr[1]) - 1, Number(dateArr[2]))
       );
       setInputData({
-        categoryname: item.emoji || '지정되지 않은 카테고리',
+        categoryname: item.emoji || 'grey_question',
         cost: String(item.cost),
         memo: item.memo || '',
         date: item.date,
@@ -67,7 +67,11 @@ function Dailyform({ editMode, item }) {
     setDate(date);
     setInputData({
       ...inputData,
-      date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+      date: `${date.getFullYear()}-${
+        date.getMonth() + 1 < 10
+          ? `0${date.getMonth() + 1}`
+          : `date.getMonth() + 1`
+      }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`,
     });
   };
 
@@ -78,20 +82,19 @@ function Dailyform({ editMode, item }) {
 
   // 카테고리 선택 핸들러
   const categoryMenuHandler = (e) => {
-    if (e.target.textContent !== '카테고리 없음') {
-      if (e.target.nodeName === 'SPAN') {
-        setCategoryBtnEmoji(e.target.parentNode.parentNode.id);
-        setInputData({
-          ...inputData,
-          categoryname: e.target.parentNode.parentNode.id,
-        });
-      } else {
-        console.dir(e.target.id);
-        setInputData({
-          ...inputData,
-          categoryname: e.target.id,
-        });
-      }
+    if (e.target.textContent === '카테고리 없음') return;
+    if (e.target.nodeName === 'SPAN') {
+      setCategoryBtnEmoji(e.target.parentNode.parentNode.id);
+      setInputData({
+        ...inputData,
+        categoryname: e.target.parentNode.parentNode.id,
+      });
+    } else if (e.target.nodeName === 'LI') {
+      setCategoryBtnEmoji(e.target.id);
+      setInputData({
+        ...inputData,
+        categoryname: e.target.id,
+      });
     }
     categoryMenu.current.classList.remove('show');
   };
@@ -132,7 +135,7 @@ function Dailyform({ editMode, item }) {
     moneyInput.current.value = money;
   };
 
-  // 온체인지 핸들러
+  // 인풋 온체인지 핸들러
   const inputChangeHandler = (e) => {
     setInputData({
       ...inputData,
@@ -195,7 +198,7 @@ function Dailyform({ editMode, item }) {
             onClick={categoryMenuHandler}
             ref={categoryMenu}
           >
-            {categoryList ? (
+            {categoryList && categoryList.length !== 0 ? (
               categoryList.map((el) => {
                 return (
                   <li key={`categoryList-${el.id}`} id={el.emoji}>

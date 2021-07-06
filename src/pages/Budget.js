@@ -51,6 +51,7 @@ function Budget() {
     dispatch(getBudget(accessToken));
 
     document.addEventListener('mousedown', handleClick, false);
+    let url = new URL(window.location.href);
     return () => {
       document.removeEventListener('mousedown', handleClick, false);
       dispatch({ type: GET_BUDGET }); // 메모리 누수 방지
@@ -132,14 +133,7 @@ function Budget() {
                   height={'300px'}
                   chartType="PieChart"
                   loader={<div>Loading Chart</div>}
-                  data={[
-                    ['Task', '총 지출 금액'],
-                    ['지정되지 않은 카테고리', 10000],
-                    ['용돈', 0],
-                    ['ㅐㅑㅓ', 0],
-                    ['월급', 0],
-                    ['밥', 0],
-                  ]}
+                  data={usedGraph}
                   options={{
                     title: '이번 달 지출 분포도',
                     sliceVisibilityThreshold: 0,
@@ -240,8 +234,8 @@ function Budget() {
                         color="#385ad2"
                         style={{
                           position: 'absolute',
-                          top: '65px',
-                          left: '20px',
+                          top: '70px',
+                          left: '0px',
                         }}
                       />
                     </div>
