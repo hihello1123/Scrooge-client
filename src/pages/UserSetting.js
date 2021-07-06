@@ -55,95 +55,94 @@ function UserSetting() {
   };
 
   return (
-    <div className="container">
-      <label>프로필 편집</label>
+    <div className="container_1">
       <div className="container_edit">
-        <div className="edit_inputZone">
-          <div className="edit_img">
-            <img src={userPhoto} alt="사진" className="pre_img" />
+        <div className="edit_title">프로필 편집</div>
+        <div className="container_edit_mini">
+          <div className="edit_inputZone">
+            <div className="edit_img">
+              <img src={userPhoto} alt="사진" className="pre_img" />
+            </div>
+            <form className="edit_form">
+              <label htmlFor="photo">사진</label>
+              <input
+                id="photo"
+                name="photo"
+                type="file"
+                accept="image/jpg, image/png, image/jpeg, image/gif"
+                onChange={inputPhoto}
+                className="edit_input"
+                required
+              />
+              <label htmlFor="username">닉네임</label>
+              <input
+                id="username"
+                name="username"
+                type="username"
+                onChange={inputHandler}
+                className="edit_input"
+                required
+                placeholder={userName}
+              ></input>
+              <label htmlFor="email">이메일</label>
+              <div className="edit_input">{userEmail}</div>
+              {!path ? (
+                <>
+                  <label htmlFor="password">비밀번호</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={inputHandler}
+                    className="edit_input"
+                    required
+                  />
+                  <label htmlFor="passwordCheck">비밀번호 확인</label>
+                  <input
+                    id="passwordCheck"
+                    name="passwordCheck"
+                    type="password"
+                    onChange={inputHandler}
+                    className="edit_input"
+                    required
+                  />
+                </>
+              ) : (
+                <></>
+              )}
+              <button className="edit_submit" onClick={editInfoRequestHandler}>
+                수정
+              </button>
+            </form>
           </div>
-          <form className="edit_form">
-            <label htmlFor="photo">사진</label>
-            <input
-              id="photo"
-              name="photo"
-              type="file"
-              accept="image/jpg, image/png, image/jpeg, image/gif"
-              onChange={inputPhoto}
-              className="photo"
-              required
-            />
-            <label htmlFor="username">닉네임</label>
-            <input
-              id="username"
-              name="username"
-              type="username"
-              onChange={inputHandler}
-              className="username edit_input"
-              required
-              placeholder={userName}
-            ></input>
-            <label htmlFor="email">이메일</label>
-            <div className="edit_input">{userEmail}</div>
-            {!path ? (
-              <>
-                <label htmlFor="password">비밀번호</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={inputHandler}
-                  className="password edit_input"
-                  required
-                />
-                <label htmlFor="passwordCheck">비밀번호 확인</label>
-                <input
-                  id="passwordCheck"
-                  name="passwordCheck"
-                  type="password"
-                  onChange={inputHandler}
-                  className="passwordCheck edit_input"
-                  required
-                />
-              </>
-            ) : (
-              <></>
-            )}
-            <button
-              className="signup_submit submit"
-              onClick={editInfoRequestHandler}
-            >
-              회원정보 수정
-            </button>
-          </form>
         </div>
-      </div>
-      <label>설정</label>
-      <div className="container_bottom">
-        <div className="container_bottom_items">
-          <div>다크모드</div>
-          <div>버튼만들기</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>데이터삭제</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>메인페이지설정</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>엑셀 파일로 내보내기</div>
-          <div> - 2레벨부터 사용가능</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>테마 설정</div>
-          <div> - 2레벨부터 사용가능</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>주기 설정</div>
-          <div> - 2레벨부터 사용가능</div>
-        </div>
-        <div className="container_bottom_items">
-          <div>회원 탈퇴</div>
+        <div className="edit_title">설정</div>
+        <div className="container_bottom">
+          <div className="container_bottom_items">
+            <div>다크모드</div>
+            <div>버튼만들기</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>데이터삭제</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>메인페이지설정</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>엑셀 파일로 내보내기</div>
+            <div> - 2레벨부터 사용가능</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>테마 설정</div>
+            <div> - 2레벨부터 사용가능</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>주기 설정</div>
+            <div> - 2레벨부터 사용가능</div>
+          </div>
+          <div className="container_bottom_items">
+            <div>회원 탈퇴</div>
+          </div>
         </div>
       </div>
     </div>

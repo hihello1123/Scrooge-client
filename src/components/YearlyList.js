@@ -37,8 +37,8 @@ function YearlyList() {
       <div className="yearly_bottom_container">
         <div className="yearly_bottom_title">올해 성공한 약속</div>
         <div className="yearly_bottom_container_inner yearly_1">
-          <li className="yearly_bottom_rank">1등</li>
-          <li className="yearly_bottom_result">{succeedPromise(best[0])}</li>
+          <div className="yearly_bottom_rank">1등</div>
+          <div className="yearly_bottom_result">{succeedPromise(best[0])}</div>
         </div>
         <div className="yearly_bottom_container_inner yearly_2">
           <div className="yearly_bottom_rank">2등</div>
@@ -68,11 +68,11 @@ function YearlyList() {
         <div className="yearly_bottom_title">올해 업적</div>
         <div className="yearly_bottom_achieve">
           <div>스크루지 데이 최장 달성 기간</div>
-          <div>{achieve[0].scrooge}일</div>
+          <div>{achieve[0].scrooge ? achieve[0].scrooge : 0}일</div>
         </div>
         <div className="yearly_bottom_achieve">
-          <span>가장 적은 지출</span>
-          <span>{achieve[0].leastspend}원</span>
+          <div>가장 적은 지출</div>
+          <div>{achieve[0].leastspend ? achieve[0].leastspend : 0}원</div>
         </div>
       </div>
     </div>

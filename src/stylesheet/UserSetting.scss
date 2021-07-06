@@ -1,8 +1,10 @@
-.container_edit {
+.container_edit_mini {
   font-family: $noto-font;
   background-color: white;
-  width: 857px;
+  max-width: 857px;
+  min-width: 330px;
   margin-bottom: 29px;
+  border-radius: 23px;
 }
 
 .container_bottom {
@@ -10,21 +12,28 @@
   flex-direction: column;
   font-family: $noto-font;
   background-color: $white-color;
+  max-width: 857px;
+  min-width: 330px;
   &_items {
     display: flex;
     justify-content: space-between;
     background-color: white;
-    width: 857px;
     margin-bottom: 10px;
     padding: 20px;
     vertical-align: bottom;
+    border-radius: 13px;
   }
+}
+
+.edit_title {
+  font-size: $font-large;
+  margin-bottom: 10px;
 }
 
 .edit_input {
   margin-top: 5px;
   margin-bottom: 8px;
-  width: 400px;
+  width: 100%;
   height: 50px;
   color: $blue-color;
   font-size: $font-default;
@@ -41,6 +50,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .edit_img {
@@ -60,6 +70,64 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
   margin: 30px;
+}
+.edit_form:last-child {
+  justify-content: flex-end;
+}
+
+.edit_submit {
+  width: 138px;
+  height: 34px;
+  background: linear-gradient(
+      84.73deg,
+      rgba(53, 85, 198, 0.44) 1.92%,
+      rgba(99, 227, 255, 0.44) 100.48%
+    ),
+    #385ad2;
+  border-radius: 13px;
+  color: $white-color;
+}
+
+//=======================
+
+.container_edit {
+  padding-left: 410px;
+}
+
+@include tablet {
+  .container_1 {
+    display: flex;
+    justify-content: center;
+  }
+  .container_edit {
+    padding-left: 0px;
+  }
+}
+
+@include mobile {
+  .edit_img {
+    margin-top: 10px;
+  }
+  .edit_inputZone {
+    flex-direction: column;
+  }
+  .container_edit {
+    padding-left: 0px;
+    justify-content: center;
+  }
+  .edit_input {
+    height: 45px;
+    padding: 10px;
+  }
+  .edit_form {
+    margin: 10px;
+    text-align: left;
+  }
+  .edit_submit {
+    height: 45px;
+    color: $white-color;
+    border-radius: 13px;
+    background-color: $blue-color;
+  }
 }
