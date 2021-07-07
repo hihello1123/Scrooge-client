@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { yearlyList } from '../actions';
+import { yearlyList, navEffect } from '../actions';
 import YearlyList from '../components/YearlyList';
 import Chart from 'react-google-charts';
 
@@ -10,7 +10,9 @@ function Yearly() {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   useEffect(() => {
     dispatch(yearlyList(accessToken));
-  });
+    let url = new URL(window.location.href);
+    dispatch(navEffect(url.pathname));
+  }, [dispatch]);
 
   function scale(min, max) {
     var cellSize = window.innerWidth / 60;

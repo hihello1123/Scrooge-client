@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getDaily } from '../actions';
+import { getDaily, navEffect } from '../actions';
 import Topper from '../components/Topper';
 import Dailyform from '../components/Dailyform';
 import DailyList from '../components/DailyList';
@@ -14,6 +14,8 @@ function Daily() {
 
   useEffect(() => {
     dispatch(getDaily(accessToken));
+    let url = new URL(window.location.href);
+    dispatch(navEffect(url.pathname));
   }, [dispatch, accessToken]);
 
   return (
