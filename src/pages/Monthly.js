@@ -7,7 +7,15 @@ function Monthly() {
   return (
     <div className="container">
       <Topper />
-      <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+      <FullCalendar
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        headerToolbar={{
+          left: 'prev,next today',
+          center: 'title',
+          right: 'daygridweek,daygridmonth,daygridyear,daygridlist',
+        }}
+      />
     </div>
   );
 }
