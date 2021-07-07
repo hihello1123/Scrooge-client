@@ -35,37 +35,40 @@
 }
 
 .monthlyModal {
+  width: 400px;
+  height: 300px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 27px;
+  border-radius: 16px;
   z-index: 9;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: $light-gray-color;
-  backdrop-filter: blur(20px);
+  padding: 30px;
+  background-color: #fff;
+  filter: drop-shadow(0px 4px 5px rgba(57, 94, 207, 0.25));
+  &_inner {
+    &_date {
+      margin-bottom: 50px;
+    }
+  }
 }
 
 @include mobile {
   .monthlyModal {
     width: 300px;
-    height: 300px;
-    background-color: white;
-    // background: rgba(241, 245, 255, 0.2);
-    // backdrop-filter: blur(20px);
-    // &_form {
-    //   width: 80%;
-    // }
+    height: 250px;
     &_inner {
-      .date {
-        font-size: $font-default;
+      &_date {
+        font-size: $font-SMlarge;
+        margin-bottom: 30px;
       }
-      .cost {
-        font-size: $font-small;
+      &_cost {
+        font-size: $font-large;
       }
     }
   }
@@ -73,20 +76,12 @@
 
 @include tablet {
   .monthlyModal {
-    width: 300px;
-    height: 300px;
-    background-color: white;
-    // background: rgba(241, 245, 255, 0.2);
-    // backdrop-filter: blur(20px);
-    // &_form {
-    //   width: 80%;
-    // }
     &_inner {
-      .date {
-        font-size: $font-large;
+      &_date {
+        font-size: $font-SMlarge;
       }
-      .cost {
-        font-size: $font-small;
+      &_cost {
+        font-size: $font-large;
       }
     }
   }
@@ -94,20 +89,12 @@
 
 @include desktop {
   .monthlyModal {
-    width: 300px;
-    height: 300px;
-    background-color: white;
-    // background: rgba(241, 245, 255, 0.2);
-    // backdrop-filter: blur(20px);
-    // &_form {
-    //   width: 80%;
-    // }
     &_inner {
-      .date {
-        font-size: $font-Mlarge;
+      &_date {
+        font-size: $font-SMlarge;
       }
-      .cost {
-        font-size: $font-Mlarge;
+      &_cost {
+        font-size: $font-large;
       }
     }
   }

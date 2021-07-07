@@ -38,20 +38,21 @@ function Monthly() {
         }}
         events={data}
         eventClick={(info) => {
-          console.log(info.event.startStr);
-          setModal(!isModal);
-        }}
-        eventMouseEnter={(info) =>
           setDayInfo({
             cost: info.event.title,
-            date: info.event.startStr,
-          })
-        }
+            date: info.event.startStr.split('-'),
+          });
+          setModal(!isModal);
+        }}
       />
       {isModal ? (
         <div className="monthlyModal" onClick={() => setModal(!isModal)}>
-          <div className="monthlyModal_inner date">{dayInfo.date}</div>
-          <div className="monthlyModal_inner cost">금액은 {dayInfo.cost}</div>
+          <div className="monthlyModal_inner_date">
+            {Number(dayInfo.date[0])}년 {Number(dayInfo.date[1])}월{' '}
+            {Number(dayInfo.date[2])}일
+          </div>
+          <div className="top hr" />
+          <div className="monthlyModal_inner_cost">{dayInfo.cost}원</div>
         </div>
       ) : (
         <></>
