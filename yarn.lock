@@ -1232,6 +1232,14 @@
     "@fullcalendar/common" "~5.8.0"
     "tslib" "^2.1.0"
 
+"@fullcalendar/interaction@^5.8.0":
+  "integrity" "sha512-ocOCS5g1AT06uR3OeKpN2WKJO4BLmnUZn/v2H/iPllbC7MwYBSy/obC4CoQqnK93FyJXUOFH1KfLwTK013C1+w=="
+  "resolved" "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-5.8.0.tgz"
+  "version" "5.8.0"
+  dependencies:
+    "@fullcalendar/common" "~5.8.0"
+    "tslib" "^2.1.0"
+
 "@fullcalendar/react@^5.8.0":
   "integrity" "sha512-lGvExh2It8eEfH/Pu9Al6NExwAsq4zXFspcKeXjCARqETUqI0hL7PXuxwvedFlAGUuj2cdbpEnasFc89rGeENA=="
   "resolved" "https://registry.npmjs.org/@fullcalendar/react/-/react-5.8.0.tgz"

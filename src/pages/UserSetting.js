@@ -49,10 +49,8 @@ function UserSetting() {
     if (tempInfo.photo) {
       fd.append('username', tempInfo.username);
       fd.append('photo', tempInfo.photo);
-      fd.append('password', tempInfo.password);
     } else {
       fd.append('username', tempInfo.username);
-      fd.append('password', tempInfo.password);
     }
     dispatch(userEdit(fd, accessToken));
   };
@@ -113,7 +111,11 @@ function UserSetting() {
               ) : (
                 <></>
               )}
-              <button className="edit_submit" onClick={editInfoRequestHandler}>
+              <button
+                id="edit_submit"
+                className="edit_submit"
+                onClick={editInfoRequestHandler}
+              >
                 수정
               </button>
             </form>

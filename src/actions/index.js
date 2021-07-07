@@ -401,6 +401,27 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
+//월별 데이터
+
+export const MONTHLY_DATA = 'MONTHLY_DATA';
+
+export const monthlyData = (accessToken) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/getmonthlydata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('monthlydata is');
+      console.log(res.data.data.daily);
+      dispatch({ type: MONTHLY_DATA, data: res.data.data.daily });
+    })
+    .catch((err) => {
+      console.log('monthlydata error is');
+      console.log(err.response);
+    });
+};
+
 //연도별 데이터
 export const YEARLY_DATA = 'YEARLY_DATA';
 

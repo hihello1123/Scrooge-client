@@ -71,9 +71,11 @@
   flex: 1;
   flex-direction: column;
   margin: 30px;
+  align-items: flex-start;
 }
-.edit_form:last-child {
-  justify-content: flex-end;
+
+#edit_submit:last-child {
+  background-color: black;
 }
 
 .edit_submit {
