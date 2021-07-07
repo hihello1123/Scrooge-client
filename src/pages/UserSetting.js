@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userEdit } from '../actions';
+import { userEdit, navEffect } from '../actions';
 
 function UserSetting() {
   const dispatch = useDispatch();
@@ -16,6 +16,11 @@ function UserSetting() {
     password: undefined,
     passwordCheck: undefined,
   });
+
+  useEffect(() => {
+    let url = new URL(window.location.href);
+    dispatch(navEffect(url.pathname));
+  }, [dispatch]);
 
   function inputHandler(e) {
     setTempInfo({ ...tempInfo, [e.target.name]: e.target.value });

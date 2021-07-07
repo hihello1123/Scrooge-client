@@ -18,13 +18,19 @@ function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const navEffectReducer = useSelector((state) => state.navEffectReducer);
   const { accessToken } = isLoggedInReducer.userLoggedIn;
+  const { currentPath } = navEffectReducer.navEffect;
 
   useEffect(() => {
     dispatch(getUserInfo(accessToken, history));
   }, [accessToken, history, dispatch]);
+  useEffect(() => {
+    navEffectHandler();
+  });
 
   const nav = useRef();
+  const navMenu = useRef();
   const navOpenHandler = () => {
     nav.current.classList.add('show');
   };
@@ -35,7 +41,27 @@ function Nav() {
   const signOutHandler = () => {
     dispatch(userLogOut(accessToken, history));
   };
-
+  const navEffectHandler = () => {
+    switch (currentPath) {
+      case '/daily':
+        console.log('데이페이지');
+        break;
+      case '/monthly':
+        console.log('월별페이지');
+        break;
+      case '/yearly':
+        console.log('년도별페이지');
+        break;
+      case '/budget':
+        console.log('예산관리페이지');
+        break;
+      case '/setting':
+        console.log('세팅페이지');
+        break;
+      default:
+        return;
+    }
+  };
   return (
     <>
       <nav className="nav" ref={nav}>
@@ -45,7 +71,7 @@ function Nav() {
             <XIcon />
           </button>
           <UserProfile />
-          <ul className="nav_container_ul">
+          <ul className="nav_container_ul" ref={navMenu}>
             <li className="focused">
               <Link to="/daily" onClick={navCloseHandler}>
                 <DocumentTextIcon className="nav_icon " />
@@ -70,12 +96,12 @@ function Nav() {
                 예산 관리
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/test">
                 <DocumentTextIcon className="nav_icon " />
                 테스트
               </Link>
-            </li>
+            </li> */}
           </ul>
           <footer className="nav_footer">
             <button className="nav_footer_btn" onClick={signOutHandler}>
