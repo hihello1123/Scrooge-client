@@ -6,6 +6,7 @@ import { PlusIcon, XIcon } from '@heroicons/react/outline';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { Emoji } from 'emoji-mart';
+import BudgetList from '../components/BudgetList';
 
 function Budget() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function Budget() {
     return emojiArr[randomNum];
   };
   const [budgetEmoji, setEmoji] = useState(randomEmoji);
-  const [editMode, setEditMode] = useState(false);
+  const [addMode, setAddMode] = useState(false);
   const [inputData, setInputData] = useState({
     categoryname: '',
     budget: '',
@@ -145,7 +146,7 @@ function Budget() {
                       width: '65%',
                       height: '75%',
                     },
-                    fontSize: 14,
+                    fontSize: 12,
                     fontName: 'Noto Sans KR',
                     titleTextStyle: {
                       fontSize: 18,
@@ -180,7 +181,7 @@ function Budget() {
                       width: '65%',
                       height: '75%',
                     },
-                    fontSize: 14,
+                    fontSize: 12,
                     fontName: 'Noto Sans KR',
                     titleTextStyle: {
                       fontSize: 18,
@@ -203,17 +204,11 @@ function Budget() {
             <ul>
               {categories.map((item, i) => {
                 return (
-                  <li key={`categories-${i}`} className="budget_category_li">
-                    <Emoji emoji={item.categoryemoji} set="twitter" size={45} />
-                    <span>{item.categoryname}</span>
-                    <span>{item.categoryrest}</span>
-                    <span>/{item.categorybudget}</span>
-                    <span>￦</span>
-                  </li>
+                  <BudgetList key={`categories-${i}`} item={item} index={i} />
                 );
               })}
             </ul>
-            {editMode ? (
+            {addMode ? (
               <>
                 <div className="budget_category_edit">
                   <div className="emoji_box">
@@ -260,6 +255,14 @@ function Budget() {
                       예산 생성
                     </button>
                   </form>
+                  <button
+                    className="budget_edit_mode_done"
+                    onClick={() => {
+                      setAddMode(!addMode);
+                    }}
+                  >
+                    <XIcon />
+                  </button>
                 </div>
               </>
             ) : (
@@ -267,7 +270,7 @@ function Budget() {
                 <button
                   className="budget_edit_mode"
                   onClick={() => {
-                    setEditMode(!editMode);
+                    setAddMode(!addMode);
                   }}
                 >
                   <PlusIcon className="plus_icon" />

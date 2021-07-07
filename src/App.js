@@ -26,7 +26,7 @@ function App() {
     }
 
     dispatch(refreshTokenRequest());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <AppRouter />

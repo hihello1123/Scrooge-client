@@ -31,6 +31,7 @@ function Nav() {
 
   const nav = useRef();
   const navMenu = useRef();
+  const cogIcon = useRef();
   const navOpenHandler = () => {
     nav.current.classList.add('show');
   };
@@ -42,21 +43,26 @@ function Nav() {
     dispatch(userLogOut(accessToken, history));
   };
   const navEffectHandler = () => {
+    for (let i = 0; i < navMenu.current.childNodes.length; i++) {
+      navMenu.current.childNodes[i].classList.remove('focused');
+    }
+    cogIcon.current.childNodes[0].classList.remove('focused');
     switch (currentPath) {
       case '/daily':
-        console.log('데이페이지');
+        navMenu.current.childNodes[0].classList.add('focused');
         break;
       case '/monthly':
         console.log('월별페이지');
+        navMenu.current.childNodes[1].classList.add('focused');
         break;
       case '/yearly':
-        console.log('년도별페이지');
+        navMenu.current.childNodes[2].classList.add('focused');
         break;
       case '/budget':
-        console.log('예산관리페이지');
+        navMenu.current.childNodes[3].classList.add('focused');
         break;
       case '/setting':
-        console.log('세팅페이지');
+        cogIcon.current.childNodes[0].classList.add('focused');
         break;
       default:
         return;
@@ -72,27 +78,27 @@ function Nav() {
           </button>
           <UserProfile />
           <ul className="nav_container_ul" ref={navMenu}>
-            <li className="focused">
+            <li>
               <Link to="/daily" onClick={navCloseHandler}>
-                <DocumentTextIcon className="nav_icon " />
+                <DocumentTextIcon className="nav_icon" />
                 지출 리스트
               </Link>
             </li>
             <li>
-              <Link to="/monthly">
-                <DocumentTextIcon className="nav_icon " />
+              <Link to="/monthly" onClick={navCloseHandler}>
+                <DocumentTextIcon className="nav_icon" />
                 월별
               </Link>
             </li>
             <li>
               <Link to="/yearly" onClick={navCloseHandler}>
-                <GlobeIcon className="nav_icon " />
+                <GlobeIcon className="nav_icon" />
                 연도별
               </Link>
             </li>
             <li>
               <Link to="/budget" onClick={navCloseHandler}>
-                <ChartPieIcon className="nav_icon " />
+                <ChartPieIcon className="nav_icon" />
                 예산 관리
               </Link>
             </li>
@@ -109,7 +115,11 @@ function Nav() {
               로그아웃
             </button>
             <Link to="/setting">
-              <button className="nav_footer_btn" onClick={navCloseHandler}>
+              <button
+                className="nav_footer_btn"
+                onClick={navCloseHandler}
+                ref={cogIcon}
+              >
                 <CogIcon className="nav_icon_cog" />
               </button>
             </Link>
