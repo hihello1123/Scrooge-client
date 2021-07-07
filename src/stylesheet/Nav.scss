@@ -41,6 +41,9 @@
         color: $blue-color;
         transform: rotate(360deg);
       }
+      &.focused {
+        color: $blue-color;
+      }
     }
   }
 
