@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { DotsVerticalIcon } from '@heroicons/react/outline';
+import { DotsVerticalIcon, XIcon } from '@heroicons/react/outline';
 import { Emoji } from 'emoji-mart';
 import Dailyform from './Dailyform';
 import { useSelector, useDispatch } from 'react-redux';
@@ -70,9 +70,11 @@ function DailyListItem({ item }) {
               </li>
             </ul>
           </div>
-          <div className="dailyItemWarn modal" ref={deleteWarnDropDown}>
+          <div className="modal" ref={deleteWarnDropDown}>
             <h3>경고</h3>
-            <div onClick={deleteDropDownHandler}>닫기</div>
+            <button className="XIcon" onClick={deleteDropDownHandler}>
+              <XIcon />
+            </button>
             <p>
               해당 내역을 삭제하면
               <br />
