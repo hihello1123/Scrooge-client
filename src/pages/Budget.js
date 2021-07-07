@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Chart from 'react-google-charts';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBudget, createBudget, GET_BUDGET } from '../actions';
+import { getBudget, createBudget, navEffect, GET_BUDGET } from '../actions';
 import { PlusIcon, XIcon } from '@heroicons/react/outline';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
@@ -52,6 +52,7 @@ function Budget() {
 
     document.addEventListener('mousedown', handleClick, false);
     let url = new URL(window.location.href);
+    dispatch(navEffect(url.pathname));
     return () => {
       document.removeEventListener('mousedown', handleClick, false);
       dispatch({ type: GET_BUDGET }); // 메모리 누수 방지

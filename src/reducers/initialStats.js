@@ -63,5 +63,8 @@ const initialStats = {
       ],
     },
   },
+  navEffect: {
+    currentPath: '/daily',
+  },
 };
 export default initialStats;

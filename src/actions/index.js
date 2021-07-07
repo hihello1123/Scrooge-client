@@ -463,3 +463,13 @@ export const createBudget = (data, accessToken) => (dispatch) => {
       console.log(err.response);
     });
 };
+
+// Nav 이펙트
+
+export const NAV_EFFECT = 'NAV_EFFECT';
+export const navEffect = (data) => {
+  return {
+    type: NAV_EFFECT,
+    data,
+  };
+};
