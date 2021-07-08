@@ -12,10 +12,10 @@ function DailyList() {
       <div className="top hr"></div>
       <div className="dailyList">
         <div className="dailyList_tag">
-          <div className="">카테고리</div>
-          <div className="">지출 금액</div>
-          <div className="">메모</div>
-          <div className="">날짜</div>
+          <div>예산</div>
+          <div>지출 금액</div>
+          <div>메모</div>
+          <div>날짜</div>
         </div>
         {bottom.map((item) => {
           return (
