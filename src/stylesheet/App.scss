@@ -21,6 +21,10 @@
   margin: 0px;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: $white-color;
   margin: 0;
@@ -127,6 +131,7 @@ textarea {
 }
 
 .modal {
+  z-index: 2;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -147,6 +152,7 @@ textarea {
     font-size: $font-large;
   }
   p {
+    text-align: center;
     font-size: $font-default;
   }
   .XIcon {

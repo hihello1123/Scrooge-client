@@ -11,8 +11,8 @@ import BudgetList from '../components/BudgetList';
 function Budget() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
-  const { accessToken } = isLoggedInReducer.userLoggedIn;
   const getBudgetReducer = useSelector((state) => state.getBudgetReducer);
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
   const { loading, categories, usedGraph, budgetGraph } =
     getBudgetReducer.budget;
 

@@ -463,6 +463,43 @@ export const createBudget = (data, accessToken) => (dispatch) => {
     });
 };
 
+export const editBudget = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/fixcategoryinfo`,
+      {
+        categoryId: data.categoryId,
+        categoryname: data.categoryname,
+        budget: data.budget,
+        emoji: data.emoji,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getBudget(accessToken));
+    });
+};
+
+export const deleteBudget = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/deletecategory`,
+      {
+        categoryname: data,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getBudget(accessToken));
+    });
+};
+
 // Nav 이펙트
 
 export const NAV_EFFECT = 'NAV_EFFECT';
