@@ -5,7 +5,6 @@ import DailyListItem from './DailyListItem';
 function DailyList() {
   const dailyReducer = useSelector((state) => state.dailyReducer);
   const { bottom } = dailyReducer.daily;
-  console.log(bottom);
   return (
     <>
       <div className="top hr"></div>
@@ -22,7 +21,7 @@ function DailyList() {
               <circle cx="107" cy="107" r="107" fill="#E3EBFF" />
               <mask
                 id="mask0"
-                mask-type="alpha"
+                masktype="alpha"
                 maskUnits="userSpaceOnUse"
                 x="0"
                 y="0"
@@ -85,9 +84,9 @@ function DailyList() {
               <path
                 d="M97 55L93.5 59L90 55"
                 stroke="#385AD2"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <rect
                 x="109"
@@ -129,13 +128,13 @@ function DailyList() {
               <path
                 d="M111.971 190.278L109.233 193.019M123.375 194.375L120.792 200.833L115.625 186.625L129.833 191.792L123.375 194.375ZM123.375 194.375L129.833 200.833L123.375 194.375ZM113.284 177.892L114.288 181.634L113.284 177.892ZM110.634 185.288L106.891 184.285L110.634 185.288ZM122.019 180.231L119.278 182.972L122.019 180.231Z"
                 stroke="#152253"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M122.314 193.314C122.471 193.158 122.654 193.043 122.849 192.97L125.628 191.859L118.133 189.133L120.858 196.628L121.97 193.849C122.043 193.654 122.158 193.471 122.314 193.314Z"
                 fill="white"
               />
