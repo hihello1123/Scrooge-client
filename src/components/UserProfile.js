@@ -16,8 +16,10 @@ function UserProfile() {
             <img src={userPhoto} alt=""></img>
           </div>
           <div className="user_profile_info">
-            <span className="user_profile_info_name">{userName}</span>
-            <span className="user_profile_info_level">{userLevel}</span>
+            <span className="user_profile_info_name">
+              {userName}
+              <span className="user_profile_info_level">{userLevel}</span>
+            </span>
             <progress
               className="user_profile_info_exp"
               value={userEXP}

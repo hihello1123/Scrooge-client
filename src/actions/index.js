@@ -424,6 +424,7 @@ export const yearlyList = (accessToken) => (dispatch) => {
 export const GET_BUDGET = 'GET_BUDGET';
 export const GET_BUDGET_SUCCESS = 'GET_BUDGET_SUCCESS';
 export const GET_BUDGET_ERROR = 'GET_BUDGET_ERROR';
+export const CREATE_BUDGET_ERROR = 'CREATE_BUDGET_ERROR';
 
 export const getBudget = (accessToken) => (dispatch) => {
   dispatch({ type: GET_BUDGET });
@@ -459,7 +460,7 @@ export const createBudget = (data, accessToken) => (dispatch) => {
       dispatch(getBudget(accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      return err.response.data.message;
     });
 };
 

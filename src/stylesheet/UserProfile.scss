@@ -28,12 +28,12 @@
     &_name {
       display: inline-block;
       font-size: $font-medium;
-      margin-right: 3px;
       margin-bottom: 3px;
       max-width: 100px;
       overflow: hidden;
     }
     &_level {
+      margin-left: 3px;
       font-family: $noto-font;
       font-size: $font-small;
       color: $gray-color;

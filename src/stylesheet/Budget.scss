@@ -150,6 +150,12 @@
         button {
           margin-top: 5px;
         }
+        .createErr {
+          color: $red-color;
+          text-align: center;
+          font-size: $font-small;
+          border-radius: 5px;
+        }
       }
     }
   }
@@ -201,6 +207,6 @@
 }
 @include tablet {
   .budget {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 }
