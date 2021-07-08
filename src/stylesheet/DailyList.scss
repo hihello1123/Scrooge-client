@@ -2,7 +2,19 @@
   margin-bottom: 30px;
   padding: 30px;
   background-color: #fff;
+  width: 100%;
+  min-height: 50px;
   border-radius: 16px;
+  .empty_state {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 350px;
+    p {
+      font-size: $font-large;
+    }
+  }
   &_tag {
     display: grid;
     grid-template-rows: 25px;
