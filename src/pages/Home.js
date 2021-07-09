@@ -38,9 +38,6 @@ function Home() {
 
     dispatch(refreshTokenRequest());
     document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.removeEventListener('mousedown', handleClick, false);
-    };
   }, [dispatch]);
 
   const handleClick = () => {

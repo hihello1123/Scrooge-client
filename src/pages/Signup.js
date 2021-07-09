@@ -47,10 +47,7 @@ function Signup() {
     }
 
     document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.removeEventListener('mousedown', handleClick, false);
-    };
-  }, []);
+  }, [dispatch]);
 
   const handleClick = () => {
     dispatch(deleteModalMessage());

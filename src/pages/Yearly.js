@@ -25,22 +25,21 @@ function Yearly() {
     return cellSize;
   }
 
-  let test = [
+  let calendarData = [
     [
       { type: 'date', id: 'Date' },
       { type: 'number', id: 'Won/Loss' },
     ],
   ];
 
-  function testing(num) {
-    for (let n = 0; n < num; n++) {
-      test.push([new Date(2021, 7, n), 0]);
+  function testing(arr) {
+    for (let n = 0; n < arr.length; n++) {
+      calendarData.push([
+        new Date(`${arr[n][0]},${arr[n][1]},${arr[n][2]}`),
+        `${arr[n][3]}`,
+      ]);
     }
   }
-
-  testing(5);
-
-  console.log(test);
 
   return (
     <div className="container yearly_top_container">
@@ -48,7 +47,7 @@ function Yearly() {
         <Chart
           chartType="Calendar"
           loader={<div>Loading Chart</div>}
-          data={test}
+          data={calendarData}
           options={{
             title: '달성 스크루지 데이',
             calendar: {

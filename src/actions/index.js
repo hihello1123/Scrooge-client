@@ -84,8 +84,8 @@ export const checkEmailExists = (email, history) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
-      dispatch(saveModalMessage('이미 가입된 이메일입니다'));
       dispatch(goToHome(history));
+      dispatch(saveModalMessage('이미 가입된 이메일입니다'));
     });
 };
 
