@@ -424,7 +424,7 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      // dispatch(getUserInfo()) 유저인포 다시 불러오기
     });
 };
 

@@ -20,10 +20,10 @@ function Monthly() {
   });
 
   useEffect(() => {
-    dispatch(getDaily(accessToken));
-    dispatch(monthlyData(accessToken, top.monthlyBudget));
     let url = new URL(window.location.href);
     dispatch(navEffect(url.pathname));
+    dispatch(getDaily(accessToken));
+    dispatch(monthlyData(accessToken, top.monthlyBudget));
   }, [dispatch]);
 
   return loading ? (

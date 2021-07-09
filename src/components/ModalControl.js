@@ -19,7 +19,9 @@ function ModalControl({
   return (
     <div className="user_setting_bottom_items">
       <div>{SetText}</div>
-      <button onClick={modalHandler}>{SetBtnText}</button>
+      <button className="user_setting_bottom_items_btn" onClick={modalHandler}>
+        {SetBtnText}
+      </button>
       <div className="modal" onClick={modalHandler} ref={modal}>
         <h3>{title}</h3>
         <button className="XIcon">

@@ -25,10 +25,11 @@ function UserSetting() {
   const [isPassword, setPassword] = useState(false);
   const [tempInfo, setTempInfo] = useState({
     username: userName,
-    photo: undefined,
-    password: undefined,
-    passwordCheck: undefined,
+    photo: null,
+    password: null,
+    passwordCheck: null,
   });
+  const [incodingFile, setIncodingFile] = useState(null);
 
   useEffect(() => {
     let url = new URL(window.location.href);
@@ -61,9 +62,20 @@ function UserSetting() {
       ...tempInfo,
       photo: file,
     });
+    // 인코딩 후 미리보기에 표시
+    if (file) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        setIncodingFile(e.target.result);
+      };
+    } else {
+      setIncodingFile(null);
+    }
   }
 
   let editInfoRequestHandler = async (e) => {
+    e.preventDefault();
     const fd = new FormData();
     if (tempInfo.photo) {
       fd.append('username', tempInfo.username);
@@ -77,6 +89,7 @@ function UserSetting() {
   };
 
   let editPasswordRequestHandler = async (e) => {
+    e.preventDefault();
     if (isPassword) {
       if (!tempInfo.password || !tempInfo.passwordCheck) {
         alert('비밀번호를 입력해주세요');
@@ -84,7 +97,6 @@ function UserSetting() {
         alert('비밀번호를 확인해주세요');
       }
     }
-    e.preventDefault();
 
     dispatch(passwordEdit(tempInfo, accessToken));
     dispatch(userLogOut(accessToken, history));
@@ -128,7 +140,7 @@ function UserSetting() {
                     name="newpassword"
                     type="password"
                     onChange={inputHandler}
-                    className="edit_input_password"
+                    className="edit_input"
                     required
                   />
                 </div>
@@ -144,7 +156,7 @@ function UserSetting() {
                     name="passwordCheck"
                     type="password"
                     onChange={inputHandler}
-                    className="edit_input_password"
+                    className="edit_input"
                     required
                   />
                 </div>
@@ -159,13 +171,10 @@ function UserSetting() {
           </div>
         ) : (
           <div className="edit_inputZone">
-            <div className="edit_img">
-              <img src={userPhoto} alt="사진" className="pre_img" />
-            </div>
             <form className="edit_form">
               <div className="edit_form_photo">
-                <label className="edit_form_label" htmlFor="photo">
-                  사진
+                <label htmlFor="photo">
+                  <img src={incodingFile || userPhoto} alt="사진" />
                 </label>
                 <input
                   id="photo"
@@ -173,46 +182,49 @@ function UserSetting() {
                   type="file"
                   accept="image/jpg, image/png, image/jpeg, image/gif"
                   onChange={inputPhoto}
-                  className="edit_input"
-                  required
+                  className="edit_input image_input"
                 />
               </div>
-              <div className="edit_form_nickname">
-                <label className="edit_form_label" htmlFor="nickname">
-                  사용자명
-                </label>
-                <input
-                  id="username"
-                  name="username"
-                  type="username"
-                  onChange={inputHandler}
-                  className="edit_input"
-                  required
-                  placeholder={userName}
-                ></input>
+              <div className="edit_form_info">
+                <div className="deit_form_input_group">
+                  <label className="edit_form_label" htmlFor="nickname">
+                    사용자명
+                  </label>
+                  <input
+                    id="username"
+                    name="username"
+                    type="username"
+                    onChange={inputHandler}
+                    className="edit_input"
+                    placeholder={userName}
+                  ></input>
+                </div>
+                <di className="deit_form_input_group">
+                  <label className="edit_form_label" htmlFor="email">
+                    이메일
+                  </label>
+                  <div className="edit_input edit_input_email">{userEmail}</div>
+                </di>
+                <div className="edit_form_changepw">
+                  <label />
+                  {!path ? (
+                    <span
+                      className="edit_form_label"
+                      onClick={() => setPassword(true)}
+                    >
+                      비밀번호 변경
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                <button
+                  className="edit_submit"
+                  onClick={editInfoRequestHandler}
+                >
+                  수정
+                </button>
               </div>
-              <div className="edit_form_email">
-                <label className="edit_form_label" htmlFor="email">
-                  이메일
-                </label>
-                <div className="edit_input">{userEmail}</div>
-              </div>
-              <div className="edit_form_changepw">
-                <label />
-                {!path ? (
-                  <span
-                    className="edit_form_label"
-                    onClick={() => setPassword(true)}
-                  >
-                    비밀번호 변경
-                  </span>
-                ) : (
-                  <></>
-                )}
-              </div>
-              <button className="edit_submit" onClick={editInfoRequestHandler}>
-                수정
-              </button>
             </form>
           </div>
         )}
@@ -223,11 +235,11 @@ function UserSetting() {
           <div className="user_setting_bottom_save">저장</div>
         </div>
         <ModalControl
-          SetText="엑셀 파일로 내보내기"
-          SetBtnText="엑셀 파일 다운로드"
+          SetText="데이터 내보내기"
+          SetBtnText="다운로드"
           title="엑셀 파일 다운하기"
           modelTextTop=""
-          modelTextMid=""
+          modelTextMid="costList.xlsx"
           modelTextBot=""
           buttonText="다운로드"
           func={importexceleventhandler}
