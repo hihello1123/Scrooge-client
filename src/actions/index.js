@@ -1,4 +1,5 @@
 import axios from 'axios';
+import xlsx from 'xlsx';
 
 export const HELLO_LOADING = 'HELLO_LOADING';
 export const HELLO_SUCCESS = 'HELLO_SUCCESS';
@@ -67,7 +68,7 @@ export const EMAIL_SIGNUP = 'EMAIL_SIGNUP';
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';
 export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 
-export const checkEmailExists = (email) => (dispatch) => {
+export const checkEmailExists = (email, history) => (dispatch) => {
   dispatch({ type: EMAIL_SIGNUP });
   axios
     .post(
@@ -83,7 +84,8 @@ export const checkEmailExists = (email) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: EMAIL_SIGNUP_ERROR });
-      alert('가입된 이메일입니다.');
+      dispatch(saveModalMessage('이미 가입된 이메일입니다'));
+      dispatch(goToHome(history));
     });
 };
 
@@ -97,15 +99,16 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
     })
     .then((res) => {
       if (String(res.data.message).includes('회원가입')) {
-        alert('카카오 회원가입을 해주세요');
+        dispatch(saveModalMessage('카카오 회원가입을 해주세요'));
       } else {
         dispatch(userLogin(res.data.data.accessToken, '카카오'));
+        dispatch(deleteModalMessage());
       }
     })
     .catch((err) => {
       console.log(err.response);
       if (err.response.data.message.includes('회원가입')) {
-        alert('카카오 회원가입을 해주세요');
+        dispatch(saveModalMessage('카카오 회원가입을 해주세요'));
       }
     });
 };
@@ -119,15 +122,16 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
     .then((res) => {
       console.log(res);
       if (String(res.data.message).includes('회원가입')) {
-        alert('구글 회원가입을 해주세요');
+        dispatch(saveModalMessage('구글 회원가입을 해주세요'));
       } else {
         dispatch(userLogin(res.data.data.accessToken, '구글'));
+        dispatch(deleteModalMessage());
       }
     })
     .catch((err) => {
       console.log(err.response);
       if (err.response.data.message.includes('회원가입')) {
-        alert('구글 회원가입을 해주세요');
+        dispatch(saveModalMessage('구글 회원가입을 해주세요'));
       }
     });
 };
@@ -143,10 +147,8 @@ export const kakaoSignUp = (authorizationCode, history) => (dispatch) => {
       dispatch(socialData({ email: res.data.data }));
     })
     .catch((err) => {
-      console.log(err.response);
-      alert(err.response.data.message);
+      dispatch(saveModalMessage(err.response.data.message));
       dispatch(socialDataDelete());
-      dispatch(goToHome(history));
     });
 };
 
@@ -160,10 +162,8 @@ export const googleSignUp = (authorizationCode, history) => (dispatch) => {
       dispatch(socialData({ email: res.data.data }));
     })
     .catch((err) => {
-      console.log(err);
-      alert(err.response.data.message);
+      dispatch(saveModalMessage(err.response.data.message));
       dispatch(socialDataDelete());
-      dispatch(goToHome(history));
     });
 };
 
@@ -228,6 +228,7 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     })
     .catch(() => {
       dispatch({ type: USER_SIGNIN_ERROR });
+      dispatch(saveModalMessage('이메일 혹은 비밀번호가 잘못 입력되었습니다'));
     });
 };
 
@@ -278,7 +279,6 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data);
       dispatch(writeUserInfo(res.data.data));
       return res;
     })
@@ -428,6 +428,31 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
+//월별 데이터
+
+export const MONTHLY_DATA = 'MONTHLY_DATA';
+
+export const monthlyData = (accessToken, monthlyBudget) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/getmonthlydata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log('monthlydata is');
+      console.log(res.data.data.daily);
+      dispatch({
+        type: MONTHLY_DATA,
+        data: res.data.data.daily,
+        monthlyBudget: monthlyBudget,
+      });
+    })
+    .catch((err) => {
+      console.log('monthlydata error is');
+      console.log(err.response);
+    });
+};
+
 //연도별 데이터
 export const YEARLY_DATA = 'YEARLY_DATA';
 
@@ -537,4 +562,42 @@ export const navEffect = (data) => {
     type: NAV_EFFECT,
     data,
   };
+};
+
+// Yearly ================================================== // 액션 객체 생성 함수
+export const GET_EXCEL = 'GET_EXCEL'; // 로딩값이 있는 경우 사용한다.
+export const GET_EXCEL_SUCCESS = 'GET_EXCEL_SUCCESS';
+export const GET_EXCEL_ERROR = 'GET_EXCEL_ERROR';
+// 액션 타입 설정
+
+export const importExcel = (accessToken) => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/importexcel`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.data.data.costList);
+      const book = xlsx.utils.book_new();
+      const costList = res.data.data.costList;
+      xlsx.utils.book_append_sheet(book, costList, 'costList');
+      xlsx.writeFile(book, 'costList.xlsx');
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+//모달 메세지
+export const SAVE_MODAL_MESSAGE = 'SAVE_MODAL_MESSAGE';
+export const DELETE_MODAL_MESSAGE = 'DELETE_MODAL_MESSAGE';
+export const IS_MODAL_TRUE = 'IS_MODAL_TRUE';
+export const IS_MODAL_FALSE = 'IS_MODAL_FALSE';
+
+export const saveModalMessage = (message) => (dispatch) => {
+  dispatch({ type: SAVE_MODAL_MESSAGE, message: message });
+};
+
+export const deleteModalMessage = () => (dispatch) => {
+  dispatch({ type: DELETE_MODAL_MESSAGE });
 };

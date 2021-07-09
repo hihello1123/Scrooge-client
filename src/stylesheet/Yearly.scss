@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 .yearly {
   font-family: $noto-font;
   color: $white-color;
@@ -9,84 +13,88 @@
   }
   &_3 {
     background-color: #77e4ff;
+    margin-bottom: 10px;
   }
+
   &_bottom {
-    display: flex;
-    flex-direction: row;
-    color: $white-color;
-    &_title {
-      color: $black-color;
-      margin: 20px;
-    }
-
-    &_rank {
-      font-size: $font-SMlarge;
-    }
-
-    &_result {
-      font-size: $font-large;
-    }
-    &_achieve {
-      color: $black-color;
-      display: flex;
-      justify-content: space-between;
-      height: 50px;
-      width: 100%;
-      padding: 15px;
-    }
-    &_achieve:not(:last-child) {
-      border-bottom: 1px solid $gray-color;
-    }
+    display: grid;
+    grid-template-rows: repeat(1, minmax(480px, 588px));
+    grid-template-columns: repeat(3, minmax(320px, 480px));
+    column-gap: 25px;
 
     &_container {
-      flex: 1;
-      background-color: #ffffff;
-      align-items: center;
+      padding: 10px;
+      display: grid;
+      grid-template-rows: 68px 1fr 1fr 1fr;
       border-radius: 22px;
-      display: flex;
-      flex-direction: column;
-      height: 500px;
-      padding-right: 20px;
-      padding-left: 20px;
-      min-width: 360px;
+      background-color: #ffffff;
 
-      &_inner {
-        padding: 20px;
-        justify-content: space-between;
+      &_title {
+        font-size: $font-SMlarge;
         text-align: center;
+        margin-top: 20px;
+      }
+      &_inner:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      &_inner {
+        display: grid;
+        grid-template-rows: 58px 1fr;
+        text-align: center;
+        white-space: wrap;
+        margin: 0px 10px;
+        border-radius: 23px;
+        max-height: 159px;
+        font-size: 3vmin;
+        align-items: center;
+        color: $white-color;
+        &_span {
+          font-size: 3vmin;
+          height: fit-content;
+        }
+
+        &_rank {
+          font-size: $font-SMlarge;
+          line-height: 52px;
+        }
+
+        &_result {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+
+          &_cost {
+            margin-top: 5px;
+          }
+        }
+
+        &_dateCategoryCost {
+          font-size: $font-SMlarge;
+          display: flex;
+          justify-content: center;
+          white-space: wrap;
+          height: 100%;
+        }
+      }
+
+      &_achieve {
         display: flex;
         flex-direction: column;
-        border-radius: 23px;
         width: 100%;
-        height: 588px;
-        flex: 1;
-        margin-bottom: 10px;
-      }
-    }
-    &_container:not(:last-child) {
-      margin-right: 50px;
-    }
-  }
-}
+        border-radius: 22px;
+        background-color: #ffffff;
+        padding: 20px;
+        &_title {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          padding: 8px;
+          margin-top: 15px;
+        }
 
-svg {
-  overflow: visible;
-}
-
-@include mobile {
-  .yearly {
-    &_bottom {
-      flex-direction: column;
-      &_rank {
-        font-size: $font-medium;
-      }
-      &_result {
-        font-size: $font-small;
-      }
-      &_container {
-        margin-bottom: 30px;
-        min-width: 330px;
-        max-width: 330px;
+        &_resultdata {
+          color: $blue-color;
+        }
       }
     }
   }
@@ -99,15 +107,71 @@ svg {
     }
   }
 }
-//================================test
 
-.test_container {
-  width: 100%;
-  height: 100%;
-  padding-left: 410px;
+@include tablet {
+  .yearly {
+    &_bottom {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(466px, 500px));
+      grid-template-columns: repeat(2, minmax(290px, 600px));
+      column-gap: 25px;
+      row-gap: 10px;
+
+      &_container {
+        &_inner {
+          max-height: 135px;
+          font-size: 2.3vmin;
+          margin-bottom: 10px;
+
+          &_span {
+            font-size: 2.3vmin;
+            height: fit-content;
+          }
+        }
+
+        &_achieve {
+          padding: 20px;
+          grid-column: 1 / 3;
+          display: grid;
+          grid-auto-rows: 68px 0.15fr;
+          height: fit-content;
+        }
+      }
+    }
+  }
 }
+
 @include mobile {
-  .test_container {
-    padding-left: 0px;
+  .yearly {
+    &_bottom {
+      display: grid;
+      grid-template-rows: repeat(3, minmax(466px, 588px));
+      grid-template-columns: repeat(1, minmax(290px, 600px));
+      column-gap: 25px;
+      row-gap: 10px;
+
+      &_container {
+        &_inner {
+          font-size: $font-medium;
+
+          &_result {
+            height: fit-content;
+            font-size: $font-medium;
+          }
+          &_dateCategoryCost {
+            display: flex;
+            font-size: $font-medium;
+            align-items: center;
+          }
+
+          &_span {
+            margin-bottom: 20px;
+          }
+        }
+        &_achieve {
+          height: fit-content;
+        }
+      }
+    }
   }
 }

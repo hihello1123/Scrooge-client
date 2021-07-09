@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { socialDataDelete, userSignInRequest } from '../actions';
+import {
+  saveModalMessage,
+  socialDataDelete,
+  userSignInRequest,
+} from '../actions';
 import { Link } from 'react-router-dom';
 import { MailIcon, XIcon } from '@heroicons/react/outline';
 
@@ -46,11 +50,11 @@ function Login({ modalSet }) {
     if (!loginInfo.email || !loginInfo.password) {
       if (!loginInfo.email) {
         //TODO: UX
-        alert('이메일을 입력해주세요');
+        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
       }
       if (!loginInfo.password) {
         //TODO: UX
-        alert('비밀번호를 입력해주세요');
+        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
       }
       return;
     }
@@ -62,6 +66,7 @@ function Login({ modalSet }) {
   function inputHandler(e) {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
+
   return (
     <div className="signin_modal">
       <XIcon className="X_btn" onClick={modalSet} />
@@ -88,10 +93,6 @@ function Login({ modalSet }) {
             className="password"
             required
           ></input>
-          <Link to="pwinquiry" className="signin_pwinquiry">
-            비밀번호 찾기
-          </Link>
-          {signInErr ? <div>에러메시지</div> : <></>}
           <button className="signin_submit submit" onClick={loginHandler}>
             로그인
           </button>

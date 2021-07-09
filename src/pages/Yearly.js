@@ -22,7 +22,7 @@ function Yearly() {
   }
 
   return (
-    <div className="yearly_top_container">
+    <div className="container yearly_top_container">
       <div className="activeChart">
         <Chart
           chartType="Calendar"

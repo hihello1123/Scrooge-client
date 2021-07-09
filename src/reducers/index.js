@@ -7,9 +7,10 @@ import dailyReducer from './dailyReducer';
 import userSignInReducer from './userSignInReducer';
 import socialDataReducer from './socialDataReducer';
 import yearlyReducer from './yearlyReducer';
+import monthlyReducer from './monthlyReducer';
 import getBudgetReducer from './getBudgetReducer';
 import navEffectReducer from './navEffectReducer';
-import pwinquiryReducer from './pwinquiryReducer';
+import modalMessageReducer from './modalMessageReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   yearlyReducer,
   getBudgetReducer,
   navEffectReducer,
-  pwinquiryReducer,
+  monthlyReducer,
+  modalMessageReducer,
 });
 
 export default rootReducer;

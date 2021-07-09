@@ -67,8 +67,16 @@ const initialStats = {
       ],
     },
   },
+  monthlyData: {
+    data: [],
+  },
   navEffect: {
     currentPath: '/daily',
+  },
+  modalMessage: {
+    message: null,
+    errored: false,
+    isModal: false,
   },
 };
 export default initialStats;
