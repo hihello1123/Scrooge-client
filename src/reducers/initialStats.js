@@ -16,6 +16,10 @@ const initialStats = {
   userSignIn: {
     signInErr: null,
   },
+  pwinquiry: {
+    success: false,
+    error: false,
+  },
   userInfo: {
     loading: false,
     userName: null,

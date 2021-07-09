@@ -231,6 +231,34 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     });
 };
 
+// 비밀번호 찾기
+export const PWINQUIRY_INIT = 'PWINQUIRY_INIT';
+export const PWINQUIRY_SUCCESS = 'PWINQUIRY_SUCCESS';
+export const PWINQUIRY_ERROR = 'PWINQUIRY_ERROR';
+export const pwinquiryInit = () => {
+  return {
+    type: PWINQUIRY_INIT,
+  };
+};
+export const pwinquiry = (data) => (dispatch) => {
+  dispatch(pwinquiryInit());
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/findpassword`,
+      { email: data },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch({ type: PWINQUIRY_SUCCESS });
+    })
+    .catch(() => {
+      dispatch({ type: PWINQUIRY_ERROR });
+    });
+};
+
 // # 겟
 // 홈으로 이동
 export const goToHome = (history) => () => {

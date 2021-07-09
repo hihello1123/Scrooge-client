@@ -88,7 +88,9 @@ function Login({ modalSet }) {
             className="password"
             required
           ></input>
-          <span>비밀번호 찾기</span>
+          <Link to="pwinquiry" className="signin_pwinquiry">
+            비밀번호 찾기
+          </Link>
           {signInErr ? <div>에러메시지</div> : <></>}
           <button className="signin_submit submit" onClick={loginHandler}>
             로그인

@@ -9,6 +9,7 @@ import socialDataReducer from './socialDataReducer';
 import yearlyReducer from './yearlyReducer';
 import getBudgetReducer from './getBudgetReducer';
 import navEffectReducer from './navEffectReducer';
+import pwinquiryReducer from './pwinquiryReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   yearlyReducer,
   getBudgetReducer,
   navEffectReducer,
+  pwinquiryReducer,
 });
 
 export default rootReducer;

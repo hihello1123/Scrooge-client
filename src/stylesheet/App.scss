@@ -15,6 +15,7 @@
 @import 'Budget';
 @import 'Yearly';
 @import 'UserSetting';
+@import 'Pwinquiry';
 
 * {
   box-sizing: border-box;
@@ -68,8 +69,10 @@ a {
 
 input {
   background-color: #fff;
-  padding: 15px 17px;
+  padding: 16px 17px;
   border-radius: 16px;
+  font-size: $font-default;
+  line-height: 1;
   border: none;
   outline: none;
   color: $black-color;
