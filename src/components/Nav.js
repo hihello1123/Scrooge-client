@@ -6,6 +6,7 @@ import {
   DocumentTextIcon,
   LogoutIcon,
   MenuIcon,
+  ViewGridIcon,
   ChartPieIcon,
   GlobeIcon,
   XIcon,
@@ -104,7 +105,7 @@ function Nav() {
             </li>
             <li>
               <Link to="/monthly" onClick={navCloseHandler}>
-                <DocumentTextIcon className="nav_icon" />
+                <ViewGridIcon className="nav_icon" />
                 월별
               </Link>
             </li>
