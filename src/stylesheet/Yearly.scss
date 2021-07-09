@@ -156,16 +156,17 @@ html {
 
           &_result {
             height: fit-content;
-            font-size: $font-medium;
+            font-size: $font-large;
           }
           &_dateCategoryCost {
             display: flex;
-            font-size: $font-medium;
+            font-size: $font-large;
             align-items: center;
           }
 
           &_span {
             margin-bottom: 20px;
+            font-size: $font-large;
           }
         }
         &_achieve {

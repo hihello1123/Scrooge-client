@@ -88,7 +88,7 @@ function YearlyList() {
       <div className="yearly_bottom_container_achieve">
         <div className="yearly_bottom_container_title">올해 업적</div>
         <div className="yearly_bottom_container_achieve_title">
-          <div>스크루지 데이</div>
+          <div>연속 스크루지 데이</div>
           <div className="yearly_bottom_container_achieve_resultdata">
             {achieve[0].scrooge}일
           </div>
