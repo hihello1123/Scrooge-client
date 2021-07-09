@@ -104,6 +104,11 @@ function Budget() {
       }
     }
 
+    if (!inputData.budget <= 0) {
+      setCreateBudgetErr('이스터에그(1) 음수 값 입력하기');
+      return;
+    }
+
     dispatch(createBudget(inputData, accessToken));
   };
 
