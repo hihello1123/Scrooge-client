@@ -58,7 +58,7 @@ function Yearly() {
           loader={<div>Loading Chart</div>}
           data={calendarData}
           options={{
-            title: '달성 스크루지 데이',
+            title: '지출 횟수',
             calendar: {
               cellSize: scale(5, 16),
               cellColor: {
