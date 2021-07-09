@@ -26,9 +26,10 @@ function Nav() {
   useEffect(() => {
     dispatch(getUserInfo(accessToken, history));
   }, [accessToken, history, dispatch]);
+
   useEffect(() => {
     navEffectHandler();
-  }, [dispatch, accessToken]);
+  });
 
   const nav = useRef();
   const navMenu = useRef();
@@ -66,6 +67,7 @@ function Nav() {
       navMenu.current.childNodes[i].classList.remove('focused');
     }
     cogIcon.current.childNodes[0].classList.remove('focused');
+    console.log(currentPath);
     switch (currentPath) {
       case '/daily':
         navMenu.current.childNodes[0].classList.add('focused');
@@ -121,12 +123,6 @@ function Nav() {
                 예산 관리
               </Link>
             </li>
-            {/* <li>
-              <Link to="/test">
-                <DocumentTextIcon className="nav_icon " />
-                테스트
-              </Link>
-            </li> */}
           </ul>
           <footer className="nav_footer">
             <button className="nav_footer_btn" onClick={signOutHandler}>

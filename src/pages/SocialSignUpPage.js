@@ -24,13 +24,10 @@ function SocialSignUpPage() {
   }
 
   let socialsignupRequestHandler = async (e) => {
-    if (!socialDatas.username || !socialDatas.photo || !socialDatas.email) {
+    if (!socialDatas.username || !socialDatas.email) {
       //TODO: UX
       if (!socialDatas.username) {
         alert('닉네임을 입력해주세요');
-      }
-      if (!socialDatas.photo) {
-        alert('사진을 첨부해주세요');
       }
       if (!socialDatas.email) {
         alert('처음부터 진행해주세요');
@@ -58,7 +55,6 @@ function SocialSignUpPage() {
           accept="image/jpg, image/png, image/jpeg, image/gif"
           onChange={inputPhoto}
           className="photo"
-          required
         />
         <label htmlFor="username">닉네임</label>
         <input
