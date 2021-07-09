@@ -72,6 +72,7 @@ const initialStats = {
   modalMessage: {
     message: null,
     errored: false,
+    isModal: false,
   },
 };
 export default initialStats;

@@ -102,6 +102,7 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
         dispatch(saveModalMessage('카카오 회원가입을 해주세요'));
       } else {
         dispatch(userLogin(res.data.data.accessToken, '카카오'));
+        dispatch(deleteModalMessage());
       }
     })
     .catch((err) => {
@@ -124,6 +125,7 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
         dispatch(saveModalMessage('구글 회원가입을 해주세요'));
       } else {
         dispatch(userLogin(res.data.data.accessToken, '구글'));
+        dispatch(deleteModalMessage());
       }
     })
     .catch((err) => {
@@ -523,6 +525,8 @@ export const importExcel = (accessToken) => (dispatch) => {
 //모달 메세지
 export const SAVE_MODAL_MESSAGE = 'SAVE_MODAL_MESSAGE';
 export const DELETE_MODAL_MESSAGE = 'DELETE_MODAL_MESSAGE';
+export const IS_MODAL_TRUE = 'IS_MODAL_TRUE';
+export const IS_MODAL_FALSE = 'IS_MODAL_FALSE';
 
 export const saveModalMessage = (message) => (dispatch) => {
   dispatch({ type: SAVE_MODAL_MESSAGE, message: message });

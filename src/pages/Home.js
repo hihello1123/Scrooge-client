@@ -3,34 +3,54 @@ import { useSelector, useDispatch } from 'react-redux';
 import Daily from './Daily';
 import Login from '../components/Login';
 import { Link } from 'react-router-dom';
-import { deleteModalMessage } from '../actions';
+import {
+  refreshTokenRequest,
+  getGoogleCode,
+  getKakaoCode,
+  socialDataDelete,
+  deleteModalMessage,
+} from '../actions';
 
 function Home() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
-  const [ismodal, setmodal] = useState(false);
   const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
   const { message, errored } = modalMessageReducer;
 
+  const [isModal, setModal] = useState(false);
+
   useEffect(() => {
+    dispatch(socialDataDelete());
+    let url = new URL(window.location.href);
+    let address = url.search;
+
+    const authorizationCode = url.searchParams.get('code');
+    if (!authorizationCode) {
+      return;
+    } else if (url.pathname === '/' && address.includes('www.googleapis.com')) {
+      dispatch(getGoogleCode(authorizationCode));
+      setModal(true);
+    } else if (url.pathname === '/') {
+      dispatch(getKakaoCode(authorizationCode));
+      setModal(true);
+    }
+
+    dispatch(refreshTokenRequest());
     document.addEventListener('mousedown', handleClick, false);
     return () => {
       document.removeEventListener('mousedown', handleClick, false);
     };
-  });
-
-  let url = new URL(window.location.href);
-
-  const authorizationCode = url.searchParams.get('code');
+  }, [dispatch]);
 
   const handleClick = () => {
     dispatch(deleteModalMessage());
   };
 
-  function modalSet() {
-    setmodal(!ismodal);
-  }
+  const modalSet = () => {
+    setModal(!isModal);
+  };
+
   return (
     <>
       {isLoggedIn ? (
@@ -42,11 +62,7 @@ function Home() {
           <button onClick={modalSet}>
             임시 랜딩페이지 👻 글씨 눌러서 로그인하기!!!{' '}
           </button>
-          {ismodal || errored || authorizationCode ? (
-            <Login modalSet={modalSet} />
-          ) : (
-            <></>
-          )}
+          {isModal ? <Login modalSet={modalSet} /> : <></>}
           {errored ? (
             <div className="homeModal">
               <div className="homeModal_message">{message}</div>

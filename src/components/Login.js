@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { socialDataDelete, userSignInRequest } from '../actions';
+import {
+  saveModalMessage,
+  socialDataDelete,
+  userSignInRequest,
+} from '../actions';
 import { Link } from 'react-router-dom';
 import { MailIcon, XIcon } from '@heroicons/react/outline';
 
@@ -14,7 +18,6 @@ function Login({ modalSet }) {
   const { signInErr } = userSignInReducer.userSignIn;
   const dispatch = useDispatch();
 
-  const [inputWritten, setInputWritten] = useState(true);
   /* -+-+-+-+-+-+-+-
     카카오 로그인 
   -+-+-+-+-+-+-+-+- */
@@ -47,11 +50,11 @@ function Login({ modalSet }) {
     if (!loginInfo.email || !loginInfo.password) {
       if (!loginInfo.email) {
         //TODO: UX
-        setInputWritten(false);
+        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
       }
       if (!loginInfo.password) {
         //TODO: UX
-        setInputWritten(false);
+        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
       }
       return;
     }
@@ -63,6 +66,7 @@ function Login({ modalSet }) {
   function inputHandler(e) {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
+
   return (
     <div className="signin_modal">
       <XIcon className="X_btn" onClick={modalSet} />
