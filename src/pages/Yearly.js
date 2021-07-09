@@ -34,7 +34,7 @@ function Yearly() {
 
   function testing(num) {
     for (let n = 0; n < num; n++) {
-      test.push([new Date(2021, 7, num), 0]);
+      test.push([new Date(2021, 7, n), 0]);
     }
   }
 
