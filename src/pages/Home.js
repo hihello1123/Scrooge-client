@@ -37,8 +37,12 @@ function Home() {
     }
 
     dispatch(refreshTokenRequest());
-    document.addEventListener('mousedown', handleClick, false);
   }, [dispatch]);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => document.removeEventListener('mousedown', handleClick, false);
+  });
 
   const handleClick = () => {
     dispatch(deleteModalMessage());
