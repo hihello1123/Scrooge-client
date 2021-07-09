@@ -35,9 +35,15 @@ function Home() {
       dispatch(getKakaoCode(authorizationCode));
       setModal(true);
     }
-
     dispatch(refreshTokenRequest());
   }, [dispatch]);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClick, false);
