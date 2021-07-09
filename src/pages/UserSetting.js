@@ -106,17 +106,14 @@ function UserSetting() {
     <div className="container user_setting">
       <div className="user_setting_edit">
         {isPassword ? (
-          <div className="edit_inputZone">
-            <button className="back_btn" onClick={() => setPassword(false)}>
-              <ChevronLeftIcon className="back_icon" />
-            </button>
-            <div className="edit_form_password_div">
-              <form className="edit_form">
-                <div className="edit_form_password">
-                  <label
-                    className="edit_form_label_password"
-                    htmlFor="password"
-                  >
+          <>
+            <form className="edit_form">
+              <button className="back_btn" onClick={() => setPassword(false)}>
+                <ChevronLeftIcon className="back_icon" />
+              </button>
+              <div className="edit_form_password">
+                <div className="edit_form_input_group">
+                  <label htmlFor="password" className="edit_form_label">
                     기존 비밀번호
                   </label>
                   <input
@@ -124,15 +121,12 @@ function UserSetting() {
                     name="password"
                     type="password"
                     onChange={inputHandler}
-                    className="edit_input_password"
+                    className="edit_input"
                     required
                   />
                 </div>
-                <div className="edit_form_password">
-                  <label
-                    className="edit_form_label_password"
-                    htmlFor="password"
-                  >
+                <div className="edit_form_input_group">
+                  <label htmlFor="password" className="edit_form_label">
                     새 비밀번호
                   </label>
                   <input
@@ -144,11 +138,8 @@ function UserSetting() {
                     required
                   />
                 </div>
-                <div className="edit_form_password">
-                  <label
-                    className="edit_form_label_password"
-                    htmlFor="passwordCheck"
-                  >
+                <div className="edit_form_input_group">
+                  <label className="edit_form_label" htmlFor="passwordCheck">
                     비밀번호 확인
                   </label>
                   <input
@@ -161,16 +152,16 @@ function UserSetting() {
                   />
                 </div>
                 <button
-                  className="edit_submit password"
+                  className="edit_submit"
                   onClick={editPasswordRequestHandler}
                 >
                   비밀번호 변경
                 </button>
-              </form>
-            </div>
-          </div>
+              </div>
+            </form>
+          </>
         ) : (
-          <div className="edit_inputZone">
+          <>
             <form className="edit_form">
               <div className="edit_form_photo">
                 <label htmlFor="photo">
@@ -186,7 +177,7 @@ function UserSetting() {
                 />
               </div>
               <div className="edit_form_info">
-                <div className="deit_form_input_group">
+                <div className="edit_form_input_group">
                   <label className="edit_form_label" htmlFor="nickname">
                     사용자명
                   </label>
@@ -199,17 +190,16 @@ function UserSetting() {
                     placeholder={userName}
                   ></input>
                 </div>
-                <di className="deit_form_input_group">
+                <div className="edit_form_input_group">
                   <label className="edit_form_label" htmlFor="email">
                     이메일
                   </label>
                   <div className="edit_input edit_input_email">{userEmail}</div>
-                </di>
+                </div>
                 <div className="edit_form_changepw">
-                  <label />
                   {!path ? (
                     <span
-                      className="edit_form_label"
+                      className="change_password"
                       onClick={() => setPassword(true)}
                     >
                       비밀번호 변경
@@ -226,7 +216,7 @@ function UserSetting() {
                 </button>
               </div>
             </form>
-          </div>
+          </>
         )}
       </div>
       <div className="user_setting_bottom">

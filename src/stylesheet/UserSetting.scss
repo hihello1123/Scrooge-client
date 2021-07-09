@@ -1,6 +1,7 @@
 .user_setting_edit {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-family: $noto-font;
   background-color: white;
   max-width: 857px;
@@ -8,10 +9,16 @@
   margin-bottom: 29px;
   border-radius: 23px;
   .edit_form {
+    position: relative;
     display: flex;
-
+    width: 100%;
+    justify-content: space-around;
     .edit_form_photo {
+      position: relative;
+      margin-right: 30px;
+      height: 170px;
       label {
+        margin-left: 0;
         position: relative;
         display: block;
         width: 170px;
@@ -19,6 +26,7 @@
         overflow: hidden;
         border-radius: 50%;
         background-color: $light-gray-color;
+        cursor: pointer;
       }
       img {
         position: absolute;
@@ -36,20 +44,44 @@
         height: 0px;
         opacity: 0;
       }
+      &:hover {
+        &::before {
+          z-index: 1;
+          content: '변경';
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 170px;
+          height: 170px;
+          color: #fff;
+          font-size: $font-default;
+          border-radius: 50%;
+          background: rgba(21, 34, 83, 0.3);
+          backdrop-filter: blur(8px);
+          pointer-events: none;
+        }
+      }
     }
-    .edit_form_info {
+    .edit_form_info,
+    .edit_form_password {
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-end;
       width: fit-content;
-      .deit_form_input_group {
+      .edit_form_input_group {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        label {
-          width: 120px;
-          font-size: $font-default;
+        .edit_form_label {
+          margin-left: 0;
+          min-width: 25%;
         }
         .edit_input {
-          width: 100%;
+          width: 85%;
           height: 50px;
           color: $black-color;
           font-size: $font-default;
@@ -62,23 +94,21 @@
         .edit_input_email {
           color: $gray-color;
         }
+        &:not(:nth-last-child(2)) {
+          margin-bottom: 15px;
+        }
       }
     }
-  }
-
-  .edit_inputZone {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
+    .edit_form_password {
+      align-items: space-around;
+    }
   }
 
   .edit_submit {
     margin-top: 30px;
-    width: 138px;
-    height: 34px;
     margin-left: auto;
+    width: 210px;
+    height: 40px;
     background: linear-gradient(
         84.73deg,
         rgba(53, 85, 198, 0.44) 1.92%,
@@ -93,14 +123,25 @@
     }
   }
   .back_icon {
-    width: 40px;
-    height: 59px;
+    width: 50px;
+    height: 50px;
   }
   .back_btn {
-    margin-top: 10px;
+    position: absolute;
+    top: 25px;
+    left: 15px;
     margin-bottom: auto;
-    color: $gray-color;
-    background-color: #fff;
+    color: $light-gray-color;
+    background-color: inherit;
+  }
+
+  .change_password {
+    margin-left: 25%;
+    color: $blue-color;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -142,5 +183,60 @@
     color: $gray-color;
     margin-top: 2.5px;
     margin-left: 5px;
+  }
+}
+
+@include mobile {
+  .edit_form {
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    .edit_form_photo {
+      margin-bottom: 25px;
+    }
+    .edit_form_info,
+    .edit_form_password {
+      .edit_form_input_group {
+        .edit_form_label {
+          font-size: $font-small;
+          word-break: keep-all;
+        }
+      }
+    }
+    .edit_form_password {
+      margin-top: 50px;
+    }
+    .edit_submit {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}
+
+@include tablet {
+  .edit_form {
+    padding: 50px;
+    .edit_form_info,
+    .edit_form_password {
+      .edit_form_input_group {
+        .edit_form_label {
+          font-size: $font-default;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .edit_form {
+    padding: 50px;
+    .edit_form_info,
+    .edit_form_password {
+      .edit_form_input_group {
+        .edit_form_label {
+          font-size: $font-default;
+        }
+      }
+    }
   }
 }
