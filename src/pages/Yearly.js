@@ -34,12 +34,21 @@ function Yearly() {
 
   function testing(arr) {
     for (let n = 0; n < arr.length; n++) {
-      calendarData.push([
-        new Date(`${arr[n][0]},${arr[n][1]},${arr[n][2]}`),
-        `${arr[n][3]}`,
-      ]);
+      if (arr[n][3] < 5) {
+        calendarData.push([
+          new Date(`${arr[n][0]},${arr[n][1]},${arr[n][2]}`),
+          `${arr[n][3]}`,
+        ]);
+      } else {
+        calendarData.push([
+          new Date(`${arr[n][0]},${arr[n][1]},${arr[n][2]}`),
+          5,
+        ]);
+      }
     }
   }
+
+  testing(top);
 
   return (
     <div className="container yearly_top_container">
