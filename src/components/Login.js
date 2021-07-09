@@ -88,6 +88,7 @@ function Login({ modalSet }) {
             className="password"
             required
           ></input>
+          <span>비밀번호 찾기</span>
           {signInErr ? <div>에러메시지</div> : <></>}
           <button className="signin_submit submit" onClick={loginHandler}>
             로그인

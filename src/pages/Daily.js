@@ -21,7 +21,7 @@ function Daily() {
 
   return (
     <>
-      {loading ? (
+      {true ? (
         <Loading />
       ) : (
         <div className="daily container">

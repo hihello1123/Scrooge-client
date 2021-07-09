@@ -10,6 +10,7 @@ import UserSetting from '../pages/UserSetting';
 import Yearly from '../pages/Yearly';
 import Budget from '../pages/Budget';
 import Monthly from '../pages/Monthly';
+import Pwinquiry from '../pages/Pwinquiry';
 
 function ScoorgeRoute() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
@@ -20,7 +21,6 @@ function ScoorgeRoute() {
       {isLoggedIn && <Nav />}
       <Switch>
         {!accessToken ? (
-          //accessToken으로 변경하기
           <>
             <Route exact path="/">
               <Home />
@@ -30,6 +30,9 @@ function ScoorgeRoute() {
             </Route>
             <Route exact path="/signup">
               <Signup />
+            </Route>
+            <Route exact path="/pwinquiry">
+              <Pwinquiry />
             </Route>
           </>
         ) : (
