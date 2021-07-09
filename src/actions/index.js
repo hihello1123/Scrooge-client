@@ -428,6 +428,66 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
+export const PASSWORD_EDIT = 'PASSWORD_EDIT';
+
+export const passwordEdit = (data, accessToken) => () => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/changepassword`,
+      {
+        password: data.password,
+        newpassword: data.newpassword,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+// DELETE USER ==================================================
+export const deleteUser = (accessToken, history) => async (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/deleteuser`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: USER_LOGOUT });
+      history.push({ pathname: '/' });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      alert('회원 탈퇴 요청을 실패했습니다');
+    });
+};
+
+// DELETE USER DATA ==================================================
+export const deleteData = (accessToken, history) => async (dispatch) => {
+  // await dispatch({ type:  })
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/deletedata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      //await dispatch({ type:  }); // 전체 데이터 삭제
+      history.push({ pathname: '/daily' });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      alert('데이터 삭제 요청이 거절되었습니다');
+    });
+};
+
 //월별 데이터
 
 export const MONTHLY_DATA = 'MONTHLY_DATA';
