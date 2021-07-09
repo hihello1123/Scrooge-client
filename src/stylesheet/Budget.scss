@@ -106,7 +106,7 @@
     .budget_category_edit {
       display: flex;
       padding: 20px;
-      height: 270px;
+      height: fit-content;
       border: 1px solid $light-gray-color;
       border-radius: 16px;
       &.mb {
@@ -140,6 +140,7 @@
       form {
         display: flex;
         flex-direction: column;
+        width: 100%;
         input {
           width: 100%;
           margin-top: 5px;
@@ -148,6 +149,12 @@
         }
         button {
           margin-top: 5px;
+        }
+        .createErr {
+          color: $red-color;
+          text-align: center;
+          font-size: $font-small;
+          border-radius: 5px;
         }
       }
     }
@@ -169,10 +176,14 @@
       }
     }
   }
+  .side_warn {
+    font-size: $font-small;
+  }
 }
 
 @include mobile {
   .budget {
+    margin-top: 10px;
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
     &_category {
@@ -192,5 +203,10 @@
         }
       }
     }
+  }
+}
+@include tablet {
+  .budget {
+    margin-top: 5px;
   }
 }

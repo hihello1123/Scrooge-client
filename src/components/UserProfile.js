@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Loding from './Loading';
+import MiniLoading from './MiniLoading';
 
 function UserProfile() {
   const userInfoReducer = useSelector((state) => state.userInfoReducer);
@@ -9,15 +9,17 @@ function UserProfile() {
   return (
     <div className="user_profile">
       {loading ? (
-        <Loding />
+        <MiniLoading />
       ) : (
         <>
           <div className="user_profile_photo">
             <img src={userPhoto} alt=""></img>
           </div>
           <div className="user_profile_info">
-            <span className="user_profile_info_name">{userName}</span>
-            <span className="user_profile_info_level">{userLevel}</span>
+            <span className="user_profile_info_name">
+              {userName}
+              <span className="user_profile_info_level">{userLevel}</span>
+            </span>
             <progress
               className="user_profile_info_exp"
               value={userEXP}

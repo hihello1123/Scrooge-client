@@ -6,6 +6,7 @@ import {
   DocumentTextIcon,
   LogoutIcon,
   MenuIcon,
+  ViewGridIcon,
   ChartPieIcon,
   GlobeIcon,
   XIcon,
@@ -27,11 +28,29 @@ function Nav() {
   }, [accessToken, history, dispatch]);
   useEffect(() => {
     navEffectHandler();
-  });
+  }, [dispatch, accessToken]);
 
   const nav = useRef();
   const navMenu = useRef();
   const cogIcon = useRef();
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  }, [dispatch, accessToken]);
+
+  const handleClick = (e) => {
+    try {
+      if (!nav.current.contains(e.target)) {
+        nav.current.classList.remove('show');
+      }
+    } catch (error) {
+      return null;
+    }
+  };
+
   const navOpenHandler = () => {
     nav.current.classList.add('show');
   };
@@ -86,7 +105,7 @@ function Nav() {
             </li>
             <li>
               <Link to="/monthly" onClick={navCloseHandler}>
-                <DocumentTextIcon className="nav_icon" />
+                <ViewGridIcon className="nav_icon" />
                 월별
               </Link>
             </li>

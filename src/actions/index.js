@@ -232,6 +232,34 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     });
 };
 
+// 비밀번호 찾기
+export const PWINQUIRY_INIT = 'PWINQUIRY_INIT';
+export const PWINQUIRY_SUCCESS = 'PWINQUIRY_SUCCESS';
+export const PWINQUIRY_ERROR = 'PWINQUIRY_ERROR';
+export const pwinquiryInit = () => {
+  return {
+    type: PWINQUIRY_INIT,
+  };
+};
+export const pwinquiry = (data) => (dispatch) => {
+  dispatch(pwinquiryInit());
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/findpassword`,
+      { email: data },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch({ type: PWINQUIRY_SUCCESS });
+    })
+    .catch(() => {
+      dispatch({ type: PWINQUIRY_ERROR });
+    });
+};
+
 // # 겟
 // 홈으로 이동
 export const goToHome = (history) => () => {
@@ -400,6 +428,66 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     });
 };
 
+export const PASSWORD_EDIT = 'PASSWORD_EDIT';
+
+export const passwordEdit = (data, accessToken) => () => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/changepassword`,
+      {
+        password: data.password,
+        newpassword: data.newpassword,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+// DELETE USER ==================================================
+export const deleteUser = (accessToken, history) => async (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/deleteuser`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: USER_LOGOUT });
+      history.push({ pathname: '/' });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      alert('회원 탈퇴 요청을 실패했습니다');
+    });
+};
+
+// DELETE USER DATA ==================================================
+export const deleteData = (accessToken, history) => async (dispatch) => {
+  // await dispatch({ type:  })
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/deletedata`, {
+      headers: { authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      //await dispatch({ type:  }); // 전체 데이터 삭제
+      history.push({ pathname: '/daily' });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      alert('데이터 삭제 요청이 거절되었습니다');
+    });
+};
+
 //월별 데이터
 
 export const MONTHLY_DATA = 'MONTHLY_DATA';
@@ -449,6 +537,7 @@ export const yearlyList = (accessToken) => (dispatch) => {
 export const GET_BUDGET = 'GET_BUDGET';
 export const GET_BUDGET_SUCCESS = 'GET_BUDGET_SUCCESS';
 export const GET_BUDGET_ERROR = 'GET_BUDGET_ERROR';
+export const CREATE_BUDGET_ERROR = 'CREATE_BUDGET_ERROR';
 
 export const getBudget = (accessToken) => (dispatch) => {
   dispatch({ type: GET_BUDGET });
@@ -484,7 +573,44 @@ export const createBudget = (data, accessToken) => (dispatch) => {
       dispatch(getBudget(accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      return err.response.data.message;
+    });
+};
+
+export const editBudget = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/fixcategoryinfo`,
+      {
+        categoryId: data.categoryId,
+        categoryname: data.categoryname,
+        budget: data.budget,
+        emoji: data.emoji,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getBudget(accessToken));
+    });
+};
+
+export const deleteBudget = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/deletecategory`,
+      {
+        categoryname: data,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then(() => {
+      dispatch(getBudget(accessToken));
     });
 };
 

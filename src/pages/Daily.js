@@ -4,6 +4,7 @@ import { getDaily, navEffect } from '../actions';
 import Topper from '../components/Topper';
 import Dailyform from '../components/Dailyform';
 import DailyList from '../components/DailyList';
+import Loading from '../components/Loading';
 
 function Daily() {
   const dispatch = useDispatch();
@@ -21,8 +22,7 @@ function Daily() {
   return (
     <>
       {loading ? (
-        //TODO: 깐지나는 로딩
-        <div>로딩중</div>
+        <Loading />
       ) : (
         <div className="daily container">
           <Topper />

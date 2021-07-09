@@ -1,26 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { editBudget, deleteBudget } from '../actions';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { Emoji } from 'emoji-mart';
 import { XIcon } from '@heroicons/react/outline';
 
 function BudgetList({ item, index }) {
+  const dispatch = useDispatch();
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
+
   const [editMode, setEditMode] = useState(false);
   const [budgetEmoji, setEmoji] = useState(`${item.categoryemoji}`);
   const [inputData, setInputData] = useState({
+    categoryId: item.categoryId,
     categoryname: item.categoryname,
-    budget: item.categorybudget,
+    budget: String(item.categorybudget),
     emoji: budgetEmoji,
   });
   const emojiPicker = useRef();
   const emojiBtn = useRef();
+  const deleteWarnDropDown = useRef();
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClick, false);
-
-    if (item.categoryrest) {
-    }
 
     return () => {
       document.removeEventListener('mousedown', handleClick, false);
@@ -58,9 +62,34 @@ function BudgetList({ item, index }) {
     });
   };
 
-  const editBudgetBtnHandler = () => {
+  const editBudgetBtnHandler = (e) => {
     // 리듀서
+    e.preventDefault();
+    if (!inputData.categoryname || !inputData.budget) {
+      if (!inputData.categoryname) {
+        setInputData({
+          ...inputData,
+          categoryname: item.categoryname,
+        });
+      }
+      if (!inputData.budget) {
+        setInputData({
+          ...inputData,
+          budget: item.categorybudget,
+        });
+      }
+    }
+    dispatch(editBudget(inputData, accessToken));
   };
+
+  const deleteDropDownHandler = () => {
+    deleteWarnDropDown.current.classList.toggle('show');
+  };
+
+  const deleteItemHandler = () => {
+    dispatch(deleteBudget(item.categoryname, accessToken));
+  };
+
   return (
     <>
       {editMode ? (
@@ -138,13 +167,34 @@ function BudgetList({ item, index }) {
               >
                 수정
               </button>
-              <button className="budget_edit_mode_delete">삭제</button>
+              <button
+                className="budget_edit_mode_delete"
+                onClick={deleteDropDownHandler}
+              >
+                삭제
+              </button>
             </div>
           ) : (
             <></>
           )}
         </li>
       )}
+      <div className="modal" ref={deleteWarnDropDown}>
+        <h3>경고</h3>
+        <button className="XIcon" onClick={deleteDropDownHandler}>
+          <XIcon />
+        </button>
+        <p>
+          '{item.categoryname}'카테고리를 삭제하면
+          <br />
+          복구할 수 없습니다.
+          <br />
+        </p>
+        <p className="side_warn">지출 내역은 삭제되지 않습니다</p>
+        <button className="delete submit" onClick={deleteItemHandler}>
+          영구 삭제
+        </button>
+      </div>
     </>
   );
 }

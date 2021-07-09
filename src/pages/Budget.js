@@ -11,8 +11,8 @@ import BudgetList from '../components/BudgetList';
 function Budget() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
-  const { accessToken } = isLoggedInReducer.userLoggedIn;
   const getBudgetReducer = useSelector((state) => state.getBudgetReducer);
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
   const { loading, categories, usedGraph, budgetGraph } =
     getBudgetReducer.budget;
 
@@ -47,6 +47,7 @@ function Budget() {
       emoji: data,
     });
   };
+  const [createBudgetErr, setCreateBudgetErr] = useState(null);
 
   useEffect(() => {
     dispatch(getBudget(accessToken));
@@ -79,6 +80,7 @@ function Budget() {
   };
 
   const inputHandler = (e) => {
+    setCreateBudgetErr(null);
     setInputData({
       ...inputData,
       [e.target.name]: e.target.value,
@@ -87,7 +89,21 @@ function Budget() {
 
   const createBudgetBtnHandler = (e) => {
     e.preventDefault();
-    if (!inputData.categoryname || !inputData.budget) return;
+    if (!inputData.categoryname || !inputData.budget) {
+      setCreateBudgetErr('값을 입력 해 주세요!');
+      return;
+    }
+
+    for (let i = 0; i < categories.length; i++) {
+      if (
+        categories[i].categoryname === inputData.categoryname ||
+        categories[i].categoryemoji === inputData.emoji
+      ) {
+        setCreateBudgetErr('중복된 값입니다');
+        return;
+      }
+    }
+
     dispatch(createBudget(inputData, accessToken));
   };
 
@@ -251,6 +267,11 @@ function Budget() {
                       name="budget"
                       onChange={inputHandler}
                     />
+                    {createBudgetErr ? (
+                      <div className="createErr">{createBudgetErr}</div>
+                    ) : (
+                      <></>
+                    )}
                     <button className="submit" onClick={createBudgetBtnHandler}>
                       예산 생성
                     </button>
@@ -271,6 +292,7 @@ function Budget() {
                   className="budget_edit_mode"
                   onClick={() => {
                     setAddMode(!addMode);
+                    setCreateBudgetErr(null);
                   }}
                 >
                   <PlusIcon className="plus_icon" />

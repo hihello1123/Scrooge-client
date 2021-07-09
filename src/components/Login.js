@@ -155,7 +155,7 @@ function Login({ modalSet }) {
         </>
       )}
       <div>
-        아이디가 없으신가요?{' '}
+        아이디가 없으신가요?
         <Link to="/signup" onClick={dispatch(socialDataDelete())}>
           회원가입
         </Link>

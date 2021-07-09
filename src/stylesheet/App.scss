@@ -26,6 +26,10 @@ html {
   margin: 0px;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: $white-color;
   margin: 0;
@@ -69,8 +73,10 @@ a {
 
 input {
   background-color: #fff;
-  padding: 15px 17px;
+  padding: 16px 17px;
   border-radius: 16px;
+  font-size: $font-default;
+  line-height: 1;
   border: none;
   outline: none;
   color: $black-color;
@@ -132,6 +138,7 @@ textarea {
 }
 
 .modal {
+  z-index: 2;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -153,6 +160,7 @@ textarea {
     font-size: $font-large;
   }
   p {
+    text-align: center;
     font-size: $font-default;
   }
   .XIcon {
@@ -224,3 +232,5 @@ textarea {
     padding-left: 410px;
   }
 }
+
+// ==========
