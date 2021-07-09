@@ -14,6 +14,7 @@ function Login({ modalSet }) {
   const { signInErr } = userSignInReducer.userSignIn;
   const dispatch = useDispatch();
 
+  const [inputWritten, setInputWritten] = useState(true);
   /* -+-+-+-+-+-+-+-
     카카오 로그인 
   -+-+-+-+-+-+-+-+- */
@@ -46,11 +47,11 @@ function Login({ modalSet }) {
     if (!loginInfo.email || !loginInfo.password) {
       if (!loginInfo.email) {
         //TODO: UX
-        alert('이메일을 입력해주세요');
+        setInputWritten(false);
       }
       if (!loginInfo.password) {
         //TODO: UX
-        alert('비밀번호를 입력해주세요');
+        setInputWritten(false);
       }
       return;
     }
@@ -88,7 +89,6 @@ function Login({ modalSet }) {
             className="password"
             required
           ></input>
-          {signInErr ? <div>에러메시지</div> : <></>}
           <button className="signin_submit submit" onClick={loginHandler}>
             로그인
           </button>

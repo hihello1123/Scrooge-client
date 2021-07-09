@@ -10,6 +10,7 @@ import yearlyReducer from './yearlyReducer';
 import monthlyReducer from './monthlyReducer';
 import getBudgetReducer from './getBudgetReducer';
 import navEffectReducer from './navEffectReducer';
+import modalMessageReducer from './modalMessageReducer';
 
 const rootReducer = combineReducers({
   helloReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   getBudgetReducer,
   navEffectReducer,
   monthlyReducer,
+  modalMessageReducer,
 });
 
 export default rootReducer;

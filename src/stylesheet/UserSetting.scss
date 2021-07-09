@@ -11,17 +11,40 @@
   display: flex;
   flex-direction: column;
   font-family: $noto-font;
+  color: $black-color;
   background-color: $white-color;
-  max-width: 857px;
-  min-width: 330px;
   &_items {
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    border-radius: 13px;
+    background-color: #fff;
+    font-size: 18px;
+    width: 100%;
+    max-width: 856.99px;
+    height: 66px;
     margin-bottom: 10px;
     padding: 20px;
     vertical-align: bottom;
-    border-radius: 13px;
+    &:nth-child(7) {
+      color: red;
+    }
+  }
+  &_texts {
+    margin-top: 2.5px;
+    margin-left: 5px;
+  }
+  &_excel {
+    background-color: #fff;
+  }
+  &_save {
+    color: $blue-color;
+    margin-top: 2.5px;
+    margin-left: 5px;
+  }
+  &_level {
+    color: $gray-color;
+    margin-top: 2.5px;
+    margin-left: 5px;
   }
 }
 
@@ -29,7 +52,6 @@
   font-size: $font-large;
   margin-bottom: 10px;
 }
-
 .edit_input {
   margin-top: 5px;
   margin-bottom: 8px;
@@ -62,7 +84,8 @@
   border-radius: 50%;
 }
 .pre_img {
-  max-width: 300px;
+  max-width: 270px;
+  margin-right: 40px;
   overflow: hidden;
   object-position: center;
 }
@@ -71,16 +94,52 @@
   flex: 1;
   flex-direction: column;
   margin: 30px;
-  align-items: flex-start;
+  margin-left: 0px;
+  width: 100%;
+  max-width: fit-content;
+  &_nickname,
+  &_email {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  &_changepw {
+    margin-left: 76px;
+    text-align: left;
+    color: $blue-color;
+  }
+  &_password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  &_label {
+    font-size: $font-medium;
+    width: 150px;
+    height: 20px;
+    text-align: left;
+    // margin-right: 60px;
+    align-items: flex-end;
+    &:nth-last-child(1):hover {
+      margin-left: 0px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    &_password {
+      width: 150px;
+    }
+  }
+  &_label:not(:first-child) {
+    margin-right: 60px;
+  }
 }
-
-#edit_submit:last-child {
-  background-color: black;
-}
-
 .edit_submit {
+  margin-top: 30px;
   width: 138px;
   height: 34px;
+  margin-left: auto;
   background: linear-gradient(
       84.73deg,
       rgba(53, 85, 198, 0.44) 1.92%,
@@ -89,6 +148,9 @@
     #385ad2;
   border-radius: 13px;
   color: $white-color;
+  .password {
+    max-width: 227px;
+  }
 }
 
 //=======================
@@ -105,31 +167,66 @@
   .container_edit {
     padding-left: 0px;
   }
+  .edit_input {
+    min-width: 240px;
+  }
 }
 
 @include mobile {
+  .container_edit_mini {
+    width: 100%;
+    max-width: 670px;
+  }
   .edit_img {
     margin-top: 10px;
   }
   .edit_inputZone {
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
   .container_edit {
     padding-left: 0px;
     justify-content: center;
   }
+  .container_bottom {
+    justify-content: center;
+    max-width: 670px;
+  }
   .edit_input {
+    margin-left: 0px;
+    min-width: 180px;
+    max-width: 280px;
+    width: 100%;
     height: 45px;
     padding: 10px;
+    overflow: hidden;
   }
   .edit_form {
     margin: 10px;
     text-align: left;
+    width: 100%;
+    &_nickname,
+    &_email {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0px;
+    }
+    &_changepw {
+      margin-left: 105px;
+    }
+  }
+  .pre_img {
+    margin-right: 0px;
   }
   .edit_submit {
-    height: 45px;
+    width: 100%;
+    height: 34px;
     color: $white-color;
     border-radius: 13px;
     background-color: $blue-color;
+    margin-top: 20px;
+    margin-left: 0px;
   }
 }

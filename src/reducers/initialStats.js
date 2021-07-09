@@ -64,17 +64,14 @@ const initialStats = {
     },
   },
   monthlyData: {
-    data: [
-      {
-        title: '합계 10000원',
-        groupId: '지정되지않은카테고리',
-        date: '2021-07-14',
-        id: '메모지롱',
-      },
-    ],
+    data: [],
   },
   navEffect: {
     currentPath: '/daily',
+  },
+  modalMessage: {
+    message: null,
+    errored: false,
   },
 };
 export default initialStats;

@@ -3,7 +3,7 @@ import Topper from '../components/Topper';
 import { useDispatch, useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import { navEffect, monthlyData } from '../actions';
+import { navEffect, monthlyData, getDaily } from '../actions';
 
 function Monthly() {
   const dispatch = useDispatch();
@@ -11,6 +11,8 @@ function Monthly() {
   const { accessToken } = isLoggedInReducer.userLoggedIn;
   const monthlyReducer = useSelector((state) => state.monthlyReducer);
   const { data } = monthlyReducer.monthlyData;
+  const dailyReducer = useSelector((state) => state.dailyReducer);
+  const { loading, top } = dailyReducer.daily;
   const [isModal, setModal] = useState(false);
   const [dayInfo, setDayInfo] = useState({
     cost: '',
@@ -18,13 +20,15 @@ function Monthly() {
   });
 
   useEffect(() => {
+    dispatch(getDaily(accessToken));
+    dispatch(monthlyData(accessToken, top.monthlyBudget));
     let url = new URL(window.location.href);
     dispatch(navEffect(url.pathname));
-
-    dispatch(monthlyData(accessToken));
   }, [dispatch]);
 
-  return (
+  return loading ? (
+    <div className="container">로딩중</div>
+  ) : (
     <div className="container">
       <Topper />
       <FullCalendar
@@ -52,7 +56,7 @@ function Monthly() {
             {Number(dayInfo.date[2])}일
           </div>
           <div className="top hr" />
-          <div className="monthlyModal_inner_cost">{dayInfo.cost}원</div>
+          <div className="monthlyModal_inner_cost">{dayInfo.cost}</div>
         </div>
       ) : (
         <></>
