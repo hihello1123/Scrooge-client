@@ -8,6 +8,7 @@ import {
   deleteData,
   passwordEdit,
   userLogOut,
+  saveModalMessage,
 } from '../actions';
 import { useHistory } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
@@ -85,7 +86,7 @@ function UserSetting() {
     }
     dispatch(userEdit(fd, accessToken));
 
-    alert('변경되었습니다');
+    dispatch(saveModalMessage('변경되었습니다'));
   };
 
   let editPasswordRequestHandler = async (e) => {

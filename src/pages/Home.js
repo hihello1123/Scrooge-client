@@ -15,9 +15,6 @@ function Home() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
-  const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
-  const { message, errored } = modalMessageReducer;
-
   const [isModal, setModal] = useState(false);
 
   useEffect(() => {
@@ -38,22 +35,6 @@ function Home() {
     dispatch(refreshTokenRequest());
   }, [dispatch]);
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.removeEventListener('mousedown', handleClick, false);
-    };
-  });
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => document.removeEventListener('mousedown', handleClick, false);
-  });
-
-  const handleClick = () => {
-    dispatch(deleteModalMessage());
-  };
-
   const modalSet = () => {
     setModal(!isModal);
   };
@@ -70,13 +51,6 @@ function Home() {
             임시 랜딩페이지 👻 글씨 눌러서 로그인하기!!!{' '}
           </button>
           {isModal ? <Login modalSet={modalSet} /> : <></>}
-          {errored ? (
-            <div className="homeModal">
-              <div className="homeModal_message">{message}</div>
-            </div>
-          ) : (
-            <></>
-          )}
         </div>
       )}
     </>
