@@ -27,14 +27,10 @@ html {
   margin: 0px;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
   background-color: $white-color;
   margin: 0;
-  min-width: 370px;
+  width: calc(100vw - (100vw - 100%));
   font-family: $noto-font;
   color: $black-color;
 }

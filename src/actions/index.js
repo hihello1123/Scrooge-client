@@ -285,12 +285,12 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
     .then((res) => {
       const redirect = res.data.data.userset.redirect;
       console.log(res);
-      const pageList = ['daily', 'monthly', 'yearly', 'budget'];
-      if (pageList.includes(redirect)) {
-        history.push(redirect); // 기본값 /daily
-      } else {
-        history.push('/daily');
-      }
+      // const pageList = ['daily', 'monthly', 'yearly', 'budget'];
+      // if (pageList.includes(redirect)) {
+      history.push(redirect); // 기본값 /daily
+      // } else {
+      //   history.push('/daily');
+      // }
     })
     .catch((err) => {
       console.log(err.response);
@@ -425,6 +425,7 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     })
     .then((res) => {
       // dispatch(getUserInfo()) 유저인포 다시 불러오기
+      // 홈으로 리다이렉트 됨 안대는대그러면...~~~~~~~~~
     });
 };
 
@@ -437,6 +438,26 @@ export const passwordEdit = (data, accessToken) => () => {
       {
         password: data.password,
         newpassword: data.newpassword,
+      },
+      {
+        headers: { authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+
+export const setRedirect = (data, accessToken) => (dispatch) => {
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/changemainpage`,
+      {
+        redirect: data,
       },
       {
         headers: { authorization: `bearer ${accessToken}` },

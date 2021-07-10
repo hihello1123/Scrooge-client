@@ -22,9 +22,9 @@ function ModalControl({
       <button className="user_setting_bottom_items_btn" onClick={modalHandler}>
         {SetBtnText}
       </button>
-      <div className="modal" onClick={modalHandler} ref={modal}>
+      <div className="modal" ref={modal}>
         <h3>{title}</h3>
-        <button className="XIcon">
+        <button className="XIcon" onClick={modalHandler}>
           <XIcon />
         </button>
         <p>{modelTextTop}</p>

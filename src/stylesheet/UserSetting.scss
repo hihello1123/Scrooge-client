@@ -1,11 +1,20 @@
+.user_setting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // margin-top: 0;
+  .user_setting_wrap {
+    max-width: 857px;
+    min-width: 327px;
+  }
+}
 .user_setting_edit {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: $noto-font;
   background-color: white;
-  max-width: 857px;
-  min-width: 327px;
+  width: 100%;
   margin-bottom: 29px;
   border-radius: 23px;
   .edit_form {
@@ -15,7 +24,6 @@
     justify-content: space-around;
     .edit_form_photo {
       position: relative;
-      margin-right: 30px;
       height: 170px;
       label {
         margin-left: 0;
@@ -148,15 +156,17 @@
 .user_setting_bottom {
   display: flex;
   flex-direction: column;
+  width: 100%;
   font-family: $noto-font;
   color: $black-color;
   background-color: $white-color;
   &_items {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 13px;
     background-color: #fff;
-    font-size: 18px;
+    font-size: $font-medium;
     width: 100%;
     max-width: 857px;
     height: 66px;
@@ -170,14 +180,78 @@
       background-color: inherit;
     }
   }
-  &_texts {
-    margin-top: 2.5px;
-    margin-left: 5px;
-  }
   &_save {
+    display: flex;
     color: $blue-color;
     margin-top: 2.5px;
     margin-left: 5px;
+    input,
+    label {
+      cursor: pointer;
+    }
+    button {
+      margin-left: 8px;
+      color: $black-color;
+      font-size: $font-medium;
+      background-color: inherit;
+    }
+    .radio {
+      margin-right: 15px;
+      font-size: $font-default;
+      input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+        + .radio-label {
+          margin-left: 0px;
+          color: $black-color;
+          &:before {
+            content: '';
+            position: relative;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            cursor: pointer;
+            background: $light-gray-color;
+            transition: all 250ms ease;
+          }
+        }
+        &:checked {
+          + .radio-label {
+            &:before {
+              box-shadow: inset 0 0 0 4px $light-gray-color;
+              background: $blue-color;
+            }
+          }
+        }
+        &:active {
+          + .radio-label {
+            &:before {
+              outline: none;
+              background-color: $blue-color;
+            }
+          }
+        }
+        &:disabled {
+          + .radio-label {
+            &:before {
+              box-shadow: inset 0 0 0 4px $light-gray-color;
+              background: $gray-color;
+            }
+          }
+        }
+        + .radio-label {
+          &:empty {
+            &:before {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
   }
   &_level {
     color: $gray-color;
@@ -187,11 +261,16 @@
 }
 
 @include mobile {
+  .user_setting {
+    align-items: center;
+    margin-top: 15px;
+  }
   .edit_form {
     padding: 30px;
     flex-direction: column;
     align-items: center;
     .edit_form_photo {
+      margin-right: 0px;
       margin-bottom: 25px;
     }
     .edit_form_info,
@@ -211,11 +290,41 @@
       width: 100%;
     }
   }
+
+  .user_setting_bottom {
+    &_items {
+      padding: 15px;
+      font-size: $font-default;
+    }
+    &_save {
+      button {
+        font-size: $font-small;
+      }
+      .radio {
+        margin: 0;
+        input[type='radio'] {
+          + .radio-label {
+            font-size: $font-small;
+            &:before {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @include tablet {
+  .user_setting {
+    align-items: center;
+  }
   .edit_form {
     padding: 50px;
+    .edit_form_photo {
+      margin-right: 30px;
+    }
     .edit_form_info,
     .edit_form_password {
       .edit_form_input_group {
@@ -224,12 +333,18 @@
         }
       }
     }
+    .edit_form_password {
+      margin: 0 83px;
+    }
   }
 }
 
 @include desktop {
   .edit_form {
     padding: 50px;
+    .edit_form_photo {
+      margin-right: 30px;
+    }
     .edit_form_info,
     .edit_form_password {
       .edit_form_input_group {
@@ -237,6 +352,10 @@
           font-size: $font-default;
         }
       }
+    }
+    .edit_form_password {
+      align-items: space-around;
+      margin: 0 83px;
     }
   }
 }
