@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { yearlyList, navEffect } from '../actions';
 import YearlyList from '../components/YearlyList';
@@ -50,26 +50,75 @@ function Yearly() {
 
   testing(top);
 
+  //=================================
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      // cleanup
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const chartFunction = (data, windowSize) => {
+    return (
+      <Chart
+        width={windowSize.width}
+        height={windowSize.height - 550 * (windowSize.width / 1920)}
+        chartType="Calendar"
+        loader={<div>Loading Chart</div>}
+        data={data}
+        options={{
+          title: '지출 횟수',
+          calendar: {
+            yearLabel: {
+              fontSize: 16,
+            },
+            cellSize: scale(5, 25),
+            cellColor: {
+              stroke: '#76a7fa',
+              strokeOpacity: 0.5,
+              strokeWidth: 1,
+            },
+            monthOutlineColor: {
+              stroke: '#76a7fa',
+              strokeOpacity: 1,
+              strokeWidth: 2,
+            },
+            unusedMonthOutlineColor: {
+              stroke: '#76a7fa',
+              strokeOpacity: 1,
+              strokeWidth: 1,
+            },
+          },
+          colorAxis: { minValue: 0, colors: ['#93ff93', '#ff7474'] },
+          noDataPattern: {
+            backgroundColor: '#a9d1ff',
+            color: '#a9d1ff',
+          },
+        }}
+        rootProps={{ 'data-testid': '1' }}
+      />
+    );
+  };
+
+  //===================================
   return (
     <div className="container yearly_top_container">
       <div className="activeChart">
-        <Chart
-          chartType="Calendar"
-          loader={<div>Loading Chart</div>}
-          data={calendarData}
-          options={{
-            title: '지출 횟수',
-            calendar: {
-              cellSize: scale(5, 16),
-              cellColor: {
-                stroke: '#76a7fa',
-                strokeOpacity: 0.5,
-                strokeWidth: 1,
-              },
-            },
-          }}
-          rootProps={{ 'data-testid': '1' }}
-        />
+        {chartFunction(calendarData, windowSize)}
       </div>
       <div className="top hr"></div>
       <YearlyList />

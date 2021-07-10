@@ -1,4 +1,3 @@
-import { isValidElement } from 'react';
 import { MONTHLY_DATA } from '../actions';
 import initialStats from './initialStats';
 
@@ -15,18 +14,23 @@ const monthlyReducer = (state = initialStats, action) => {
       return 28;
     }
   };
+
   let wholeSum = new Array(monthlydays(month)).fill(0);
   let spendDays = [];
+  let spendMoney = [];
 
-  if (action.monthlyBudget) {
+  console.log(action);
+
+  if (0 <= action.monthlyBudget) {
     for (let n = 0; n < action.data.length; n++) {
       spendDays.push(Number(action.data[n].date.split('-')[2]));
+      spendMoney.push(Number(action.data[n].title));
     }
 
-    for (let n = 0; n < action.data.length; n++) {
+    for (let n = 0; n < spendDays.length; n++) {
       for (let m = 0; m < wholeSum.length; m++) {
         if (spendDays[n] - 1 <= m) {
-          wholeSum[m] = wholeSum[m] + Number(action.data[n].title);
+          wholeSum[m] = wholeSum[m] + spendMoney[n];
         }
       }
     }
@@ -42,7 +46,7 @@ const monthlyReducer = (state = initialStats, action) => {
         return `${num}`;
       }
     };
-    if (wholeSum[n] < action.monthlyBudget) {
+    if (wholeSum[n] === 0 || wholeSum[n] < action.monthlyBudget) {
       wholeSumCalendar.push({
         date: `2021-07-${numStr(n + 1)}`,
         title: `합계 ${wholeSum[n]}원`,
