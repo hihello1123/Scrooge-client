@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   saveModalMessage,
   socialDataDelete,
@@ -14,8 +14,6 @@ function Login({ modalSet }) {
     password: '',
   });
   const [isEmailLogin, setEmailLogin] = useState(false);
-  const userSignInReducer = useSelector((state) => state.userSignInReducer);
-  const { signInErr } = userSignInReducer.userSignIn;
   const dispatch = useDispatch();
 
   /* -+-+-+-+-+-+-+-
@@ -96,7 +94,7 @@ function Login({ modalSet }) {
           <Link to="pwinquiry" className="signin_pwinquiry">
             비밀번호 찾기
           </Link>
-          {signInErr ? <div>에러메시지</div> : <></>}
+          {/* {signInErr ? <div>에러메시지</div> : <></>} */}
           <button className="signin_submit submit" onClick={loginHandler}>
             로그인
           </button>

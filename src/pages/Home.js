@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Daily from './Daily';
 import Login from '../components/Login';
-import { Link } from 'react-router-dom';
 import {
   refreshTokenRequest,
   getGoogleCode,

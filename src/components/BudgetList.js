@@ -116,7 +116,7 @@ function BudgetList({ item, index }) {
                     position: 'absolute',
                     top: '70px',
                     left: '0px',
-                    'z-index': '1',
+                    zIndex: '1',
                   }}
                 />
               </div>

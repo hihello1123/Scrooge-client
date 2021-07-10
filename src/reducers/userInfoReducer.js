@@ -24,10 +24,7 @@ const userInfoReducer = (state = initialStats, action) => {
           userPhoto: action.data.userInfo.photo,
           userLevel: action.data.userInfo.level,
           userEXP: action.data.userInfo.experience,
-        },
-        userset: {
-          darkMode: action.data.userset.darkmode,
-          redirect: '/daily',
+          redirect: action.data.userset.redirect,
         },
       };
     case DELETE_USERINFO:
@@ -40,10 +37,7 @@ const userInfoReducer = (state = initialStats, action) => {
           userPhoto: null,
           userLevel: null,
           userEXP: null,
-        },
-        userset: {
-          darkMode: false,
-          redirect: '/daily',
+          redirect: null,
         },
       };
     default:

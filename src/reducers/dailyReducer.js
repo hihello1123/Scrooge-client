@@ -11,19 +11,30 @@ const dailyReducer = (state = initialStats, action) => {
         },
       };
     case GET_DAILY_SUCCESS:
-      return {
-        ...state,
-        daily: {
-          loading: false,
-          top: {
-            monthlyBudget: action.daily.top.monthlyBudget,
-            monthlyUsed: action.daily.top.monthlyUsed,
-            exMonthlyUsed: action.daily.top.exMonthlyUsed,
+      if (Array.isArray(action.daily)) {
+        return {
+          ...state,
+          daily: {
+            ...state.daily,
+            loading: false,
+            bottom: action.daily,
           },
-          bottom: action.daily.bottom,
-          categoryList: action.daily.categoryList,
-        },
-      };
+        };
+      } else {
+        return {
+          ...state,
+          daily: {
+            loading: false,
+            top: {
+              monthlyBudget: action.daily.top.monthlyBudget,
+              monthlyUsed: action.daily.top.monthlyUsed,
+              exMonthlyUsed: action.daily.top.exMonthlyUsed,
+            },
+            bottom: action.daily.bottom,
+            categoryList: action.daily.categoryList,
+          },
+        };
+      }
     default:
       return state;
   }

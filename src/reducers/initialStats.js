@@ -27,10 +27,7 @@ const initialStats = {
     userPhoto: null,
     userLevel: null,
     userEXP: null,
-  },
-  userSet: {
-    darkMode: false,
-    redirect: '/daily',
+    redirect: null,
   },
   daily: {
     loading: false,

@@ -16,7 +16,7 @@ function Yearly() {
     dispatch(yearlyList(accessToken));
     let url = new URL(window.location.href);
     dispatch(navEffect(url.pathname));
-  }, [dispatch]);
+  }, [dispatch, accessToken]);
 
   function scale(min, max) {
     var cellSize = window.innerWidth / 60;
