@@ -306,7 +306,7 @@ export const deleteUserInfo = () => (dispatch) => {
   dispatch({ type: DELETE_USERINFO });
 };
 
-// #DAILY
+// #DAILY ================================
 export const GET_DAILY = 'GET_DAILY';
 export const GET_DAILY_SUCCESS = 'GET_DAILY_SUCCESS';
 
@@ -407,6 +407,35 @@ export const deleteDaily = (data, accessToken) => (dispatch) => {
     })
     .catch((err) => {
       // console.log(err.response);
+    });
+};
+
+export const categoryFilter = (data, accessToken) => (dispatch) => {
+  let result;
+  if (data.emoji) {
+    result = {
+      emoji: data.emoji,
+    };
+  } else if (data.date) {
+    result = {
+      message: 'dateSort',
+    };
+  } else if (data.memo) {
+    result = {
+      memo: data.memo,
+    };
+  }
+
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/categorysort`, result, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch(setDaily(res.data.data));
     });
 };
 

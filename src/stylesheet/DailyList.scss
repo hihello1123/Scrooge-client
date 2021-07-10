@@ -104,6 +104,106 @@
   }
 }
 
+.category_dropdown {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-width: 40px;
+  margin-right: 15px;
+  .category_toggle_btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: end;
+    background-color: inherit;
+    font-size: $font-default;
+    font-weight: 400;
+    color: $gray-color;
+    border-radius: 16px;
+    cursor: pointer;
+    &_icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .category_menu {
+    z-index: 99;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 57px;
+    height: 0px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 6px;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+    opacity: 0;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      &:hover {
+        background-color: rgba(235, 240, 241, 0.472);
+      }
+    }
+    li.disabled {
+      color: $gray-color;
+    }
+  }
+  .category_menu.show {
+    height: auto;
+    top: 25px;
+    box-shadow: 0 3px 5px 0 rgba(63, 65, 80, 0.1);
+    opacity: 100;
+  }
+}
+
+.date_toggle {
+  position: relative;
+  .date_toggle_label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding-left: 68px;
+    cursor: pointer;
+    background-color: inherit;
+  }
+  .date_toggle_icon {
+    width: 18px;
+    height: 18px;
+    color: $gray-color;
+  }
+}
+
+.memo_search_form {
+  margin-bottom: 12px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  &_input {
+    width: 40%;
+    height: 40px;
+  }
+
+  &_btn {
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    color: $blue-color;
+    background-color: inherit;
+  }
+}
+
 @include mobile {
   .dailyList {
     &_tag {
@@ -121,6 +221,21 @@
         top: calc(100% - 0px);
         width: 100%;
       }
+    }
+  }
+  .category_dropdown {
+    .category_toggle_btn {
+      &_icon {
+        opacity: 0;
+      }
+    }
+    .category_menu {
+      left: 0px;
+    }
+  }
+  .memo_search_form {
+    &_input {
+      width: 100%;
     }
   }
 }

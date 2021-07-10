@@ -194,6 +194,12 @@
       color: $black-color;
       font-size: $font-medium;
       background-color: inherit;
+      &:hover {
+        color: $blue-color;
+      }
+      &:active {
+        opacity: 0.8;
+      }
     }
     .radio {
       margin-right: 15px;

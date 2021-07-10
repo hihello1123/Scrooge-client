@@ -1,10 +1,54 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ChevronDownIcon, SearchIcon } from '@heroicons/react/outline';
+import { Emoji } from 'emoji-mart';
 import DailyListItem from './DailyListItem';
+import { categoryFilter } from '../actions';
 
 function DailyList() {
+  const dispatch = useDispatch();
   const dailyReducer = useSelector((state) => state.dailyReducer);
-  const { bottom } = dailyReducer.daily;
+  const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
+  const { bottom, categoryList } = dailyReducer.daily;
+  const { accessToken } = isLoggedInReducer.userLoggedIn;
+
+  const categoryMenu = useRef();
+  const categoryBtn = useRef();
+
+  const categoryDropdownHandler = () => {
+    categoryMenu.current.classList.toggle('show');
+  };
+  const categoryMenuHandler = (e) => {
+    if (e.target.textContent === '카테고리 없음') return;
+    if (e.target.nodeName === 'SPAN') {
+      let data = {
+        emoji: e.target.parentNode.parentNode.id,
+      };
+      dispatch(categoryFilter(data, accessToken));
+    } else if (e.target.nodeName === 'LI') {
+      let data = {
+        emoji: e.target.id,
+      };
+      dispatch(categoryFilter(data, accessToken));
+    }
+    categoryMenu.current.classList.remove('show');
+  };
+
+  const setDateHandler = (date) => {
+    let data = {
+      date: true,
+    };
+    dispatch(categoryFilter(data, accessToken));
+  };
+
+  const memoSearchHandler = (e) => {
+    e.preventDefault();
+    let data = {
+      memo: e.target.form.children[0].value,
+    };
+    dispatch(categoryFilter(data, accessToken));
+  };
+
   return (
     <>
       <div className="top hr"></div>
@@ -143,22 +187,66 @@ function DailyList() {
           </div>
         </div>
       ) : (
-        <div className="dailyList">
-          <div className="dailyList_tag">
-            <div>예산</div>
-            <div>지출 금액</div>
-            <div>메모</div>
-            <div>날짜</div>
+        <>
+          <form className="memo_search_form">
+            <input type="text" className="memo_search_form_input" />
+            <button
+              className="memo_search_form_btn"
+              onClick={memoSearchHandler}
+            >
+              <SearchIcon />
+            </button>
+          </form>
+          <div className="dailyList">
+            <div className="dailyList_tag">
+              <div className="category_dropdown">
+                예산
+                <button
+                  className="category_toggle_btn"
+                  onClick={categoryDropdownHandler}
+                  ref={categoryBtn}
+                >
+                  <ChevronDownIcon className="category_toggle_btn_icon" />
+                </button>
+                <ul
+                  className="category_menu"
+                  onClick={categoryMenuHandler}
+                  ref={categoryMenu}
+                >
+                  {categoryList && categoryList.length !== 0 ? (
+                    categoryList.map((el) => {
+                      return (
+                        <li key={`categoryList-${el.id}`} id={el.emoji}>
+                          <Emoji emoji={el.emoji} set="twitter" size={30} />
+                        </li>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <li className="disabled">카테고리 없음</li>
+                    </>
+                  )}
+                </ul>
+              </div>
+              <div>지출 금액</div>
+              <div>메모</div>
+              <div className="date_toggle">
+                날짜
+                <button className="date_toggle_label" onClick={setDateHandler}>
+                  <ChevronDownIcon className="date_toggle_icon" />
+                </button>
+              </div>
+            </div>
+            {bottom.map((item) => {
+              return (
+                <DailyListItem
+                  key={`dailyListItem-${item.moneyId}`}
+                  item={item}
+                />
+              );
+            })}
           </div>
-          {bottom.map((item) => {
-            return (
-              <DailyListItem
-                key={`dailyListItem-${item.moneyId}`}
-                item={item}
-              />
-            );
-          })}
-        </div>
+        </>
       )}
     </>
   );
