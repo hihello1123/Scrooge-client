@@ -1,4 +1,3 @@
-import { isValidElement } from 'react';
 import { MONTHLY_DATA } from '../actions';
 import initialStats from './initialStats';
 

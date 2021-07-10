@@ -2,7 +2,7 @@ import {
   EMAIL_SIGNUP,
   EMAIL_SIGNUP_SUCCESS,
   EMAIL_SIGNUP_ERROR,
-  SOCIAL_NULL,
+  // SOCIAL_NULL,
 } from '../actions';
 import initialStats from './initialStats';
 

@@ -37,7 +37,6 @@ function UserSetting() {
   useEffect(() => {
     let url = new URL(window.location.href);
     dispatch(navEffect(url.pathname));
-    console.log(redirect);
     switch (redirect) {
       case '/daily':
         redirectForm.current.childNodes[0].childNodes[0].checked = true;
@@ -51,7 +50,7 @@ function UserSetting() {
       default:
         return;
     }
-  }, [dispatch]);
+  }, [dispatch, redirect]);
 
   const importexceleventhandler = async () => {
     // 엑셀 다운
@@ -123,7 +122,6 @@ function UserSetting() {
     const radio = redirectForm.current.childNodes;
     for (let i = 0; i < 3; i++) {
       if (radio[i].childNodes[0].checked) {
-        console.log(radio[i].childNodes[0].value);
         dispatch(setRedirect(radio[i].childNodes[0].value, accessToken));
       }
     }

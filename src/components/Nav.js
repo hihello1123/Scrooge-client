@@ -40,7 +40,7 @@ function Nav() {
     return () => {
       document.removeEventListener('mousedown', handleClick, false);
     };
-  }, [dispatch, accessToken]);
+  });
 
   const handleClick = (e) => {
     try {
@@ -67,13 +67,11 @@ function Nav() {
       navMenu.current.childNodes[i].classList.remove('focused');
     }
     cogIcon.current.childNodes[0].classList.remove('focused');
-    console.log(currentPath);
     switch (currentPath) {
       case '/daily':
         navMenu.current.childNodes[0].classList.add('focused');
         break;
       case '/monthly':
-        console.log('월별페이지');
         navMenu.current.childNodes[1].classList.add('focused');
         break;
       case '/yearly':

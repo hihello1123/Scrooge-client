@@ -42,7 +42,7 @@ export const refreshTokenRequest = () => (dispatch) => {
       dispatch(userLogin(res.data.data.accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -92,7 +92,7 @@ export const checkEmailExists = (email, history) => (dispatch) => {
 // 소셜 로그인
 
 export const getKakaoCode = (authorizationCode) => (dispatch) => {
-  console.log('카카오에서 받은 코드 : ', authorizationCode);
+  // console.log('카카오에서 받은 코드 : ', authorizationCode);
   axios
     .post(`${process.env.REACT_APP_API_URL}/kakaologin`, {
       authorizationCode,
@@ -106,7 +106,7 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       if (err.response.data.message.includes('회원가입')) {
         dispatch(saveModalMessage('카카오 회원가입을 해주세요'));
       }
@@ -114,13 +114,13 @@ export const getKakaoCode = (authorizationCode) => (dispatch) => {
 };
 
 export const getGoogleCode = (authorizationCode) => (dispatch) => {
-  console.log('구글에서 받은 코드 : ', authorizationCode);
+  // console.log('구글에서 받은 코드 : ', authorizationCode);
   axios
     .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
       authorizationCode,
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       if (String(res.data.message).includes('회원가입')) {
         dispatch(saveModalMessage('구글 회원가입을 해주세요'));
       } else {
@@ -129,7 +129,7 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       if (err.response.data.message.includes('회원가입')) {
         dispatch(saveModalMessage('구글 회원가입을 해주세요'));
       }
@@ -143,7 +143,7 @@ export const kakaoSignUp = (authorizationCode, history) => (dispatch) => {
       authorizationCode,
     })
     .then((res) => {
-      console.log('KSU is', res);
+      // console.log('KSU is', res);
       dispatch(socialData({ email: res.data.data }));
     })
     .catch((err) => {
@@ -158,7 +158,7 @@ export const googleSignUp = (authorizationCode, history) => (dispatch) => {
       authorizationCode,
     })
     .then((res) => {
-      console.log('GSU said', res);
+      // console.log('GSU said', res);
       dispatch(socialData({ email: res.data.data }));
     })
     .catch((err) => {
@@ -182,12 +182,12 @@ export const socialSignUp = (fd, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_API_URL}/socialsignup`, fd)
     .then((res) => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       dispatch({ type: SOCIAL_DELETE });
       dispatch(goToHome(history));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -199,12 +199,12 @@ export const userSignUpRequest = (fd, history) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       dispatch({ type: EMAIL_SIGNUP }); //이메일 체크 완료상태 펄스로 바꾸기
       dispatch(goToHome(history));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -284,7 +284,7 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
     })
     .then((res) => {
       const redirect = res.data.data.userset.redirect;
-      console.log(res);
+      // console.log(res);
       // const pageList = ['daily', 'monthly', 'yearly', 'budget'];
       // if (pageList.includes(redirect)) {
       history.push(redirect); // 기본값 /daily
@@ -293,7 +293,7 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
       // }
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 // 유저정보 저장
@@ -323,7 +323,7 @@ export const getDaily = (accessToken) => (dispatch) => {
       dispatch(setDaily(res.data.data));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -356,7 +356,7 @@ export const postDaily = (data, accessToken) => (dispatch) => {
       dispatch(getDaily(accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -383,7 +383,7 @@ export const editDaily = (data, accessToken) => (dispatch) => {
       dispatch(getDaily(accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 // TODO: 나중에 시간 되면 getDaily로 한번에 전체데이터를 받아오지 말고, 수정하거나 삭제한 내역만 받아오기
@@ -406,7 +406,7 @@ export const deleteDaily = (data, accessToken) => (dispatch) => {
       dispatch(getDaily(accessToken));
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -445,10 +445,10 @@ export const passwordEdit = (data, accessToken) => () => {
       }
     )
     .then((res) => {
-      console.log(res);
+      // console.log(res);
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -465,10 +465,10 @@ export const setRedirect = (data, accessToken) => (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res);
+      // console.log(res);
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 
@@ -480,12 +480,12 @@ export const deleteUser = (accessToken, history) => async (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: USER_LOGOUT });
       history.push({ pathname: '/' });
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       alert('회원 탈퇴 요청을 실패했습니다');
     });
 };
@@ -499,12 +499,12 @@ export const deleteData = (accessToken, history) => async (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       //await dispatch({ type:  }); // 전체 데이터 삭제
       history.push({ pathname: '/daily' });
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       alert('데이터 삭제 요청이 거절되었습니다');
     });
 };
@@ -520,8 +520,8 @@ export const monthlyData = (accessToken, monthlyBudget) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('monthlydata is');
-      console.log(res.data.data.daily);
+      // console.log('monthlydata is');
+      // console.log(res.data.data.daily);
       dispatch({
         type: MONTHLY_DATA,
         data: res.data.data.daily,
@@ -529,8 +529,8 @@ export const monthlyData = (accessToken, monthlyBudget) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log('monthlydata error is');
-      console.log(err.response);
+      // console.log('monthlydata error is');
+      // console.log(err.response);
     });
 };
 
@@ -544,13 +544,13 @@ export const yearlyList = (accessToken) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('yearlydata is');
-      console.log(res.data.data);
+      // console.log('yearlydata is');
+      // console.log(res.data.data);
       dispatch({ type: YEARLY_DATA, yearlyData: res.data.data });
     })
     .catch((err) => {
-      console.log('yearlydata error is');
-      console.log(err.response);
+      // console.log('yearlydata error is');
+      // console.log(err.response);
     });
 };
 
@@ -571,7 +571,7 @@ export const getBudget = (accessToken) => (dispatch) => {
       dispatch({ type: GET_BUDGET_SUCCESS, data: res.data.data });
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
       dispatch({ type: GET_BUDGET_ERROR });
     });
 };
@@ -658,14 +658,14 @@ export const importExcel = (accessToken) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data.data.costList);
+      // console.log(res.data.data.costList);
       const book = xlsx.utils.book_new();
       const costList = res.data.data.costList;
       xlsx.utils.book_append_sheet(book, costList, 'costList');
       xlsx.writeFile(book, 'costList.xlsx');
     })
     .catch((err) => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };
 

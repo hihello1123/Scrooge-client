@@ -24,7 +24,7 @@ function Monthly() {
     dispatch(navEffect(url.pathname));
     dispatch(getDaily(accessToken));
     dispatch(monthlyData(accessToken, top.monthlyBudget));
-  }, [dispatch]);
+  }, [dispatch, accessToken]);
 
   return loading ? (
     <div className="container">로딩중</div>
@@ -56,7 +56,9 @@ function Monthly() {
             {Number(dayInfo.date[2])}일
           </div>
           <div className="top hr" />
-          <div className="monthlyModal_inner_cost">{dayInfo.cost}</div>
+          <div className="monthlyModal_inner_cost">
+            총 사용 금액 {dayInfo.cost} 원
+          </div>
         </div>
       ) : (
         <></>

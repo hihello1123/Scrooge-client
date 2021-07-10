@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   saveModalMessage,
   socialDataDelete,
@@ -14,8 +14,6 @@ function Login({ modalSet }) {
     password: '',
   });
   const [isEmailLogin, setEmailLogin] = useState(false);
-  const userSignInReducer = useSelector((state) => state.userSignInReducer);
-  const { signInErr } = userSignInReducer.userSignIn;
   const dispatch = useDispatch();
 
   /* -+-+-+-+-+-+-+-

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 function Topper() {
   const dailyReducer = useSelector((state) => state.dailyReducer);
   const { top } = dailyReducer.daily;
-  console.log('Topper is', top);
 
   return (
     <>

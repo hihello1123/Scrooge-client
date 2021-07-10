@@ -45,9 +45,14 @@ function Signup() {
     } else {
       dispatch(kakaoSignUp(authorizationCode, history));
     }
+  }, [dispatch, history]);
 
+  useEffect(() => {
     document.addEventListener('mousedown', handleClick, false);
-  }, [dispatch]);
+    return () => {
+      document.addEventListener('mousedown', handleClick, false);
+    };
+  });
 
   const handleClick = () => {
     dispatch(deleteModalMessage());
@@ -75,7 +80,6 @@ function Signup() {
   //====================
 
   function inputHandler(e) {
-    console.log(userInfo);
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   }
 

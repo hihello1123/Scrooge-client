@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import React from 'react';
+// import axios from 'axios';
+// import { useSelector } from 'react-redux';
 import Chart from 'react-google-charts';
 
 function Testing() {
