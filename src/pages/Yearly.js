@@ -103,7 +103,11 @@ function Yearly() {
               strokeWidth: 1,
             },
           },
-          colorAxis: { minValue: 0, colors: ['#93ff93', '#ff7474'] },
+          colorAxis: {
+            minValue: 0,
+            colors: ['#93ff93', '#ff7474'],
+            maxValue: 5,
+          },
           noDataPattern: {
             backgroundColor: '#a9d1ff',
             color: '#a9d1ff',
