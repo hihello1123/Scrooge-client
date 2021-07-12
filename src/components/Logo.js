@@ -8,6 +8,8 @@ function Logo() {
 
   const eye = () => {
     if (!pupilLeft || !pupilRight) return;
+    if (!pupilLeft) return;
+    if (!pupilRight) return;
     const pupilLeftScope = pupilLeft.current.getBoundingClientRect();
     const pupilRightScope = pupilRight.current.getBoundingClientRect();
 

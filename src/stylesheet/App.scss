@@ -17,6 +17,7 @@
 @import 'UserSetting';
 @import 'Monthly';
 @import 'Pwinquiry';
+@import 'Home';
 
 html {
   font-size: 16px;
@@ -149,7 +150,7 @@ textarea {
   color: $blue-color;
   transform: translate(-50%, -50%);
   border-radius: 24px;
-  background: rgba(241, 245, 255, 0.2);
+  background: rgba(241, 245, 255, 0.3);
   backdrop-filter: blur(10px);
   z-index: 9;
   h3 {

@@ -47,13 +47,6 @@ function Signup() {
     }
   }, [dispatch, history]);
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.addEventListener('mousedown', handleClick, false);
-    };
-  });
-
   //사이드 이미지 컨트롤러=======================
 
   const [divClass, setClass] = useState('sideImg');
@@ -81,10 +74,6 @@ function Signup() {
   }, []);
 
   //=====================
-  const handleClick = () => {
-    dispatch(deleteModalMessage());
-  };
-
   //카카오 로그인 =============
 
   const kakaoLogin = (e) => {
