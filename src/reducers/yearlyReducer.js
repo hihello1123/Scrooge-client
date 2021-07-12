@@ -2,6 +2,7 @@ import { YEARLY_DATA } from '../actions';
 import initialStats from './initialStats';
 
 const yearlyReducer = (state = initialStats, action) => {
+  console.log(action);
   switch (action.type) {
     case YEARLY_DATA:
       return {
