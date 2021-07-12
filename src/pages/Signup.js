@@ -54,31 +54,31 @@ function Signup() {
     };
   });
 
-  //=======================
+  //사이드 이미지 컨트롤러=======================
 
-  // const [divClass, setClass] = useState('sideImg');
-  // const savedCallback = useRef();
+  const [divClass, setClass] = useState('sideImg');
+  const savedCallback = useRef();
 
-  // function callback() {
-  //   if (divClass === 'sideImg') {
-  //     setClass('sideImg show');
-  //   } else {
-  //     setClass('sideImg');
-  //   }
-  // }
+  function callback() {
+    if (divClass === 'sideImg') {
+      setClass('sideImg show');
+    } else {
+      setClass('sideImg');
+    }
+  }
 
-  // useEffect(() => {
-  //   savedCallback.current = callback;
-  // });
+  useEffect(() => {
+    savedCallback.current = callback;
+  });
 
-  // useEffect(() => {
-  //   function tick() {
-  //     savedCallback.current();
-  //   }
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
 
-  //   let id = setInterval(tick, 6000);
-  //   return () => clearInterval(id);
-  // }, []);
+    let id = setInterval(tick, 6000);
+    return () => clearInterval(id);
+  }, []);
 
   //=====================
   const handleClick = () => {
@@ -158,7 +158,7 @@ function Signup() {
 
   return (
     <div>
-      <div className="sideImg">
+      <div className={divClass}>
         <div className="signUpImgDiv">
           <img
             className="signUpImg"
