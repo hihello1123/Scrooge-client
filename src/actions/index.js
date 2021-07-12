@@ -185,6 +185,7 @@ export const socialSignUp = (fd, history) => (dispatch) => {
       // console.log(res.data.message);
       dispatch({ type: SOCIAL_DELETE });
       dispatch(goToHome(history));
+      dispatch(saveModalMessage('회원가입 성공!'));
     })
     .catch((err) => {
       // console.log(err.response);
@@ -202,6 +203,7 @@ export const userSignUpRequest = (fd, history) => (dispatch) => {
       // console.log(res.data.message);
       dispatch({ type: EMAIL_SIGNUP }); //이메일 체크 완료상태 펄스로 바꾸기
       dispatch(goToHome(history));
+      dispatch(saveModalMessage('회원가입 성공!'));
     })
     .catch((err) => {
       // console.log(err.response);
@@ -460,7 +462,7 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
 
 export const PASSWORD_EDIT = 'PASSWORD_EDIT';
 
-export const passwordEdit = (data, accessToken) => () => (dispatch) => {
+export const passwordEdit = (data, accessToken) => (dispatch) => {
   axios
     .post(
       `${process.env.REACT_APP_API_URL}/changepassword`,
@@ -474,8 +476,8 @@ export const passwordEdit = (data, accessToken) => () => (dispatch) => {
       }
     )
     .then((res) => {
-      // console.log(res);
       dispatch(saveModalMessage('비밀번호 변경이 완료되었습니다'));
+      // console.log(res);
     })
     .catch((err) => {
       // console.log(err.response);
@@ -598,6 +600,7 @@ export const getBudget = (accessToken) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      console.log(res);
       dispatch({ type: GET_BUDGET_SUCCESS, data: res.data.data });
     })
     .catch((err) => {

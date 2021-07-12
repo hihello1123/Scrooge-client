@@ -16,6 +16,20 @@ function Home() {
   const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
   const [isModal, setModal] = useState(false);
 
+  const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
+  const { message, errored } = modalMessageReducer;
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
+
+  const handleClick = () => {
+    dispatch(deleteModalMessage());
+  };
+
   useEffect(() => {
     dispatch(socialDataDelete());
     let url = new URL(window.location.href);
@@ -51,6 +65,13 @@ function Home() {
           </button>
           {isModal ? <Login modalSet={modalSet} /> : <></>}
         </div>
+      )}
+      {errored ? (
+        <div className="homeModal">
+          <div className="homeModal_message">{message}</div>
+        </div>
+      ) : (
+        <></>
       )}
     </>
   );

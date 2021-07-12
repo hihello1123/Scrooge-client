@@ -155,13 +155,19 @@
   }
 
   .formErrMessage {
+    display: flex;
     position: absolute;
-    bottom: 18px;
-    right: 205px;
+    bottom: -43px;
+    right: 215px;
     color: $red-color;
     text-align: center;
     font-size: $font-small;
     border-radius: 5px;
+    line-height: 20px;
+    svg {
+      width: 20px;
+      margin-right: 5px;
+    }
   }
 
   .daily_form_submit {

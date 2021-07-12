@@ -114,7 +114,7 @@ function UserSetting() {
       }
     }
 
-    dispatch(passwordEdit(tempInfo, accessToken));
+    dispatch(passwordEdit(tempInfo, accessToken, history));
     dispatch(userLogOut(accessToken, history));
   };
 

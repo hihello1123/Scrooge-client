@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   checkEmailExists,
@@ -56,23 +56,31 @@ function Signup() {
 
   //=======================
 
-  const [whichPicture, setPicture] = useState({
-    first: '/macbook.png',
-    second: '/iphone_11.png',
-  });
+  // const [divClass, setClass] = useState('sideImg');
+  // const savedCallback = useRef();
 
-  let defaultPicture = whichPicture.first;
+  // function callback() {
+  //   if (divClass === 'sideImg') {
+  //     setClass('sideImg show');
+  //   } else {
+  //     setClass('sideImg');
+  //   }
+  // }
 
-  useEffect(() => {
-    setInterval(() => {
-      if (defaultPicture === '/macbook.png') {
-        defaultPicture = whichPicture.second;
-      } else {
-        defaultPicture = whichPicture.first;
-      }
-    }, 1000);
-  });
+  // useEffect(() => {
+  //   savedCallback.current = callback;
+  // });
 
+  // useEffect(() => {
+  //   function tick() {
+  //     savedCallback.current();
+  //   }
+
+  //   let id = setInterval(tick, 6000);
+  //   return () => clearInterval(id);
+  // }, []);
+
+  //=====================
   const handleClick = () => {
     dispatch(deleteModalMessage());
   };
@@ -151,16 +159,20 @@ function Signup() {
   return (
     <div>
       <div className="sideImg">
-        <img
-          className="signUpImg"
-          src={process.env.PUBLIC_URL + '/macbook.png'}
-          alt="회원가입"
-        />
-        <img
-          className="signUpImg"
-          src={process.env.PUBLIC_URL + '/iphone_11.png'}
-          alt="회원가입"
-        />
+        <div className="signUpImgDiv">
+          <img
+            className="signUpImg"
+            src={process.env.PUBLIC_URL + '/macbook.png'}
+            alt="회원가입"
+          />
+        </div>
+        <div className="signUpImgDiv">
+          <img
+            className="signUpImg"
+            src={process.env.PUBLIC_URL + '/iphone_11.png'}
+            alt="회원가입"
+          />
+        </div>
       </div>
       {errored ? (
         <div className="homeModal">
