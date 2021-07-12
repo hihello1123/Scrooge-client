@@ -13,6 +13,12 @@
   border-top: 40vh;
 }
 
+.sideImg {
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+}
+
 .inputZone {
   width: 100%;
   display: flex;
@@ -106,13 +112,18 @@
     width: 300px;
   }
 }
+
 @include tablet {
   .signup {
     width: 60vw;
   }
 }
+
 @include desktop {
   .signup {
     width: 40vw;
+  }
+  .signUpImg {
+    width: 500px;
   }
 }
