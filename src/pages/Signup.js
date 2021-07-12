@@ -47,12 +47,15 @@ function Signup() {
     }
   }, [dispatch, history]);
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.addEventListener('mousedown', handleClick, false);
-    };
-  });
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleClick, false);
+  //   return () => {
+  //     document.addEventListener('mousedown', handleClick, false);
+  //   };
+  // });
+  // const handleClick = () => {
+  //   dispatch(deleteModalMessage());
+  // };
 
   //=======================
 
@@ -64,18 +67,18 @@ function Signup() {
   let defaultPicture = whichPicture.first;
 
   useEffect(() => {
-    setInterval(() => {
+    let interval = setInterval(() => {
       if (defaultPicture === '/macbook.png') {
         defaultPicture = whichPicture.second;
       } else {
         defaultPicture = whichPicture.first;
       }
     }, 1000);
-  });
 
-  const handleClick = () => {
-    dispatch(deleteModalMessage());
-  };
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   //카카오 로그인 =============
 

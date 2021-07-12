@@ -56,9 +56,7 @@ function Monthly() {
             {Number(dayInfo.date[2])}일
           </div>
           <div className="top hr" />
-          <div className="monthlyModal_inner_cost">
-            총 사용 금액 {dayInfo.cost} 원
-          </div>
+          <div className="monthlyModal_inner_cost">{dayInfo.cost}</div>
         </div>
       ) : (
         <></>

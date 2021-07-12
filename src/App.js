@@ -1,30 +1,34 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteModalMessage } from './actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { refreshTokenRequest } from './actions';
 import AppRouter from './components/Router';
 
 require('dotenv').config();
 
 function App() {
+  const dispatch = useDispatch();
+
   const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
   const { message, errored } = modalMessageReducer;
-
-  const dispatch = useDispatch();
   useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => {
-      document.removeEventListener('mousedown', handleClick, false);
-    };
-  });
+    dispatch(refreshTokenRequest());
+  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleClick, false);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClick, false);
+  //   };
+  // });
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick, false);
-    return () => document.removeEventListener('mousedown', handleClick, false);
-  });
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleClick, false);
+  //   return () => document.removeEventListener('mousedown', handleClick, false);
+  // });
 
-  const handleClick = () => {
-    dispatch(deleteModalMessage());
-  };
+  // const handleClick = () => {
+  // dispatch(deleteModalMessage());
+  // };
 
   return (
     <>

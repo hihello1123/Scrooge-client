@@ -19,8 +19,6 @@ const monthlyReducer = (state = initialStats, action) => {
   let spendDays = [];
   let spendMoney = [];
 
-  console.log(action);
-
   if (0 <= action.monthlyBudget) {
     for (let n = 0; n < action.data.length; n++) {
       spendDays.push(Number(action.data[n].date.split('-')[2]));
