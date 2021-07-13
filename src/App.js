@@ -13,34 +13,11 @@ function App() {
   useEffect(() => {
     dispatch(refreshTokenRequest());
   }, [dispatch]);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', handleClick, false);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClick, false);
-  //   };
-  // });
-
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', handleClick, false);
-  //   return () => document.removeEventListener('mousedown', handleClick, false);
-  // });
-
-  // const handleClick = () => {
-  // dispatch(deleteModalMessage());
   // };
 
   return (
     <>
       <AppRouter />
-
-      {errored ? (
-        <div className="homeModal">
-          <div className="homeModal_message">{message}</div>
-        </div>
-      ) : (
-        <></>
-      )}
     </>
   );
 }

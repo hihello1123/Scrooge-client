@@ -17,7 +17,7 @@ const helloReducer = (state = initialStats, action) => {
         ...state,
         hello: {
           loading: false,
-          data: action.data,
+          data: action.photos,
           err: null,
         },
       };
