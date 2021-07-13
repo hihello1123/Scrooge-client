@@ -11,10 +11,10 @@ function Home() {
   const dispatch = useDispatch();
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
-  const [isModal, setModal] = useState(false);
+  const [isLoginModal, setLoginModal] = useState(false);
 
-  const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
-  const { message, errored } = modalMessageReducer;
+  //======================================
+  const [modalMessage, setModalMessage] = useState('');
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClick, false);
@@ -22,10 +22,11 @@ function Home() {
       document.removeEventListener('mousedown', handleClick, false);
     };
   });
-
   const handleClick = () => {
-    dispatch(deleteModalMessage());
+    setModalMessage('');
   };
+
+  //=====================================
 
   useEffect(() => {
     dispatch(socialDataDelete());
@@ -37,15 +38,15 @@ function Home() {
       return;
     } else if (url.pathname === '/' && address.includes('www.googleapis.com')) {
       dispatch(getGoogleCode(authorizationCode));
-      setModal(true);
+      setLoginModal(true);
     } else if (url.pathname === '/') {
       dispatch(getKakaoCode(authorizationCode));
-      setModal(true);
+      setLoginModal(true);
     }
   }, [dispatch]);
 
   const modalSet = () => {
-    setModal(!isModal);
+    setLoginModal(!isLoginModal);
   };
 
   return (
@@ -56,7 +57,7 @@ function Home() {
         </>
       ) : (
         <div>
-          {isModal ? <Login modalSet={modalSet} /> : <></>}
+          {isLoginModal ? <Login modalSet={modalSet} /> : <></>}
           <nav className="top_nav">
             <div></div>
             <div>
@@ -175,9 +176,9 @@ function Home() {
           </svg>
         </div>
       )}
-      {errored ? (
+      {modalMessage ? (
         <div className="homeModal">
-          <div className="homeModal_message">{message}</div>
+          <div className="homeModal_message">{modalMessage}</div>
         </div>
       ) : (
         <></>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   saveModalMessage,
@@ -16,6 +16,20 @@ function Login({ modalSet }) {
   const [isEmailLogin, setEmailLogin] = useState(false);
   const dispatch = useDispatch();
 
+  //======================================
+  const [modalMessage, setModalMessage] = useState('');
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
+  const handleClick = () => {
+    setModalMessage('');
+  };
+
+  //=====================================
   /* -+-+-+-+-+-+-+-
     카카오 로그인 
   -+-+-+-+-+-+-+-+- */
@@ -48,17 +62,17 @@ function Login({ modalSet }) {
     if (!loginInfo.email || !loginInfo.password) {
       if (!loginInfo.email) {
         //TODO: UX
-        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
+        setModalMessage('이메일 또는 비밀번호를 입력해주세요');
       }
       if (!loginInfo.password) {
         //TODO: UX
-        dispatch(saveModalMessage('이메일 또는 비밀번호를 입력해주세요'));
+        setModalMessage('이메일 또는 비밀번호를 입력해주세요');
       }
       return;
     }
     e.preventDefault();
 
-    await dispatch(userSignInRequest(loginInfo));
+    await dispatch(userSignInRequest(loginInfo, setModalMessage));
   };
 
   function inputHandler(e) {
@@ -163,6 +177,13 @@ function Login({ modalSet }) {
         </Link>
         하러가기
       </div>
+      {modalMessage ? (
+        <div className="homeModal">
+          <div className="homeModal_message">{modalMessage}</div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

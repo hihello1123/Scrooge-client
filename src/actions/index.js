@@ -47,47 +47,51 @@ export const refreshTokenRequest = () => (dispatch) => {
 };
 
 // 로그아웃 ==========================================
-export const userLogOut = (accessToken, history) => (dispatch) => {
-  axios
-    .get(`${process.env.REACT_APP_API_URL}/signout`, {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `bearer ${accessToken}`,
-      },
-      withCredentials: true,
-    })
-    .then(() => {
-      dispatch({ type: USER_LOGOUT });
-      dispatch(deleteUserInfo());
-      history.push({ pathname: '/' });
-    });
-};
+export const userLogOut =
+  (accessToken, history, path, setModalMessage) => (dispatch) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/signout`, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${accessToken}`,
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        dispatch({ type: USER_LOGOUT });
+        dispatch(deleteUserInfo());
+        history.push({ pathname: '/' });
+        if (path) {
+          setModalMessage('테스트');
+        }
+      });
+  };
 
 // 이메일 확인 ==========================================
 export const EMAIL_SIGNUP = 'EMAIL_SIGNUP';
 export const EMAIL_SIGNUP_SUCCESS = 'EMAIL_SIGNUP_SUCCESS';
 export const EMAIL_SIGNUP_ERROR = 'EMAIL_SIGNUP_ERROR';
 
-export const checkEmailExists = (email, history) => (dispatch) => {
-  dispatch({ type: EMAIL_SIGNUP });
-  axios
-    .post(
-      `${process.env.REACT_APP_API_URL}/checkemail`,
-      { email },
-      {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      }
-    )
-    .then(() => {
-      dispatch({ type: EMAIL_SIGNUP_SUCCESS });
-    })
-    .catch((err) => {
-      dispatch({ type: EMAIL_SIGNUP_ERROR });
-      dispatch(goToHome(history));
-      dispatch(saveModalMessage('이미 가입된 이메일입니다'));
-    });
-};
+export const checkEmailExists =
+  (email, history, setModalMessage) => (dispatch) => {
+    dispatch({ type: EMAIL_SIGNUP });
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/checkemail`,
+        { email },
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        dispatch({ type: EMAIL_SIGNUP_SUCCESS });
+      })
+      .catch((err) => {
+        dispatch({ type: EMAIL_SIGNUP_ERROR });
+        setModalMessage('이미 가입된 이메일입니다');
+      });
+  };
 
 // 소셜 로그인
 
@@ -137,35 +141,37 @@ export const getGoogleCode = (authorizationCode) => (dispatch) => {
 };
 
 // 소셜 회원가입
-export const kakaoSignUp = (authorizationCode, history) => (dispatch) => {
-  axios
-    .post(`${process.env.REACT_APP_API_URL}/kakaocheck`, {
-      authorizationCode,
-    })
-    .then((res) => {
-      // console.log('KSU is', res);
-      dispatch(socialData({ email: res.data.data }));
-    })
-    .catch((err) => {
-      dispatch(saveModalMessage(err.response.data.message));
-      dispatch(socialDataDelete());
-    });
-};
+export const kakaoSignUp =
+  (authorizationCode, history, setModalMessage) => (dispatch) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/kakaocheck`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        // console.log('KSU is', res);
+        dispatch(socialData({ email: res.data.data }));
+      })
+      .catch((err) => {
+        setModalMessage(err.response.data.message);
+        dispatch(socialDataDelete());
+      });
+  };
 
-export const googleSignUp = (authorizationCode, history) => (dispatch) => {
-  axios
-    .post(`${process.env.REACT_APP_API_URL}/googlecheck`, {
-      authorizationCode,
-    })
-    .then((res) => {
-      // console.log('GSU said', res);
-      dispatch(socialData({ email: res.data.data }));
-    })
-    .catch((err) => {
-      dispatch(saveModalMessage(err.response.data.message));
-      dispatch(socialDataDelete());
-    });
-};
+export const googleSignUp =
+  (authorizationCode, history, setModalMessage) => (dispatch) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/googlecheck`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        // console.log('GSU said', res);
+        dispatch(socialData({ email: res.data.data }));
+      })
+      .catch((err) => {
+        setModalMessage(err.response.data.message);
+        dispatch(socialDataDelete());
+      });
+  };
 
 export const SOCIAL_DATA = 'SOCIAL_DATA';
 export const SOCIAL_DELETE = 'SOCIAL_DELETE';
@@ -193,28 +199,29 @@ export const socialSignUp = (fd, history) => (dispatch) => {
 };
 
 // 회원가입 =======================================
-export const userSignUpRequest = (fd, history) => (dispatch) => {
-  axios
-    .post(`${process.env.REACT_APP_API_URL}/signup`, fd, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-      withCredentials: true,
-    })
-    .then((res) => {
-      // console.log(res.data.message);
-      dispatch({ type: EMAIL_SIGNUP }); //이메일 체크 완료상태 펄스로 바꾸기
-      dispatch(goToHome(history));
-      dispatch(saveModalMessage('회원가입 성공!'));
-    })
-    .catch((err) => {
-      // console.log(err.response);
-    });
-};
+export const userSignUpRequest =
+  (fd, history, setModalMessage) => (dispatch) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/signup`, fd, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true,
+      })
+      .then((res) => {
+        // console.log(res.data.message);
+        dispatch({ type: EMAIL_SIGNUP }); //이메일 체크 완료상태 펄스로 바꾸기
+        dispatch(goToHome(history));
+        setModalMessage('회원가입 성공!');
+      })
+      .catch((err) => {
+        // console.log(err.response);
+      });
+  };
 
 // 로그인 ==========================================
 export const USER_SIGNIN = 'USER_SIGNIN';
 export const USER_SIGNIN_ERROR = 'USER_SIGNIN_ERROR';
 
-export const userSignInRequest = (loginInfo) => (dispatch) => {
+export const userSignInRequest = (loginInfo, setModalMessage) => (dispatch) => {
   dispatch({ type: USER_SIGNIN });
   axios
     .post(
@@ -230,7 +237,7 @@ export const userSignInRequest = (loginInfo) => (dispatch) => {
     })
     .catch(() => {
       dispatch({ type: USER_SIGNIN_ERROR });
-      dispatch(saveModalMessage('이메일 혹은 비밀번호가 잘못 입력되었습니다'));
+      setModalMessage('이메일 혹은 비밀번호가 잘못 입력되었습니다');
     });
 };
 
@@ -281,18 +288,13 @@ export const getUserInfo = (accessToken, history) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      console.log();
       dispatch(writeUserInfo(res.data.data));
       return res;
     })
     .then((res) => {
       const redirect = res.data.data.userset.redirect;
-      // console.log(res);
-      // const pageList = ['daily', 'monthly', 'yearly', 'budget'];
-      // if (pageList.includes(redirect)) {
       history.push(redirect); // 기본값 /daily
-      // } else {
-      //   history.push('/daily');
-      // }
     })
     .catch((err) => {
       // console.log(err.response);
@@ -445,7 +447,7 @@ export const categoryFilter = (data, accessToken) => (dispatch) => {
 // 유저정보 수정
 export const USER_EDIT = 'USER_EDIT';
 
-export const userEdit = (fd, accessToken) => (dispatch) => {
+export const userEdit = (fd, accessToken, history) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_API_URL}/fixuserinfo`, fd, {
       headers: {
@@ -457,32 +459,35 @@ export const userEdit = (fd, accessToken) => (dispatch) => {
     .then((res) => {
       // dispatch(getUserInfo()) 유저인포 다시 불러오기
       // 홈으로 리다이렉트 됨 안대는대그러면...~~~~~~~~~
+      dispatch(getUserInfo(accessToken, history));
     });
 };
 
 export const PASSWORD_EDIT = 'PASSWORD_EDIT';
 
-export const passwordEdit = (data, accessToken) => (dispatch) => {
-  axios
-    .post(
-      `${process.env.REACT_APP_API_URL}/changepassword`,
-      {
-        password: data.password,
-        newpassword: data.newpassword,
-      },
-      {
-        headers: { authorization: `bearer ${accessToken}` },
-        withCredentials: true,
-      }
-    )
-    .then((res) => {
-      dispatch(saveModalMessage('비밀번호 변경이 완료되었습니다'));
-      // console.log(res);
-    })
-    .catch((err) => {
-      // console.log(err.response);
-    });
-};
+export const passwordEdit =
+  (data, accessToken, setModalMessage) => (dispatch) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/changepassword`,
+        {
+          password: data.password,
+          newpassword: data.newpassword,
+        },
+        {
+          headers: { authorization: `bearer ${accessToken}` },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        // console.log(res);
+        // dispatch(userLogOut(accessToken, history));
+        setModalMessage('비밀번호 변경이 완료되었습니다');
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  };
 
 export const setRedirect = (data, accessToken) => (dispatch) => {
   axios

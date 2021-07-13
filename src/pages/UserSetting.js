@@ -10,6 +10,7 @@ import {
   userLogOut,
   saveModalMessage,
   setRedirect,
+  getUserInfo,
 } from '../actions';
 import { useHistory } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
@@ -34,6 +35,30 @@ function UserSetting() {
     passwordCheck: null,
   });
   const [incodingFile, setIncodingFile] = useState(null);
+
+  //======================================
+  const [modalMessage, setModalMessage] = useState('');
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
+  const handleClick = () => {
+    setModalMessage('');
+  };
+
+  if (modalMessage) {
+    setTimeout(() => {
+      dispatch(userLogOut(accessToken, history));
+    }, 4000);
+
+    setTimeout(() => {
+      setModalMessage('잠시후 로그아웃됩니다');
+    }, 2000);
+  }
+  //=====================================
 
   useEffect(() => {
     let url = new URL(window.location.href);
@@ -99,23 +124,20 @@ function UserSetting() {
     } else {
       fd.append('username', tempInfo.username);
     }
-    dispatch(userEdit(fd, accessToken));
-
-    dispatch(saveModalMessage('변경되었습니다'));
+    dispatch(userEdit(fd, accessToken, history));
   };
 
   const editPasswordRequestHandler = async (e) => {
     e.preventDefault();
     if (isPassword) {
       if (!tempInfo.password || !tempInfo.passwordCheck) {
-        dispatch(saveModalMessage('비밀번호를 입력해주세요'));
+        setModalMessage('비밀번호를 입력해주세요');
       } else if (tempInfo.newpassword !== tempInfo.passwordCheck) {
-        dispatch(saveModalMessage('비밀번호를 확인해주세요'));
+        setModalMessage('비밀번호를 확인해주세요');
       }
     }
 
-    dispatch(passwordEdit(tempInfo, accessToken, history));
-    dispatch(userLogOut(accessToken, history));
+    dispatch(passwordEdit(tempInfo, accessToken, setModalMessage));
   };
 
   const mainPageSettingHandler = (e) => {
@@ -321,6 +343,13 @@ function UserSetting() {
             buttonText="회원탈퇴"
             func={deleteUserEventHandler}
           />
+          {modalMessage ? (
+            <div className="homeModal">
+              <div className="homeModal_message">{modalMessage}</div>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

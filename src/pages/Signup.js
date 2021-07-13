@@ -30,6 +30,21 @@ function Signup() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  //======================================
+  const [modalMessage, setModalMessage] = useState('');
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
+  const handleClick = () => {
+    setModalMessage('');
+  };
+
+  //=====================================
+
   // 소셜 회원가입부분
 
   useEffect(() => {
@@ -41,9 +56,9 @@ function Signup() {
     if (!authorizationCode) {
       return;
     } else if (address.includes('www.googleapis.com')) {
-      dispatch(googleSignUp(authorizationCode, history));
+      dispatch(googleSignUp(authorizationCode, history, setModalMessage));
     } else {
-      dispatch(kakaoSignUp(authorizationCode, history));
+      dispatch(kakaoSignUp(authorizationCode, history, setModalMessage));
     }
   }, [dispatch, history]);
 
@@ -111,28 +126,41 @@ function Signup() {
     e.preventDefault();
 
     if (!userInfo.email) {
-      alert('이메일을 입력해주세요');
+      setModalMessage('이메일을 입력해주세요');
       return;
     }
 
-    dispatch(checkEmailExists(userInfo.email, history));
+    dispatch(checkEmailExists(userInfo.email, history, setModalMessage));
   };
 
   let signupRequestHandler = async (e) => {
-    if (!userInfo.username || !userInfo.password || !userInfo.email) {
+    if (
+      !userInfo.username ||
+      !userInfo.password ||
+      !userInfo.email ||
+      !userInfo.passwordCheck
+    ) {
       //TODO: UX
       if (!userInfo.email) {
-        alert('처음부터 시도해주세요');
+        setModalMessage('처음부터 시도해주세요');
       }
       if (!userInfo.username) {
-        alert('닉네임을 입력해주세요');
+        console.log('들어옴1');
+        setModalMessage('닉네임을 입력해주세요');
       }
       if (!userInfo.password) {
-        alert('비밀번호를 입력해주세요');
+        console.log('들어옴2');
+        setModalMessage('비밀번호를 입력해주세요');
+      }
+      if (!userInfo.passwordCheck) {
+        console.log('들어옴3');
+        setModalMessage('비밀번호 확인 란을 입력해주세요');
       }
       return;
     } else if (userInfo.password !== userInfo.passwordCheck) {
-      alert('비밀번호를 확인해주세요');
+      console.log('들어옴4');
+      setModalMessage('비밀번호를 확인해주세요');
+      return;
     }
     e.preventDefault();
 
@@ -142,7 +170,7 @@ function Signup() {
     fd.append('password', userInfo.password);
     fd.append('photo', userInfo.photo);
 
-    dispatch(userSignUpRequest(fd, history));
+    dispatch(userSignUpRequest(fd, history, setModalMessage));
   };
 
   return (
@@ -176,7 +204,7 @@ function Signup() {
         </Link>
         {email ? (
           <>
-            <SocialSignUpPage />
+            <SocialSignUpPage setModalMessage={setModalMessage} />
           </>
         ) : emailSignupMod ? (
           <div className="inputZone">
@@ -306,6 +334,13 @@ function Signup() {
           </>
         )}
       </div>
+      {modalMessage ? (
+        <div className="homeModal">
+          <div className="homeModal_message">{modalMessage}</div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
