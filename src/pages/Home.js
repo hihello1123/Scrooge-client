@@ -347,12 +347,11 @@ function Home() {
                   </div>
                 </div>
               </section>
-
               <section className="home_simpleUI">
                 <h2 data-aos="fade-up">
-                  사용하기 쉬운
+                  직접 정하는
                   <br />
-                  심플한 인터페이스
+                  다양한 메인페이지
                 </h2>
                 <div className="home_simpleUI_container">
                   <div data-aos="fade-up">
@@ -458,7 +457,11 @@ function Home() {
                 </svg>
               </div>
               <section className="home_slide">
-                <div>여기이하로 내용 추가 예정</div>
+                <h2>
+                  사용하기 쉬운
+                  <br />
+                  심플한 인터페이스
+                </h2>
                 <div className="landing_item_container">
                   <div className="landing_item_literal">
                     <div className="landing_item_literal_title">
@@ -478,6 +481,7 @@ function Home() {
                 </div>
                 <div>여기까지 추가 끝</div>
               </section>
+              <section>{/* 거대도약 */}</section>
             </div>
           )}
         </>

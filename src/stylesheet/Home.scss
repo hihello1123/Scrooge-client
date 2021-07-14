@@ -203,6 +203,7 @@ nav.top_nav {
       width: 100%;
       & > div {
         display: flex;
+        width: 100%;
       }
       &:first-child {
         top: 4%;
@@ -222,7 +223,7 @@ nav.top_nav {
       }
       img {
         margin-bottom: 15px;
-        max-width: 60%;
+        width: 60%;
         height: auto;
       }
       span {
@@ -239,6 +240,7 @@ nav.top_nav {
       }
       svg {
         width: 20%;
+        margin: 0 5%;
       }
       .path {
         animation: dash 20s linear infinite;
@@ -271,6 +273,7 @@ nav.top_nav {
 
 .home_slide {
   margin-top: 500px;
+  margin-bottom: 100%;
   .landing_item {
     &_container {
       position: absolute;
