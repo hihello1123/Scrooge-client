@@ -70,56 +70,44 @@ function Home() {
 
   const itemlist = [
     {
-      title: '1번사진',
-      inform: '1번사진의 내용들',
+      title: '지출 내역 작성',
+      inform: [
+        '버튼 세 개로 작성하는 놀라운 지출 내역.',
+        '가계부계의 종결자 다운 Simple한 기능.',
+      ],
       photo: process.env.PUBLIC_URL + '/first.png',
       id: 0,
     },
     {
-      title: '2번사진',
-      inform: '2번사진의 내용들',
+      title: '예산 작성 / 수정 / 삭제',
+      inform: ['내가 만든 목표.', '내가 만든 대로 만들어지는 정보.'],
       photo: process.env.PUBLIC_URL + '/second.png',
       id: 1,
     },
     {
-      title: '3번사진',
-      inform: '3번사진의 내용들',
+      title: '월별 지출 정리 페이지',
+      inform: ['지난달의 지출 정리.', '새로운달의 예산 준비.'],
       photo: process.env.PUBLIC_URL + '/third.png',
       id: 2,
-    },
-    {
-      title: '4번사진',
-      inform: '4번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/fourth.png',
-      id: 3,
-    },
-    {
-      title: '5번사진',
-      inform: '5번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/fifth.png',
-      id: 4,
-    },
-    {
-      title: '6번사진',
-      inform: '6번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/sixth.png',
-      id: 5,
     },
   ];
 
   const [showItem, setItem] = useState({
-    title: '1번사진',
-    inform: '1번사진의 내용들',
+    title: '지출 내역 작성',
+    inform: [
+      '버튼 세 개로 작성하는 놀라운 지출 내역.',
+      '가계부계의 종결자 다운 Simple한 기능.',
+    ],
     photo: process.env.PUBLIC_URL + '/first.png',
     id: 0,
   });
 
   const slidePlusBtn = (e) => {
-    if (showItem.id === 5) {
+    if (showItem.id === 2) {
       setItem({ ...showItem, ...itemlist[0] });
     } else {
       let filtered = itemlist.filter((el) => {
-        if (showItem.id === 6) {
+        if (showItem.id === 2) {
           return el.id === 0;
         } else {
           return el.id === showItem.id + 1;
@@ -133,11 +121,11 @@ function Home() {
 
   const slideMinusBtn = (e) => {
     if (showItem.id === 0) {
-      setItem({ ...showItem, ...itemlist[5] });
+      setItem({ ...showItem, ...itemlist[2] });
     } else {
       let filtered = itemlist.filter((el) => {
         if (showItem.id === 0) {
-          return el.id === 6;
+          return el.id === 2;
         } else {
           return el.id === showItem.id - 1;
         }
@@ -468,7 +456,12 @@ function Home() {
                       {showItem.title}
                     </div>
                     <div className="landing_item_literal_inform">
-                      {showItem.inform}
+                      <div className="landing_item_literal_inform_1">
+                        {showItem.inform[0]}
+                      </div>
+                      <div className="landing_item_literal_inform_2">
+                        {showItem.inform[1]}
+                      </div>
                     </div>
                   </div>
                   <div className="landing_item_photo">
