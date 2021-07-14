@@ -364,31 +364,33 @@ function Home() {
                         사용내역을 간단하게 작성, 수정, 확인까지
                       </p>
                     </span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="411"
-                      height="211"
-                      viewBox="0 0 411 211"
-                      fill="none"
-                    >
-                      <path
-                        className="path"
-                        d="M2 2C37.6667 64 164.2 189.3 385 194.5"
-                        stroke="#AFBFD6"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeDasharray="11 11"
-                      />
-                      <path
-                        d="M390 180L407 194L390 208"
-                        stroke="#AFBFD6"
-                        strokeWidth="5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
                   </div>
                   <div data-aos="fade-up">
-                    <img src={data.MonthlyPage} alt="" />
+                    <div className="flex_end">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="411"
+                        height="211"
+                        viewBox="0 0 411 211"
+                        fill="none"
+                      >
+                        <path
+                          className="path"
+                          d="M2 2C37.6667 64 164.2 189.3 385 194.5"
+                          stroke="#AFBFD6"
+                          strokeWidth="4"
+                          strokeLinecap="round"
+                          strokeDasharray="11 11"
+                        />
+                        <path
+                          d="M390 180L407 194L390 208"
+                          stroke="#AFBFD6"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <img src={data.MonthlyPage} alt="" />
+                    </div>
                     <span>
                       <h3>월 별 페이지</h3>
                       <p>
@@ -396,31 +398,33 @@ function Home() {
                         이번 달 예산과 지출을 한번에
                       </p>
                     </span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="409"
-                      height="209"
-                      viewBox="0 0 409 209"
-                      fill="none"
-                    >
-                      <path
-                        className="path"
-                        d="M403.978 3C368.965 62.9855 243.758 184.81 23.026 192.226"
-                        stroke="#AFBFD6"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeDasharray="11 11"
-                      />
-                      <path
-                        d="M21 178L4 192L21 206"
-                        stroke="#AFBFD6"
-                        strokeWidth="5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
                   </div>
                   <div data-aos="fade-up">
-                    <img src={data.YearlyPage} alt="" />
+                    <div>
+                      <img src={data.YearlyPage} alt="" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="409"
+                        height="209"
+                        viewBox="0 0 409 209"
+                        fill="none"
+                      >
+                        <path
+                          className="path"
+                          d="M403.978 3C368.965 62.9855 243.758 184.81 23.026 192.226"
+                          stroke="#AFBFD6"
+                          strokeWidth="4"
+                          strokeLinecap="round"
+                          strokeDasharray="11 11"
+                        />
+                        <path
+                          d="M21 178L4 192L21 206"
+                          stroke="#AFBFD6"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </div>
                     <span>
                       <h3>연도 별 페이지</h3>
                       <p>
@@ -432,6 +436,27 @@ function Home() {
                   </div>
                 </div>
               </section>
+              <div
+                className="home_simpleUI_bg"
+                style={{ transform: `translateY(${offsetY * 0.3}px)` }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="4363"
+                  height="4363"
+                  viewBox="0 0 4363 4363"
+                  fill="none"
+                >
+                  <rect
+                    x="2909.85"
+                    width="3252.15"
+                    height="3252.15"
+                    rx="397"
+                    transform="rotate(63.4761 2909.85 0)"
+                    fill="white"
+                  />
+                </svg>
+              </div>
               <section className="home_slide">
                 <div>여기이하로 내용 추가 예정</div>
                 <div className="landing_item_container">
