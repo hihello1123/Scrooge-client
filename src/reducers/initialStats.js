@@ -1,6 +1,6 @@
 const initialStats = {
   hello: {
-    loading: false,
+    loading: true,
     data: null,
     err: null,
   },

@@ -12,7 +12,7 @@ export const hello = () => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_API_URL}/`)
     .then((res) => {
-      dispatch({ type: HELLO_SUCCESS, data: res.data });
+      dispatch({ type: HELLO_SUCCESS, photos: res.data.data.landingPhotos });
     })
     .catch((err) => {
       dispatch({ type: HELLO_ERROR, err });
