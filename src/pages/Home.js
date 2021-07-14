@@ -327,6 +327,12 @@ function Home() {
                   />
                   <div className="home_web_img_in">
                     <img
+                      data-aos="fade-up-left"
+                      src={data.Topper}
+                      className="topper"
+                      alt=""
+                    />
+                    <img
                       data-aos="fade-up"
                       src={data.Monthly}
                       className="monthly"
@@ -341,14 +347,7 @@ function Home() {
                   </div>
                 </div>
               </section>
-              <div className="topper_container">
-                <img
-                  data-aos="fade-up-left"
-                  src={data.Topper}
-                  className="topper"
-                  alt=""
-                />
-              </div>
+
               <section className="home_simpleUI">
                 <h2 data-aos="fade-up">
                   사용하기 쉬운

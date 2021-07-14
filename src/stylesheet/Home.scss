@@ -164,9 +164,14 @@ nav.top_nav {
       top: 0;
       width: 100%;
       height: 100%;
+      .topper,
       .monthly,
       .daily {
         position: absolute;
+      }
+      .topper {
+        top: 15%;
+        width: 100%;
       }
       .monthly {
         top: 42%;
@@ -182,18 +187,6 @@ nav.top_nav {
   }
 }
 
-.topper_container {
-  position: absolute;
-  top: 180%;
-  width: calc(100vw (100vw - 100%));
-  height: 300px;
-  overflow: hidden;
-}
-
-.topper {
-  width: 100%;
-}
-
 .home_simpleUI {
   h2 {
     text-align: center;
@@ -203,11 +196,6 @@ nav.top_nav {
     position: absolute;
     left: 0;
     width: calc(100vw - (100vw - 100%));
-    &::before {
-      content: '';
-      display: block;
-      padding-top: calc(175%);
-    }
     background-color: #fff;
     & > div {
       position: absolute;
@@ -217,7 +205,7 @@ nav.top_nav {
         left: 5%;
       }
       &:nth-child(2) {
-        top: 35%;
+        top: 37%;
         right: 5%;
         text-align: end;
       }
@@ -263,7 +251,7 @@ nav.top_nav {
 }
 
 .home_slide {
-  margin-top: 200vw;
+  margin-top: 250%;
   .landing_item {
     &_container {
       position: absolute;
@@ -359,6 +347,12 @@ nav.top_nav {
       top: 18%;
     }
   }
+
+  .home_simpleUI {
+    &_container {
+      height: calc(170vw - (100vw - 100%));
+    }
+  }
 }
 
 @include tablet {
@@ -384,6 +378,11 @@ nav.top_nav {
       top: 28%;
     }
   }
+  .home_simpleUI {
+    &_container {
+      height: calc(200vw - (100vw - 100%));
+    }
+  }
 }
 
 @include desktop {
@@ -407,6 +406,11 @@ nav.top_nav {
     &_img {
       width: 48vw;
       top: 15%;
+    }
+  }
+  .home_simpleUI {
+    &_container {
+      height: calc(220vw - (100vw - 100%));
     }
   }
 }
