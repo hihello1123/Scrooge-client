@@ -83,34 +83,40 @@ function Yearly() {
         options={{
           title: '지출 횟수',
           calendar: {
+            dayOfWeekLabel: {
+              color: '#afbfd6',
+            },
+            monthLabel: {
+              color: '#afbfd6',
+            },
             yearLabel: {
               fontSize: 16,
             },
             cellSize: scale(5, 25),
             cellColor: {
-              stroke: '#76a7fa',
+              stroke: '#d5e0f1',
               strokeOpacity: 0.5,
               strokeWidth: 1,
             },
             monthOutlineColor: {
-              stroke: '#76a7fa',
+              stroke: '#afbfd6',
               strokeOpacity: 1,
               strokeWidth: 2,
             },
             unusedMonthOutlineColor: {
-              stroke: '#76a7fa',
+              stroke: '#afbfd6',
               strokeOpacity: 1,
               strokeWidth: 1,
             },
           },
           colorAxis: {
             minValue: 0,
-            colors: ['#93ff93', '#ff7474'],
+            colors: ['#63e3ff', '#385ad2'],
             maxValue: 5,
           },
           noDataPattern: {
-            backgroundColor: '#a9d1ff',
-            color: '#a9d1ff',
+            backgroundColor: '#f1f5ff',
+            color: '#f1f5ff',
           },
         }}
         rootProps={{ 'data-testid': '1' }}

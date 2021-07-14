@@ -4,6 +4,7 @@ import { postDaily, editDaily } from '../actions';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect } from 'react';
 import { Emoji } from 'emoji-mart';
@@ -264,7 +265,14 @@ function Dailyform({ editMode, item }) {
           locale={ko}
           dateFormat="yyyy-MM-dd"
         />
-        {err ? <div className="formErrMessage">{err}</div> : <></>}
+        {err ? (
+          <div className="formErrMessage">
+            <ExclamationCircleIcon />
+            <div className="formErrMessage_message">{' ' + err}</div>
+          </div>
+        ) : (
+          <></>
+        )}
         <button className="daily_form_submit" onClick={dailySubmitHandler}>
           {editMode ? '지출 내역 수정' : '지출 내역 작성'}
         </button>

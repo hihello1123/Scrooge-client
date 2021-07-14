@@ -152,10 +152,20 @@
           margin-top: 5px;
         }
         .createErr {
+          display: flex;
+          flex-direction: row;
           color: $red-color;
           text-align: center;
           font-size: $font-small;
           border-radius: 5px;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 20px;
+            margin-top: 4px;
+            margin-right: 3px;
+          }
         }
       }
     }

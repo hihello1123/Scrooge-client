@@ -3,14 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Daily from './Daily';
 import Login from '../components/Login';
-import Loading from '../components/Loading';
 import {
   getGoogleCode,
   getKakaoCode,
-  hello,
   socialDataDelete,
+  experimentLogin,
+  hello,
 } from '../actions';
-import { ArrowDownIcon, LockClosedIcon } from '@heroicons/react/outline';
+import {
+  ArrowDownIcon,
+  LockClosedIcon,
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+} from '@heroicons/react/outline';
+import Loading from '../components/Loading';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
@@ -19,9 +25,23 @@ function Home() {
   const isLoggedInReducer = useSelector((state) => state.isLoggedInReducer);
   const helloReducer = useSelector((state) => state.helloReducer);
   const { isLoggedIn } = isLoggedInReducer.userLoggedIn;
-  const { loading, data } = helloReducer.hello;
+  const [isLoginModal, setLoginModal] = useState(false);
 
-  const [isModal, setModal] = useState(false);
+  //======================================
+  const [modalMessage, setModalMessage] = useState('');
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClick, false);
+    };
+  });
+  const handleClick = () => {
+    setModalMessage('');
+  };
+
+  //=====================================
+  const { loading, data } = helloReducer.hello;
 
   useEffect(() => {
     dispatch(hello());
@@ -37,15 +57,97 @@ function Home() {
       return;
     } else if (url.pathname === '/' && address.includes('www.googleapis.com')) {
       dispatch(getGoogleCode(authorizationCode));
-      setModal(true);
+      setLoginModal(true);
     } else if (url.pathname === '/') {
       dispatch(getKakaoCode(authorizationCode));
-      setModal(true);
+      setLoginModal(true);
     }
   }, [dispatch]);
 
   const modalSet = () => {
-    setModal(!isModal);
+    setLoginModal(!isLoginModal);
+  };
+
+  const itemlist = [
+    {
+      title: '1번사진',
+      inform: '1번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/first.png',
+      id: 0,
+    },
+    {
+      title: '2번사진',
+      inform: '2번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/second.png',
+      id: 1,
+    },
+    {
+      title: '3번사진',
+      inform: '3번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/third.png',
+      id: 2,
+    },
+    {
+      title: '4번사진',
+      inform: '4번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/fourth.png',
+      id: 3,
+    },
+    {
+      title: '5번사진',
+      inform: '5번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/fifth.png',
+      id: 4,
+    },
+    {
+      title: '6번사진',
+      inform: '6번사진의 내용들',
+      photo: process.env.PUBLIC_URL + '/sixth.png',
+      id: 5,
+    },
+  ];
+
+  const [showItem, setItem] = useState({
+    title: '1번사진',
+    inform: '1번사진의 내용들',
+    photo: process.env.PUBLIC_URL + '/first.png',
+    id: 0,
+  });
+
+  const slidePlusBtn = (e) => {
+    if (showItem.id === 5) {
+      setItem({ ...showItem, ...itemlist[0] });
+    } else {
+      let filtered = itemlist.filter((el) => {
+        if (showItem.id === 6) {
+          return el.id === 0;
+        } else {
+          return el.id === showItem.id + 1;
+        }
+      });
+      setItem({ ...showItem, ...filtered[0] });
+      console.log(filtered);
+      console.log(showItem);
+    }
+  };
+
+  const slideMinusBtn = (e) => {
+    if (showItem.id === 0) {
+      setItem({ ...showItem, ...itemlist[5] });
+    } else {
+      let filtered = itemlist.filter((el) => {
+        if (showItem.id === 0) {
+          return el.id === 6;
+        } else {
+          return el.id === showItem.id - 1;
+        }
+      });
+      setItem({ ...showItem, ...filtered[0] });
+    }
+  };
+
+  const testLogin = () => {
+    dispatch(experimentLogin(setModalMessage));
   };
 
   //스크롤 이펙트
@@ -75,7 +177,7 @@ function Home() {
             </>
           ) : (
             <div className="home">
-              {isModal ? <Login modalSet={modalSet} /> : <></>}
+              {isLoginModal ? <Login modalSet={modalSet} /> : <></>}
               <nav className="top_nav">
                 <div></div>
                 <div>
@@ -195,6 +297,9 @@ function Home() {
                   </h1>
                   <div className="btn_group">
                     <button className="signup_btn">가계부 쓰기</button>
+                    <button className="testLogin" onClick={testLogin}>
+                      테스트 로그인
+                    </button>
                     <a href="#homeweb" className="scroll_btn">
                       기능 더보기
                       <ArrowDownIcon className="scroll_btn_icon" />
@@ -327,6 +432,28 @@ function Home() {
             </div>
           )}
         </>
+      )}
+      <div>여기이하로 내용 추가 예정</div>
+      <div className="landing_item_container">
+        <div className="landing_item_literal">
+          <div className="landing_item_literal_title">{showItem.title}</div>
+          <div className="landing_item_literal_inform">{showItem.inform}</div>
+        </div>
+        <div className="landing_item_photo">
+          <img src={showItem.photo} alt="" />
+          <div className="landing_item_btns">
+            <ArrowNarrowLeftIcon onClick={slideMinusBtn} />
+            <ArrowNarrowRightIcon onClick={slidePlusBtn} />
+          </div>
+        </div>
+      </div>
+      <div>여기까지 추가 끝</div>
+      {modalMessage ? (
+        <div className="homeModal">
+          <div className="homeModal_message">{modalMessage}</div>
+        </div>
+      ) : (
+        <></>
       )}
     </>
   );

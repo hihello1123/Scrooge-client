@@ -7,9 +7,6 @@ require('dotenv').config();
 
 function App() {
   const dispatch = useDispatch();
-
-  const modalMessageReducer = useSelector((state) => state.modalMessageReducer);
-  const { message, errored } = modalMessageReducer;
   useEffect(() => {
     dispatch(refreshTokenRequest());
   }, [dispatch]);

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { socialData, socialSignUp } from '../actions';
 
-function SocialSignUpPage() {
+function SocialSignUpPage({ setModalMessage }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const socialDataReducer = useSelector((state) => state.socialDataReducer);
@@ -27,10 +27,10 @@ function SocialSignUpPage() {
     if (!socialDatas.username || !socialDatas.email) {
       //TODO: UX
       if (!socialDatas.username) {
-        alert('닉네임을 입력해주세요');
+        setModalMessage('닉네임을 입력해주세요');
       }
       if (!socialDatas.email) {
-        alert('처음부터 진행해주세요');
+        setModalMessage('처음부터 진행해주세요');
       }
       return;
     }

@@ -3,6 +3,7 @@ import Chart from 'react-google-charts';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBudget, createBudget, navEffect, GET_BUDGET } from '../actions';
 import { PlusIcon, XIcon } from '@heroicons/react/outline';
+import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { Emoji } from 'emoji-mart';
@@ -273,7 +274,12 @@ function Budget() {
                       onChange={inputHandler}
                     />
                     {createBudgetErr ? (
-                      <div className="createErr">{createBudgetErr}</div>
+                      <div className="createErr">
+                        <ExclamationCircleIcon />
+                        <div className="createErr_message">
+                          {createBudgetErr}
+                        </div>
+                      </div>
                     ) : (
                       <></>
                     )}
