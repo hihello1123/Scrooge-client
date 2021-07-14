@@ -218,12 +218,6 @@ function Home() {
                   />
                   <div className="home_web_img_in">
                     <img
-                      data-aos="fade-up-left"
-                      src={data.Topper}
-                      className="topper"
-                      alt=""
-                    />
-                    <img
                       data-aos="fade-up"
                       src={data.Monthly}
                       className="monthly"
@@ -238,6 +232,14 @@ function Home() {
                   </div>
                 </div>
               </section>
+              <div className="topper_container">
+                <img
+                  data-aos="fade-up-left"
+                  src={data.Topper}
+                  className="topper"
+                  alt=""
+                />
+              </div>
               <section className="home_simpleUI">
                 <h2 data-aos="fade-up">
                   사용하기 쉬운
@@ -286,6 +288,28 @@ function Home() {
                         이번 달 예산과 지출을 한번에
                       </p>
                     </sapn>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="409"
+                      height="209"
+                      viewBox="0 0 409 209"
+                      fill="none"
+                    >
+                      <path
+                        className="path"
+                        d="M403.978 3C368.965 62.9855 243.758 184.81 23.026 192.226"
+                        stroke="#AFBFD6"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeDasharray="11 11"
+                      />
+                      <path
+                        d="M21 178L4 192L21 206"
+                        stroke="#AFBFD6"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
                   </div>
                   <div data-aos="fade-up">
                     <img src={data.YearlyPage} alt="" />
