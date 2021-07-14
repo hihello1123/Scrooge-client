@@ -720,3 +720,24 @@ export const saveModalMessage = (message) => (dispatch) => {
 export const deleteModalMessage = () => (dispatch) => {
   dispatch({ type: DELETE_MODAL_MESSAGE });
 };
+
+//체험하기 로그인
+export const experimentLogin = (setModalMessage) => (dispatch) => {
+  dispatch({ type: USER_SIGNIN });
+  axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/login`,
+      { email: 'scrooge@gmail.com', password: '123456' },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      dispatch(userLogin(res.data.data.accessToken));
+    })
+    .catch(() => {
+      dispatch({ type: USER_SIGNIN_ERROR });
+      setModalMessage('이메일 혹은 비밀번호가 잘못 입력되었습니다');
+    });
+};

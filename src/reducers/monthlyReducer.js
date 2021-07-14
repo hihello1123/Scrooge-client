@@ -18,6 +18,7 @@ const monthlyReducer = (state = initialStats, action) => {
   let wholeSum = new Array(monthlydays(month)).fill(0);
   let spendDays = [];
   let spendMoney = [];
+  let converted = [];
 
   if (0 <= action.monthlyBudget) {
     for (let n = 0; n < action.data.length; n++) {
@@ -31,6 +32,13 @@ const monthlyReducer = (state = initialStats, action) => {
           wholeSum[m] = wholeSum[m] + spendMoney[n];
         }
       }
+    }
+
+    for (let n = 0; n < action.data.length; n++) {
+      converted.push({
+        ...action.data[n],
+        title: '일 지출 ' + action.data[n].title + '원',
+      });
     }
   }
 
@@ -58,11 +66,12 @@ const monthlyReducer = (state = initialStats, action) => {
       });
     }
   }
+
   switch (action.type) {
     case MONTHLY_DATA:
       return {
         ...state,
-        monthlyData: { data: wholeSumCalendar.concat(action.data) },
+        monthlyData: { data: wholeSumCalendar.concat(converted) },
       };
     default:
       return state;
