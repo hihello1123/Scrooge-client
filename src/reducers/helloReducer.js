@@ -25,7 +25,7 @@ const helloReducer = (state = initialStats, action) => {
       return {
         ...state,
         hello: {
-          loading: false,
+          loading: true,
           data: null,
           err: action.err,
         },

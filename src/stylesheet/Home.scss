@@ -13,6 +13,7 @@
 }
 
 h2 {
+  text-align: center;
   font-size: 3em;
 }
 
@@ -39,11 +40,15 @@ nav.top_nav {
     justify-content: flex-end;
     padding-right: 10px;
     .signin_btn {
-      background-color: rgba(241, 245, 255, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
       color: $blue_color;
       font-size: $font-default;
-      line-height: 40px;
+      background-color: rgba(241, 245, 255, 0);
       &_icon {
+        margin-right: 5px;
         width: 24px;
         height: 24px;
       }
@@ -190,7 +195,6 @@ nav.top_nav {
 .home_simpleUI {
   position: relative;
   h2 {
-    text-align: center;
     margin-bottom: 23%;
   }
   &_container {
@@ -273,7 +277,7 @@ nav.top_nav {
 
 .home_slide {
   margin-top: 500px;
-  margin-bottom: 100%;
+  margin-bottom: 100vh;
   .landing_item {
     &_container {
       position: absolute;
@@ -331,6 +335,104 @@ nav.top_nav {
     }
   }
 }
+.home_piechart {
+  position: relative;
+  h2 {
+    margin-bottom: 250px;
+  }
+  .chart {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      width: 80%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+  .p {
+    position: absolute;
+    width: 100%;
+    height: 150vw;
+    p {
+      position: absolute;
+      font-size: 2em;
+      &:first-child {
+        top: 25%;
+        right: 30%;
+      }
+      &:nth-child(2) {
+        top: 40%;
+        left: 25%;
+      }
+      &:nth-child(3) {
+        font-size: 2.3em;
+        top: 65%;
+        right: 35%;
+      }
+    }
+  }
+  .chart_bg {
+    z-index: -2;
+    position: absolute;
+    width: 100%;
+    height: 150vw;
+    top: -140%;
+    left: 0;
+    img {
+      position: absolute;
+      height: auto;
+      &:first-child {
+        width: 50%;
+        top: 10%;
+        left: -2%;
+      }
+      &:nth-child(2) {
+        width: 35%;
+        top: 48%;
+        right: 0;
+      }
+      &:nth-child(3) {
+        width: 30%;
+        top: 60%;
+        left: 0;
+      }
+      &:nth-child(4) {
+        width: 20%;
+        top: 80%;
+        right: 20%;
+      }
+    }
+  }
+}
+.home_review {
+  position: relative;
+  margin-top: 130vw;
+  height: 150vw;
+  &_container {
+    height: 1000px;
+    background-color: #fff;
+  }
+  .review {
+    & > div {
+      .avatar {
+        width: 10vw;
+        height: 10vw;
+        max-width: 120px;
+        max-height: 120px;
+        background-color: #000;
+      }
+      p {
+        font-size: 1.5em;
+        &:nth-child(3) {
+          color: $blue-color;
+        }
+        &:nth-child(4) {
+          color: $gray-color;
+        }
+      }
+    }
+  }
+}
 
 @include mobile {
   .home {
@@ -369,6 +471,13 @@ nav.top_nav {
       top: 18%;
     }
   }
+
+  .home_review {
+    &_container {
+      margin: 0 0 0 -24px;
+      width: calc(100% + (24px * 2));
+    }
+  }
 }
 
 @include tablet {
@@ -394,6 +503,12 @@ nav.top_nav {
       top: 28%;
     }
   }
+  .home_review {
+    &_container {
+      margin: 0 0 0 -36px;
+      width: calc(100% + (36px * 2));
+    }
+  }
 }
 
 @include desktop {
@@ -417,6 +532,15 @@ nav.top_nav {
     &_img {
       width: 48vw;
       top: 15%;
+    }
+  }
+  .home_simpleUI_container {
+    padding: 0 30px;
+  }
+  .home_review {
+    &_container {
+      margin: 0 0 0 -50px;
+      width: calc(100% + (50px * 2));
     }
   }
 }
