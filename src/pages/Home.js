@@ -11,7 +11,7 @@ import {
   hello,
 } from '../actions';
 import {
-  ArrowDownIcon,
+  ArrowRightIcon,
   LockClosedIcon,
   ArrowNarrowLeftIcon,
   ArrowNarrowRightIcon,
@@ -297,13 +297,17 @@ function Home() {
                   </h1>
                   <div className="btn_group">
                     <button className="signup_btn">가계부 쓰기</button>
-                    <button className="testLogin" onClick={testLogin}>
-                      테스트 로그인
+                    <button
+                      className="testLogin scroll_btn"
+                      onClick={testLogin}
+                    >
+                      체험하기
+                      <ArrowRightIcon className="scroll_btn_icon" />
                     </button>
-                    <a href="#homeweb" className="scroll_btn">
+                    {/* <a href="#homeweb" className="scroll_btn">
                       기능 더보기
                       <ArrowDownIcon className="scroll_btn_icon" />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
                 <div className="home_main_img">
@@ -354,13 +358,13 @@ function Home() {
                 <div className="home_simpleUI_container">
                   <div data-aos="fade-up">
                     <img src={data.DailyPage} alt="" />
-                    <sapn>
+                    <span>
                       <h3>일 별 페이지</h3>
                       <p>
                         데스크탑, 태블릿, 모바일 환경 어디든지 <br />
                         사용내역을 간단하게 작성, 수정, 확인까지
                       </p>
-                    </sapn>
+                    </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="411"
@@ -386,13 +390,13 @@ function Home() {
                   </div>
                   <div data-aos="fade-up">
                     <img src={data.MonthlyPage} alt="" />
-                    <sapn>
+                    <span>
                       <h3>월 별 페이지</h3>
                       <p>
                         매일 사용한 금액을 한눈에 <br />
                         이번 달 예산과 지출을 한번에
                       </p>
-                    </sapn>
+                    </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="409"
@@ -418,36 +422,43 @@ function Home() {
                   </div>
                   <div data-aos="fade-up">
                     <img src={data.YearlyPage} alt="" />
-                    <sapn>
+                    <span>
                       <h3>연도 별 페이지</h3>
                       <p>
                         올해 지출 횟수를 차트로
                         <br />
                         나와의 약속과 각종 업적을 재미있게
                       </p>
-                    </sapn>
+                    </span>
                   </div>
                 </div>
+              </section>
+              <section className="home_slide">
+                <div>여기이하로 내용 추가 예정</div>
+                <div className="landing_item_container">
+                  <div className="landing_item_literal">
+                    <div className="landing_item_literal_title">
+                      {showItem.title}
+                    </div>
+                    <div className="landing_item_literal_inform">
+                      {showItem.inform}
+                    </div>
+                  </div>
+                  <div className="landing_item_photo">
+                    <img src={showItem.photo} alt="" />
+                    <div className="landing_item_btns">
+                      <ArrowNarrowLeftIcon onClick={slideMinusBtn} />
+                      <ArrowNarrowRightIcon onClick={slidePlusBtn} />
+                    </div>
+                  </div>
+                </div>
+                <div>여기까지 추가 끝</div>
               </section>
             </div>
           )}
         </>
       )}
-      <div>여기이하로 내용 추가 예정</div>
-      <div className="landing_item_container">
-        <div className="landing_item_literal">
-          <div className="landing_item_literal_title">{showItem.title}</div>
-          <div className="landing_item_literal_inform">{showItem.inform}</div>
-        </div>
-        <div className="landing_item_photo">
-          <img src={showItem.photo} alt="" />
-          <div className="landing_item_btns">
-            <ArrowNarrowLeftIcon onClick={slideMinusBtn} />
-            <ArrowNarrowRightIcon onClick={slidePlusBtn} />
-          </div>
-        </div>
-      </div>
-      <div>여기까지 추가 끝</div>
+
       {modalMessage ? (
         <div className="homeModal">
           <div className="homeModal_message">{modalMessage}</div>
