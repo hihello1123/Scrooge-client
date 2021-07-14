@@ -220,7 +220,7 @@ nav.top_nav {
     &::before {
       content: '';
       display: block;
-      padding-top: 175%;
+      padding-top: calc(175%);
     }
     background-color: #fff;
     & > div {
@@ -277,7 +277,7 @@ nav.top_nav {
 }
 
 .home_slide {
-  margin-top: 300vh;
+  margin-top: 200vw;
   .landing_item {
     &_container {
       position: absolute;
