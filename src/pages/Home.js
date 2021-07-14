@@ -297,8 +297,8 @@ function Home() {
                   </h1>
                   <div className="btn_group">
                     <button className="signup_btn">가계부 쓰기</button>
-                    <button className="testLogin" onClick={testLogin}>
-                      테스트 로그인
+                    <button className="testLogin_btn" onClick={testLogin}>
+                      체험하기
                     </button>
                     <a href="#homeweb" className="scroll_btn">
                       기능 더보기

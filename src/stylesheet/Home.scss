@@ -49,6 +49,7 @@ nav.top_nav {
     }
   }
 }
+
 .bg {
   z-index: -1;
   position: absolute;
@@ -81,6 +82,7 @@ nav.top_nav {
     }
   }
 }
+
 .home_main {
   position: absolute;
   top: 0;
@@ -123,6 +125,18 @@ nav.top_nav {
           width: 0;
           line-height: 0;
         }
+      }
+      .testLogin_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15px;
+        background-color: #fff;
+        border-radius: 16px;
+        height: 40px;
+        text-align: center;
+        font-size: $font-default;
+        color: $blue_color;
       }
     }
   }
@@ -248,7 +262,8 @@ nav.top_nav {
       top: 70%;
       .btn_group {
         .signup_btn,
-        .scroll_btn {
+        .scroll_btn,
+        .testLogin_btn {
           width: 140px;
           height: 35px;
         }
@@ -270,7 +285,8 @@ nav.top_nav {
     font-size: 12px;
   }
   .signup_btn,
-  .scroll_btn {
+  .scroll_btn,
+  .testLogin_btn {
     width: 140px;
     height: 35px;
   }
@@ -303,7 +319,8 @@ nav.top_nav {
   }
   .home_main {
     .btn_group {
-      .scroll_btn {
+      .scroll_btn,
+      .testLogin_btn {
         width: 200px;
       }
     }
