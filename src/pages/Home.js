@@ -73,22 +73,16 @@ function Home() {
       title: '지출 내역 작성',
       inform: [
         '버튼 세 개로 작성하는 놀라운 지출 내역.',
-        '가계부계의 종결자 다운 Simple한 기능.',
+        '가계부 계의 종결자 다운 Simple한 기능.',
       ],
-      photo: process.env.PUBLIC_URL + '/first.png',
+      photo: process.env.PUBLIC_URL + '/first.gif',
       id: 0,
     },
     {
       title: '예산 작성 / 수정 / 삭제',
       inform: ['내가 만든 목표.', '내가 만든 대로 만들어지는 정보.'],
-      photo: process.env.PUBLIC_URL + '/second.png',
+      photo: process.env.PUBLIC_URL + '/second.gif',
       id: 1,
-    },
-    {
-      title: '월별 지출 정리 페이지',
-      inform: ['지난달의 지출 정리.', '새로운달의 예산 준비.'],
-      photo: process.env.PUBLIC_URL + '/third.png',
-      id: 2,
     },
   ];
 
@@ -98,16 +92,16 @@ function Home() {
       '버튼 세 개로 작성하는 놀라운 지출 내역.',
       '가계부계의 종결자 다운 Simple한 기능.',
     ],
-    photo: process.env.PUBLIC_URL + '/first.png',
+    photo: process.env.PUBLIC_URL + '/first.gif',
     id: 0,
   });
 
   const slidePlusBtn = (e) => {
-    if (showItem.id === 2) {
+    if (showItem.id === 1) {
       setItem({ ...showItem, ...itemlist[0] });
     } else {
       let filtered = itemlist.filter((el) => {
-        if (showItem.id === 2) {
+        if (showItem.id === 1) {
           return el.id === 0;
         } else {
           return el.id === showItem.id + 1;
@@ -121,11 +115,11 @@ function Home() {
 
   const slideMinusBtn = (e) => {
     if (showItem.id === 0) {
-      setItem({ ...showItem, ...itemlist[2] });
+      setItem({ ...showItem, ...itemlist[1] });
     } else {
       let filtered = itemlist.filter((el) => {
         if (showItem.id === 0) {
-          return el.id === 2;
+          return el.id === 1;
         } else {
           return el.id === showItem.id - 1;
         }
@@ -455,6 +449,7 @@ function Home() {
                     <div className="landing_item_literal_title">
                       {showItem.title}
                     </div>
+                    <div className="top hr" />
                     <div className="landing_item_literal_inform">
                       <div className="landing_item_literal_inform_1">
                         {showItem.inform[0]}
@@ -465,14 +460,15 @@ function Home() {
                     </div>
                   </div>
                   <div className="landing_item_photo">
-                    <img src={showItem.photo} alt="" />
+                    <div className="landing_item_photo_container">
+                      <img src={showItem.photo} alt="" />
+                    </div>
                     <div className="landing_item_btns">
                       <ArrowNarrowLeftIcon onClick={slideMinusBtn} />
                       <ArrowNarrowRightIcon onClick={slidePlusBtn} />
                     </div>
                   </div>
                 </div>
-                <div>여기까지 추가 끝</div>
               </section>
               <section>{/* 거대도약 */}</section>
             </div>
