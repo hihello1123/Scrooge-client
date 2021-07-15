@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Daily from './Daily';
@@ -381,7 +381,175 @@ function Home() {
               <section className="home_slide">
                 <Home_Bottom />
               </section>
-              <section>{/* 거대도약 */}</section>
+              <section className="home_piechart">
+                <h2 data-aos="fade-up">가계부에 담은 거대한 도약</h2>
+                <div className="chart">
+                  <img src={data.PieChart} alt="" />
+                </div>
+                <div className="p">
+                  <p data-aos="fade-up">궁극의 가계부</p>
+                  <p data-aos="fade-up">감히 넘나드는 자유</p>
+                  <p data-aos="fade-up">스크루지. 성공 방정식.</p>
+                </div>
+                <div
+                  className="chart_bg"
+                  style={{ transform: `translateY(${offsetY * 0.2}px)` }}
+                >
+                  <img src={data.IconImac} alt="" />
+                  <img src={data.IconMacbook} alt="" />
+                  <img src={data.IconTablet} alt="" />
+                  <img src={data.IconPhone} alt="" />
+                </div>
+              </section>
+              <section className="home_review">
+                <div className="home_review_container">
+                  <div className="home_review_container_road">
+                    <div>
+                      <div>1</div>
+                      <p>새로운 방식의 가계부</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div>2</div>
+                      <p>간편하게 작성</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div>3</div>
+                      <p>돈이 쌓인다</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <button>
+                      <p>스크루지 하기</p>
+                      <ArrowRightIcon className="start_btn_icon" />
+                    </button>
+                  </div>
+                </div>
+                <div className="review">
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Solhee} alt="" />
+                    </div>
+                    <p>
+                      달 말에 실제 금액과 <br />
+                      가계부에 작성한 금액에 <br />
+                      <strong>차액이 남으면 불편</strong>했었는데 <br />
+                      스크루지는 <strong>예산</strong>을 <strong>설정</strong>
+                      하고 <br />
+                      <strong>줄여나가는 방식</strong>이라 <br />
+                    </p>
+                    <p>
+                      <strong>차액이 신경쓰이지 않아요!</strong>
+                    </p>
+                    <p>김○○</p>
+                  </div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Coding} alt="" />
+                    </div>
+                    <p>
+                      기존에 있던 가계부들은 <br />
+                      <strong>복잡한 양식</strong> 때문에 <br />
+                      작성하기 <strong>귀찮</strong>았는데 <br />
+                      스크루지는 금액만 <br />
+                      <strong>간단하게 작성</strong>해도 돼서 <br />
+                    </p>
+                    <p>
+                      <strong>간편해요!</strong>
+                    </p>
+                    <p>임○○</p>
+                  </div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Mingyu} alt="" />
+                    </div>
+                    <p>
+                      <strong>예산 별 한도</strong>를 정하니까 <br />
+                      아껴 쓰고 싶고 <br />
+                      <strong>계획적인 소비</strong>를 <br />
+                      할 수 있게 도와주는 <br />
+                      스크루지 하니까 <br />
+                    </p>
+                    <p>
+                      <strong>돈이 차곡차곡 쌓여요!!</strong>
+                    </p>
+                    <p>박○○</p>
+                  </div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Yonghui} alt="" />
+                    </div>
+                    <p>
+                      항상 주머니에 구멍난 듯이 <br />
+                      월급 - 카드값 = 0 이었는데 <br />
+                      <strong>스크루지</strong>를 사용하고나니 <br />
+                      통장에 조금씩 커져가는 <br />
+                    </p>
+
+                    <p>
+                      <strong>숫자 보는 맛을 느끼게 되었어요!!</strong>
+                    </p>
+                    <p>손○○</p>
+                  </div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Chanyang} alt="" />
+                    </div>
+                    <p>
+                      가계부를 <strong>처음</strong> 접해봤는데 <br />
+                      사용한 금액을
+                      <br />
+                      <strong>한눈에 관리</strong> 할 수 있어서 <br />
+                    </p>
+                    <p>
+                      <strong>충동구매 습관을 고쳤어요 !!</strong>
+                    </p>
+                    <p>이○○</p>
+                  </div>
+                </div>
+              </section>
             </div>
           )}
         </>
