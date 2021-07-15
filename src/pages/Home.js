@@ -379,7 +379,7 @@ function Home() {
                 </svg>
               </div>
               <section className="home_slide">
-                <Home_Bottom />
+                <Home_Bottom data-aos="fade-up" />
               </section>
               <section className="home_piechart">
                 <h2 data-aos="fade-up">가계부에 담은 거대한 도약</h2>
