@@ -45,11 +45,12 @@ html {
         margin: 0px 10px;
         border-radius: 23px;
         max-height: 159px;
-        font-size: 3vmin;
+        font-size: 2vmin;
         align-items: center;
         color: $white-color;
+
         &_span {
-          font-size: 3vmin;
+          font-size: 2vmin;
           height: fit-content;
         }
 
@@ -120,11 +121,11 @@ html {
       &_container {
         &_inner {
           max-height: 135px;
-          font-size: 2.3vmin;
+          font-size: 2vmin;
           margin-bottom: 10px;
 
           &_span {
-            font-size: 2.3vmin;
+            font-size: 2vmin;
             height: fit-content;
           }
         }
