@@ -503,67 +503,75 @@ function Home() {
               </section>
               <section className="home_review">
                 <div className="home_review_container">
-                  <div>
-                    <div>1</div>
-                    <p>새로운 방식의 가계부</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="8"
-                      height="349"
-                      viewBox="0 0 8 349"
-                      fill="none"
-                    >
-                      <path
-                        d="M4 4L3.6939 345"
-                        stroke="#D5E0F1"
-                        strokeWidth="7"
-                        strokeLinecap="square"
-                        strokeDasharray="14 14"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>2</div>
-                    <p>간편하게 작성</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="8"
-                      height="349"
-                      viewBox="0 0 8 349"
-                      fill="none"
-                    >
-                      <path
-                        d="M4 4L3.6939 345"
-                        stroke="#D5E0F1"
-                        strokeWidth="7"
-                        strokeLinecap="square"
-                        strokeDasharray="14 14"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>3</div>
-                    <p>돈이 쌓인다</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="8"
-                      height="349"
-                      viewBox="0 0 8 349"
-                      fill="none"
-                    >
-                      <path
-                        d="M4 4L3.6939 345"
-                        stroke="#D5E0F1"
-                        strokeWidth="7"
-                        strokeLinecap="square"
-                        strokeDasharray="14 14"
-                      />
-                    </svg>
+                  <div className="home_review_container_road">
+                    <div>
+                      <div>1</div>
+                      <p>새로운 방식의 가계부</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div>2</div>
+                      <p>간편하게 작성</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div>3</div>
+                      <p>돈이 쌓인다</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="349"
+                        viewBox="0 0 8 349"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L3.6939 345"
+                          stroke="#D5E0F1"
+                          strokeWidth="7"
+                          strokeLinecap="square"
+                          strokeDasharray="14 14"
+                        />
+                      </svg>
+                    </div>
+                    <button>
+                      <p>스크루지 하기</p>
+                      <ArrowRightIcon className="start_btn_icon" />
+                    </button>
                   </div>
                 </div>
                 <div className="review">
-                  <div>
-                    <div className="avatar"></div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Solhee} alt="" />
+                    </div>
                     <p>
                       달 말에 실제 금액과 <br />
                       가계부에 작성한 금액에 <br />
@@ -577,8 +585,10 @@ function Home() {
                     </p>
                     <p>김○○</p>
                   </div>
-                  <div>
-                    <div className="avatar"></div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Coding} alt="" />
+                    </div>
                     <p>
                       기존에 있던 가계부들은 <br />
                       <strong>복잡한 양식</strong> 때문에 <br />
@@ -591,8 +601,10 @@ function Home() {
                     </p>
                     <p>임○○</p>
                   </div>
-                  <div>
-                    <div className="avatar"></div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Mingyu} alt="" />
+                    </div>
                     <p>
                       <strong>예산 별 한도</strong>를 정하니까 <br />
                       아껴 쓰고 싶고 <br />
@@ -605,8 +617,10 @@ function Home() {
                     </p>
                     <p>박○○</p>
                   </div>
-                  <div>
-                    <div className="avatar"></div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Yonghui} alt="" />
+                    </div>
                     <p>
                       항상 주머니에 구멍난 듯이 <br />
                       월급 - 카드값 = 0 이었는데 <br />
@@ -619,8 +633,10 @@ function Home() {
                     </p>
                     <p>손○○</p>
                   </div>
-                  <div>
-                    <div className="avatar"></div>
+                  <div data-aos="fade_up">
+                    <div className="avatar">
+                      <img src={data.Chanyang} alt="" />
+                    </div>
                     <p>
                       가계부를 <strong>처음</strong> 접해봤는데 <br />
                       사용한 금액을

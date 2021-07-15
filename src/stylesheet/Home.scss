@@ -175,7 +175,7 @@ nav.top_nav {
         position: absolute;
       }
       .topper {
-        top: 15%;
+        top: 14%;
         width: 100%;
       }
       .monthly {
@@ -244,6 +244,8 @@ nav.top_nav {
       }
       svg {
         width: 20%;
+
+        height: 20%;
         margin: 0 5%;
       }
       .path {
@@ -407,19 +409,105 @@ nav.top_nav {
 .home_review {
   position: relative;
   margin-top: 130vw;
-  height: 150vw;
+  height: 1200px;
   &_container {
-    height: 1000px;
+    height: 100%;
     background-color: #fff;
+    padding: 50px 40px;
+    &_road {
+      position: relative;
+      height: 100%;
+      & > div {
+        position: relative;
+        margin-bottom: 230px;
+        width: 500px;
+        div:first-child {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 20px;
+          width: 40px;
+          height: 40px;
+          color: #fff;
+          font-size: 1.3rem;
+          background-color: $blue-color;
+          border-radius: 50px;
+        }
+        p {
+          display: inline-block;
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+        svg {
+          position: absolute;
+          top: 140%;
+          left: -5px;
+          width: 10%;
+          height: 500%;
+        }
+      }
+      button {
+        z-index: 2;
+        position: relative;
+        width: 210px;
+        background-color: inherit;
+        p {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .start_btn_icon {
+          color: #fff;
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          width: 24px;
+          height: 24px;
+          transform: translate(-50%, -50%);
+          transition: left 0.3s cubic-bezier(0.39, 0.58, 0.57, 1);
+        }
+        &::before {
+          content: '';
+          display: block;
+          width: 40px;
+          height: 40px;
+          background-color: $blue-color;
+          border-radius: 50px;
+          transition: width 0.3s cubic-bezier(0.39, 0.58, 0.57, 1);
+        }
+        &:hover {
+          color: #fff;
+          .start_btn_icon {
+            left: 90%;
+          }
+          &::before {
+            width: 210px;
+          }
+        }
+      }
+    }
   }
   .review {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     & > div {
+      position: absolute;
+      width: 350px;
       .avatar {
+        margin-bottom: 15px;
         width: 10vw;
         height: 10vw;
         max-width: 120px;
         max-height: 120px;
-        background-color: #000;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
       p {
         font-size: 1.5em;
@@ -428,6 +516,39 @@ nav.top_nav {
         }
         &:nth-child(4) {
           color: $gray-color;
+        }
+      }
+      &:first-child {
+        margin-left: auto;
+        top: 10%;
+        right: 5%;
+        text-align: right;
+        .avatar {
+          margin-left: auto;
+        }
+      }
+      &:nth-child(2) {
+        top: 32%;
+        left: 45%;
+      }
+      &:nth-child(3) {
+        top: 48%;
+        right: 8%;
+        text-align: right;
+        .avatar {
+          margin-left: auto;
+        }
+      }
+      &:nth-child(4) {
+        top: 59%;
+        left: 25%;
+      }
+      &:nth-child(5) {
+        bottom: 7%;
+        right: 25%;
+        text-align: right;
+        .avatar {
+          margin-left: auto;
         }
       }
     }
@@ -474,7 +595,7 @@ nav.top_nav {
 
   .home_review {
     &_container {
-      margin: 0 0 0 -24px;
+      margin-left: -24px;
       width: calc(100% + (24px * 2));
     }
   }
@@ -505,7 +626,7 @@ nav.top_nav {
   }
   .home_review {
     &_container {
-      margin: 0 0 0 -36px;
+      margin-left: -36px;
       width: calc(100% + (36px * 2));
     }
   }
@@ -539,7 +660,7 @@ nav.top_nav {
   }
   .home_review {
     &_container {
-      margin: 0 0 0 -50px;
+      margin-left: -50px;
       width: calc(100% + (50px * 2));
     }
   }
