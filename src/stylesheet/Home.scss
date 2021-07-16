@@ -1,4 +1,32 @@
 //
+.home {
+  .start_btn_group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .scroll_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 15px;
+      background-color: #fff;
+      border-radius: 16px;
+      text-align: center;
+      font-size: $font-default;
+      line-height: 24px;
+      color: $blue_color;
+      &_icon {
+        margin-left: 4px;
+        width: 24px;
+        height: 24px;
+      }
+      .signup_btn {
+        width: 0;
+        line-height: 0;
+      }
+    }
+  }
+}
 
 .signup_btn {
   display: inline-block;
@@ -104,33 +132,6 @@ nav.top_nav {
       line-height: 1.5;
       font-size: 4em;
       font-weight: 400;
-    }
-
-    .btn_group {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      .scroll_btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 15px;
-        background-color: #fff;
-        border-radius: 16px;
-        text-align: center;
-        font-size: $font-default;
-        line-height: 24px;
-        color: $blue_color;
-        &_icon {
-          margin-left: 4px;
-          width: 24px;
-          height: 24px;
-        }
-        .signup_btn {
-          width: 0;
-          line-height: 0;
-        }
-      }
     }
   }
   &_img {
@@ -540,7 +541,7 @@ nav.top_nav {
         }
       }
       &:nth-child(4) {
-        top: 59%;
+        top: 58%;
         left: 25%;
       }
       &:nth-child(5) {
@@ -554,10 +555,81 @@ nav.top_nav {
     }
   }
 }
+.home_real_bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  h2 {
+    margin-bottom: 15px;
+  }
+}
+.home_footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  height: fit-content;
+  font-size: 1.2em;
+  line-height: 24px;
+  background-color: #fff;
+  img {
+    margin-bottom: 20px;
+  }
+  svg {
+    transform: translate(0, 22%);
+    margin-right: 5px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  &_scrooge {
+    display: flex;
+    margin-bottom: 110px;
+    padding-right: 145px;
+    flex-direction: column;
+    border-right: 1px solid $gray-color;
+    a {
+      margin: 5px 0;
+    }
+  }
+  .team_atm_member {
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      display: flex;
+      flex-direction: column;
+      a {
+        margin: 5px 0;
+        line-height: 24px;
+        svg {
+          transform: translate(0, 22%);
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+.copyright {
+  margin-bottom: -50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 1.2em;
+}
 
 @include mobile {
   .home {
     font-size: 8px;
+    .start_btn_group {
+      .signup_btn,
+      .scroll_btn {
+        width: 140px;
+        height: 35px;
+      }
+    }
   }
   nav.top_nav {
     .btn_group {
@@ -579,13 +651,6 @@ nav.top_nav {
   .home_main {
     &_article {
       top: 70%;
-      .btn_group {
-        .signup_btn,
-        .scroll_btn {
-          width: 140px;
-          height: 35px;
-        }
-      }
     }
     &_img {
       width: 75vw;
@@ -598,6 +663,10 @@ nav.top_nav {
       margin-left: -24px;
       width: calc(100% + (24px * 2));
     }
+  }
+  .home_footer {
+    margin-left: -24px;
+    width: calc(100% + (24px * 2));
   }
 }
 
@@ -630,11 +699,21 @@ nav.top_nav {
       width: calc(100% + (36px * 2));
     }
   }
+  .home_footer {
+    margin-left: -36px;
+    width: calc(100% + (36px * 2));
+  }
 }
 
 @include desktop {
   .home {
     font-size: 16px;
+    .start_btn_group {
+      .scroll_btn {
+        width: 200px;
+        height: 40px;
+      }
+    }
   }
   nav.top_nav {
     .btn_group {
@@ -644,12 +723,6 @@ nav.top_nav {
     }
   }
   .home_main {
-    .btn_group {
-      .scroll_btn {
-        width: 200px;
-        height: 40px;
-      }
-    }
     &_img {
       width: 48vw;
       top: 15%;
@@ -663,5 +736,9 @@ nav.top_nav {
       margin-left: -50px;
       width: calc(100% + (50px * 2));
     }
+  }
+  .home_footer {
+    margin-left: -50px;
+    width: calc(100% + (50px * 2));
   }
 }
