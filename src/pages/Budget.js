@@ -111,6 +111,7 @@ function Budget() {
     }
 
     dispatch(createBudget(inputData, accessToken));
+    setAddMode(false);
   };
 
   const pieChartColor = {

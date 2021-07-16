@@ -10,7 +10,7 @@ function YearlyList() {
       return (
         <>
           <span className="yearly_bottom_container_inner_span">
-            {result.date.split('-')[1]}월 {result.categoryname} {result.cost}
+            {result.date.split('-')[1]}월 {result.categoryname} {result.cost}원
           </span>
         </>
       );

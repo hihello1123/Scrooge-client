@@ -83,6 +83,7 @@ nav.top_nav {
     }
   }
 }
+
 .bg {
   z-index: -1;
   position: absolute;
@@ -115,6 +116,7 @@ nav.top_nav {
     }
   }
 }
+
 .home_main {
   position: absolute;
   top: 0;
@@ -132,6 +134,45 @@ nav.top_nav {
       line-height: 1.5;
       font-size: 4em;
       font-weight: 400;
+    }
+
+    .btn_group {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .scroll_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15px;
+        background-color: #fff;
+        border-radius: 16px;
+        text-align: center;
+        font-size: $font-default;
+        line-height: 24px;
+        color: $blue_color;
+        &_icon {
+          margin-left: 4px;
+          width: 24px;
+          height: 24px;
+        }
+        .signup_btn {
+          width: 0;
+          line-height: 0;
+        }
+      }
+      .testLogin_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15px;
+        background-color: #fff;
+        border-radius: 16px;
+        height: 40px;
+        text-align: center;
+        font-size: $font-default;
+        color: $blue_color;
+      }
     }
   }
   &_img {
@@ -278,66 +319,6 @@ nav.top_nav {
   }
 }
 
-.home_slide {
-  margin-top: 500px;
-  margin-bottom: 100vh;
-  .landing_item {
-    &_container {
-      position: absolute;
-      left: 0;
-      width: calc(100vw - (100vw - 100%));
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      background-color: white;
-      padding: 30px;
-      // border-radius: 30px;
-    }
-    &_literal {
-      width: 40%;
-      background-color: white;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      &_title {
-        height: 30%;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 36px;
-        margin: auto;
-      }
-      &_inform {
-        height: 70%;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-    &_photo {
-      width: 60%;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    &_btns {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      z-index: 9;
-      display: flex;
-      svg {
-        width: 50px;
-        border: solid 1px $gray-color;
-        border-radius: 10px;
-        cursor: pointer;
-        color: $gray-color;
-      }
-      svg:first-child {
-        margin-right: 20px;
-      }
-    }
-  }
-}
 .home_piechart {
   position: relative;
   h2 {
@@ -651,6 +632,14 @@ nav.top_nav {
   .home_main {
     &_article {
       top: 70%;
+      .btn_group {
+        .signup_btn,
+        .scroll_btn,
+        .testLogin_btn {
+          width: 140px;
+          height: 35px;
+        }
+      }
     }
     &_img {
       width: 75vw;
@@ -675,7 +664,8 @@ nav.top_nav {
     font-size: 12px;
   }
   .signup_btn,
-  .scroll_btn {
+  .scroll_btn,
+  .testLogin_btn {
     width: 140px;
     height: 35px;
   }
@@ -723,6 +713,13 @@ nav.top_nav {
     }
   }
   .home_main {
+    .btn_group {
+      .scroll_btn,
+      .testLogin_btn {
+        width: 200px;
+        height: 40px;
+      }
+    }
     &_img {
       width: 48vw;
       top: 15%;

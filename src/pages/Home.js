@@ -13,8 +13,6 @@ import {
 import {
   ArrowRightIcon,
   LockClosedIcon,
-  ArrowNarrowLeftIcon,
-  ArrowNarrowRightIcon,
   ChatAlt2Icon,
   GlobeIcon,
   MailIcon,
@@ -22,6 +20,8 @@ import {
 import Loading from '../components/Loading';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+
+import Home_Bottom from '../components/Home_Bottom';
 
 function Home() {
   const dispatch = useDispatch();
@@ -50,6 +50,10 @@ function Home() {
     dispatch(hello());
   }, []);
 
+  //=======================
+
+  //=================
+
   useEffect(() => {
     dispatch(socialDataDelete());
     let url = new URL(window.location.href);
@@ -70,85 +74,6 @@ function Home() {
   const modalSet = () => {
     setLoginModal(!isLoginModal);
   };
-
-  const itemlist = [
-    {
-      title: '1번사진',
-      inform: '1번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/first.png',
-      id: 0,
-    },
-    {
-      title: '2번사진',
-      inform: '2번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/second.png',
-      id: 1,
-    },
-    {
-      title: '3번사진',
-      inform: '3번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/third.png',
-      id: 2,
-    },
-    {
-      title: '4번사진',
-      inform: '4번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/fourth.png',
-      id: 3,
-    },
-    {
-      title: '5번사진',
-      inform: '5번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/fifth.png',
-      id: 4,
-    },
-    {
-      title: '6번사진',
-      inform: '6번사진의 내용들',
-      photo: process.env.PUBLIC_URL + '/sixth.png',
-      id: 5,
-    },
-  ];
-
-  const [showItem, setItem] = useState({
-    title: '1번사진',
-    inform: '1번사진의 내용들',
-    photo: process.env.PUBLIC_URL + '/first.png',
-    id: 0,
-  });
-
-  const slidePlusBtn = (e) => {
-    if (showItem.id === 5) {
-      setItem({ ...showItem, ...itemlist[0] });
-    } else {
-      let filtered = itemlist.filter((el) => {
-        if (showItem.id === 6) {
-          return el.id === 0;
-        } else {
-          return el.id === showItem.id + 1;
-        }
-      });
-      setItem({ ...showItem, ...filtered[0] });
-      console.log(filtered);
-      console.log(showItem);
-    }
-  };
-
-  const slideMinusBtn = (e) => {
-    if (showItem.id === 0) {
-      setItem({ ...showItem, ...itemlist[5] });
-    } else {
-      let filtered = itemlist.filter((el) => {
-        if (showItem.id === 0) {
-          return el.id === 6;
-        } else {
-          return el.id === showItem.id - 1;
-        }
-      });
-      setItem({ ...showItem, ...filtered[0] });
-    }
-  };
-
   const testLogin = () => {
     dispatch(experimentLogin(setModalMessage));
   };
@@ -456,29 +381,7 @@ function Home() {
                 </svg>
               </div>
               <section className="home_slide">
-                <h2>
-                  사용하기 쉬운
-                  <br />
-                  심플한 인터페이스
-                </h2>
-                <div className="landing_item_container">
-                  <div className="landing_item_literal">
-                    <div className="landing_item_literal_title">
-                      {showItem.title}
-                    </div>
-                    <div className="landing_item_literal_inform">
-                      {showItem.inform}
-                    </div>
-                  </div>
-                  <div className="landing_item_photo">
-                    <img src={showItem.photo} alt="" />
-                    <div className="landing_item_btns">
-                      <ArrowNarrowLeftIcon onClick={slideMinusBtn} />
-                      <ArrowNarrowRightIcon onClick={slidePlusBtn} />
-                    </div>
-                  </div>
-                </div>
-                <div>여기까지 추가 끝</div>
+                <Home_Bottom />
               </section>
               <section className="home_piechart">
                 <h2 data-aos="fade-up">가계부에 담은 거대한 도약</h2>
